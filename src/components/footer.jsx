@@ -2,7 +2,7 @@ import SocialLinks from "./socialMediaIcons"
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 shadow-lg max-w-[1371px]">
+    <footer className="bg-gray-800 shadow-lg max-w-[1440px]">
       <div className=" mx-auto px-4 py-12 lg:py-16">
         {/* Main Footer Content */}
         <div className="flex gap-4 lg:gap-20">
