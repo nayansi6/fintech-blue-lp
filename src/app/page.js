@@ -164,7 +164,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <div className="max-w-[1371px]">
+    <div className="max-w-[1440px]">
     <div className="bg-gray-50">
       <section className="bg-gradient-to-tl max-h-screen from-blue-600 via-blue-400 to-blue-600 h-[600px] rounded-bl-[100px]">
         <div className="max-w-7xl mb-10 flex flex-col md:flex-row items-center justify-between overflow-hidden ">

@@ -83,7 +83,7 @@ const Header = () => {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50  w-[100%] max-w-[1371px] backdrop-blur-lg bg-gray-900 shadow-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50  w-[100%] max-w-[1440px] backdrop-blur-lg bg-gray-900 shadow-sm border-b border-gray-100">
       <div className=" mx-auto  relative">
         <div className="flex justify-between h-16 items-center px-3 sm:px-4 md:px-5 lg:px-10">
           <div className="flex items-start space-x-4 sm:space-x-8">
