@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBSHQ Products Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #111827;
+            color: #333;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Ultra-Realistic Metallic Laptop Frame */
+        .laptop-container {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            perspective: 1000px;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+        }
+        
+        .laptop {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg) rotateY(-10deg);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .laptop:hover {
+            transform: rotateX(5deg) rotateY(-5deg) translateY(-10px);
+            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.8));
+        }
+        
+        .screen {
+            width: 92%;
+            height: 82%;
+            background: linear-gradient(145deg, #e6e9ed, #f5f7fa);
+            border-radius: 12px 12px 0 0;
+            position: absolute;
+            top: 4%;
+            left: 4%;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 15px rgba(255,255,255,0.5),
+                0 10px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.8) 20%,
+                rgba(200,200,200,0.6) 50%, 
+                rgba(255,255,255,0.8) 80%,
+                rgba(255,255,255,0) 100%);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .screen::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(200,200,200,0.5) 50%, 
+                rgba(255,255,255,0.8) 100%);
+        }
+        
+        .base {
+            width: 110%;
+            height: 10%;
+            background: 
+                linear-gradient(160deg, 
+                    #c0c0c0 0%, 
+                    #a0a0a0 30%,
+                    #909090 50%,
+                    #a0a0a0 70%,
+                    #c0c0c0 100%);
+            position: absolute;
+            bottom: -2%;
+            left: -5%;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 
+                0 10px 25px rgba(0,0,0,0.5),
+                inset 0 -5px 10px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transform: rotateX(60deg);
+            z-index: -1;
+        }
+        
+        .base::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(200,200,200,0.5) 50%, 
+                rgba(255,255,255,0.8) 100%);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .hinge {
+            width: 18%;
+            height: 4%;
+            background: linear-gradient(to bottom, #707070, #505050);
+            position: absolute;
+            top: 85%;
+            left: 41%;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 
+                inset 0 -3px 5px rgba(0,0,0,0.3),
+                0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .hinge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25%;
+            right: 25%;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Screen Content */
+        .presentation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-icon-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+        
+        .product-icon {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.1),
+                inset 0 0 10px rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        
+        .product-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(255,255,255,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-icon:hover {
+            transform: translateY(-5px) rotateY(15deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .product-icon:hover::before {
+            opacity: 1;
+        }
+        
+        .product-icon i {
+            font-size: 32px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .related-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .related-icon {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .product-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4f46e5, transparent);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .slide.active .product-title::after {
+            opacity: 1;
+            bottom: -8px;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            max-width: 80%;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease 0.3s;
+        }
+        
+        .slide.active .product-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .privacy-badge {
+            background: rgba(22, 163, 74, 0.1);
+            color: #16a34a;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(22, 163, 74, 0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease 0.4s;
+        }
+        
+        .slide.active .privacy-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .privacy-badge i {
+            margin-right: 8px;
+        }
+        
+        /* Navigation Dots */
+        .slide-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .indicator.active::before {
+            transform: scale(1);
+        }
+        
+        .indicator:hover::before {
+            transform: scale(0.7);
+        }
+        
+        /* Data Flow Animation */
+        .data-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .data-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(1px);
+            z-index: 1;
+        }
+        
+        /* Product Specific Colors */
+        .mail { color: #e11d48; }
+        .drive { color: #f59e0b; }
+        .docs { color: #10b981; }
+        .calendar { color: #8b5cf6; }
+        .pad { color: #3b82f6; }
+        .sheet { color: #ec4899; }
+        .slides { color: #14b8a6; }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes roll {
+            0% { transform: translateX(-100%) rotate(-180deg); opacity: 0; }
+            100% { transform: translateX(0) rotate(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="laptop-container">
+        <div class="laptop">
+            <div class="screen">
+                <div class="presentation">
+                    <!-- Opening Animation -->
+                    <div class="slide active" id="opening">
+                        <div class="product-icon-container">
+                            <div class="product-icon" style="width: 100px; height: 100px;">
+                                <i class="fas fa-lock" style="font-size: 40px; color: #4f46e5;"></i>
+                            </div>
+                            <div class="related-icons" id="openingIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBSHQ Secure Suite</h1>
+                        <p class="product-description">Experience complete privacy with our zero-knowledge encrypted productivity tools</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            All Data Encrypted End-to-End
+                        </div>
+                        <div class="data-flow" id="openingFlow"></div>
+                    </div>
+                    
+                    <!-- UBS Mail -->
+                    <div class="slide" data-index="0">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-envelope mail"></i>
+                            </div>
+                            <div class="related-icons" id="mailIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Mail</h1>
+                        <p class="product-description">Secure, encrypted email communication with zero-knowledge architecture. Your messages remain private with end-to-end encryption by default.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-fingerprint"></i>
+                            Zero-Knowledge Encryption
+                        </div>
+                        <div class="data-flow" id="mailFlow"></div>
+                    </div>
+                    
+                    <!-- UBS Drive -->
+                    <div class="slide" data-index="1">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-cloud-drive-alt drive"></i>
+                            </div>
+                            <div class="related-icons" id="driveIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Drive</h1>
+                        <p class="product-description">Private cloud storage where you own your data. Files are encrypted before they leave your device, ensuring complete privacy and security.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-user-shield"></i>
+                            Client-Side Encryption
+                        </div>
+                        <div class="data-flow" id="driveFlow"></div>
+                    </div>
+                    
+                    <!-- UBS Docs -->
+                    <div class="slide" data-index="2">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-file-alt docs"></i>
+                            </div>
+                            <div class="related-icons" id="docsIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Docs</h1>
+                        <p class="product-description">Collaborative document editing with end-to-end encryption. Work with teams without compromising sensitive information.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-lock"></i>
+                            End-to-End Encrypted Collaboration
+                        </div>
+                        <div class="data-flow" id="docsFlow"></div>
+                    </div>
+                    
+                    <!-- UBS Calendar -->
+                    <div class="slide" data-index="3">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-calendar-alt calendar"></i>
+                            </div>
+                            <div class="related-icons" id="calendarIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Calendar</h1>
+                        <p class="product-description">Schedule with complete privacy. Your appointments, events and reminders are encrypted and only accessible by you.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-eye-slash"></i>
+                            No Metadata Collection
+                        </div>
+                        <div class="data-flow" id="calendarFlow"></div>
+                    </div>
+                    
+                    <!-- UBS Pad -->
+                    <div class="slide" data-index="4">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-edit pad"></i>
+                            </div>
+                            <div class="related-icons" id="padIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Pad</h1>
+                        <p class="product-description">Secure notepad for your private thoughts, ideas and notes. Everything is encrypted locally before syncing to your private cloud.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-key"></i>
+                            Local Encryption First
+                        </div>
+                        <div class="data-flow" id="padFlow"></div>
+                    </div>
+                    
+                    <!-- Sheet -->
+                    <div class="slide" data-index="5">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-table sheet"></i>
+                            </div>
+                            <div class="related-icons" id="sheetIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Sheet</h1>
+                        <p class="product-description">Private spreadsheets with real-time collaboration. All data remains encrypted whether at rest or in transit between collaborators.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-database"></i>
+                            Encrypted Cell-Level Data
+                        </div>
+                        <div class="data-flow" id="sheetFlow"></div>
+                    </div>
+                    
+                    <!-- Slides -->
+                    <div class="slide" data-index="6">
+                        <div class="product-icon-container">
+                            <div class="product-icon">
+                                <i class="fas fa-presentation slides"></i>
+                            </div>
+                            <div class="related-icons" id="slidesIcons"></div>
+                        </div>
+                        <h1 class="product-title">UBS Slides</h1>
+                        <p class="product-description">Create and present securely with encrypted slides. Share presentations without exposing them to third parties.</p>
+                        <div class="privacy-badge">
+                            <i class="fas fa-file-contract"></i>
+                            Private Document Sharing
+                        </div>
+                        <div class="data-flow" id="slidesFlow"></div>
+                    </div>
+                    
+                    <div class="slide-indicators">
+                        <div class="indicator active" data-index="0"></div>
+                        <div class="indicator" data-index="1"></div>
+                        <div class="indicator" data-index="2"></div>
+                        <div class="indicator" data-index="3"></div>
+                        <div class="indicator" data-index="4"></div>
+                        <div class="indicator" data-index="5"></div>
+                        <div class="indicator" data-index="6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hinge"></div>
+            <div class="base"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            let slideInterval;
+            
+            // Related icons for each product
+            const relatedIcons = {
+                opening: ['fa-key', 'fa-shield-alt', 'fa-lock-open', 'fa-user-secret'],
+                mail: ['fa-paper-plane', 'fa-inbox', 'fa-mail-bulk', 'fa-at'],
+                drive: ['fa-folder', 'fa-file-upload', 'fa-hdd', 'fa-server'],
+                docs: ['fa-file-word', 'fa-file-pdf', 'fa-file-code', 'fa-file-alt'],
+                calendar: ['fa-clock', 'fa-bell', 'fa-calendar-week', 'fa-calendar-check'],
+                pad: ['fa-sticky-note', 'fa-pen-fancy', 'fa-highlighter', 'fa-book'],
+                sheet: ['fa-table-cells', 'fa-chart-line', 'fa-calculator', 'fa-sort-numeric-up'],
+                slides: ['fa-chart-bar', 'fa-image', 'fa-film', 'fa-tv']
+            };
+            
+            // Initialize the presentation
+            function initPresentation() {
+                // Start with the opening animation
+                slides[0].classList.add('active');
+                indicators[0].classList.add('active');
+                
+                // Create opening animation
+                createOpeningAnimation();
+                
+                // Create related icons for all slides
+                createAllRelatedIcons();
+                
+                // After opening, start product slideshow
+                setTimeout(() => {
+                    startAutoRotation();
+                }, 4000);
+                
+                // Add click handlers for indicators
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', function() {
+                        const targetIndex = parseInt(this.getAttribute('data-index')) + 1;
+                        goToSlide(targetIndex);
+                    });
+                });
+            }
+            
+            // Create opening animation with GSAP
+            function createOpeningAnimation() {
+                const icon = document.querySelector('#opening .product-icon');
+                const title = document.querySelector('#opening .product-title');
+                const desc = document.querySelector('#opening .product-description');
+                const badge = document.querySelector('#opening .privacy-badge');
+                
+                gsap.set([icon, title, desc, badge], { opacity: 0 });
+                gsap.set(icon, { scale: 0.5, rotationY: 180 });
+                
+                const tl = gsap.timeline();
+                tl.to(icon, { 
+                    opacity: 1, 
+                    scale: 1, 
+                    rotationY: 0,
+                    duration: 1.2, 
+                    ease: "back.out(1.7)" 
+                });
+                tl.to(title, { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    ease: "elastic.out(1, 0.5)" 
+                }, "-=0.5");
+                tl.to(desc, { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    ease: "power2.out" 
+                }, "-=0.4");
+                tl.to(badge, { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    ease: "power2.out" 
+                }, "-=0.3");
+                
+                // Create data flow for opening
+                createDataFlow('openingFlow', 30, '#4f46e5');
+                animateRelatedIcons('openingIcons', relatedIcons.opening);
+            }
+            
+            // Create related icons for all slides
+            function createAllRelatedIcons() {
+                for (const [slideId, icons] of Object.entries(relatedIcons)) {
+                    if (slideId !== 'opening') {
+                        const container = document.getElementById(`${slideId}Icons`);
+                        createRelatedIcons(container, icons);
+                    }
+                }
+            }
+            
+            // Create related icons
+            function createRelatedIcons(container, icons) {
+                container.innerHTML = '';
+                
+                icons.forEach((iconClass, index) => {
+                    const icon = document.createElement('i');
+                    icon.className = `fas ${iconClass} related-icon`;
+                    icon.style.fontSize = '14px';
+                    
+                    // Position icons around the main icon
+                    const angle = (index * (360 / icons.length)) * (Math.PI / 180);
+                    const distance = 60;
+                    const x = 40 + Math.cos(angle) * distance;
+                    const y = 40 + Math.sin(angle) * distance;
+                    
+                    icon.style.left = `${x}px`;
+                    icon.style.top = `${y}px`;
+                    
+                    container.appendChild(icon);
+                    
+                    // Animate icon entrance
+                    gsap.to(icon, {
+                        opacity: 0.8,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: index * 0.1,
+                        ease: "back.out(1.7)",
+                        onComplete: () => {
+                            // Add continuous animation
+                            gsap.to(icon, {
+                                y: -5,
+                                duration: 1 + Math.random(),
+                                repeat: -1,
+                                yoyo: true,
+                                ease: "sine.inOut"
+                            });
+                        }
+                    });
+                });
+            }
+            
+            // Animate related icons when slide becomes active
+            function animateRelatedIcons(containerId, icons) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                createRelatedIcons(container, icons);
+            }
+            
+            // Transition to a specific slide
+            function goToSlide(index) {
+                // Reset auto-rotation timer
+                resetAutoRotation();
+                
+                // Don't do anything if we're already on this slide
+                if (index === currentSlide) return;
+                
+                // Exit current slide
+                gsap.to(slides[currentSlide], {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                });
+                indicators[currentSlide - (currentSlide > 0 ? 1 : 0)]?.classList.remove('active');
+                
+                // Update current slide
+                currentSlide = index;
+                if (currentSlide >= slideCount) currentSlide = 1;
+                if (currentSlide < 1) currentSlide = slideCount - 1;
+                
+                // Enter new slide
+                gsap.fromTo(slides[currentSlide], 
+                    { opacity: 0, y: 20 },
+                    { 
+                        opacity: 1, 
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.inOut",
+                        onStart: () => {
+                            slides[currentSlide].classList.add('active');
+                            createDataFlowForCurrentSlide();
+                            animateIconsForCurrentSlide();
+                        }
+                    }
+                );
+                indicators[currentSlide - 1].classList.add('active');
+            }
+            
+            // Animate icons for current slide
+            function animateIconsForCurrentSlide() {
+                let slideName = '';
+                switch(currentSlide) {
+                    case 0: slideName = 'opening'; break;
+                    case 1: slideName = 'mail'; break;
+                    case 2: slideName = 'drive'; break;
+                    case 3: slideName = 'docs'; break;
+                    case 4: slideName = 'calendar'; break;
+                    case 5: slideName = 'pad'; break;
+                    case 6: slideName = 'sheet'; break;
+                    case 7: slideName = 'slides'; break;
+                }
+                
+                if (slideName && relatedIcons[slideName]) {
+                    animateRelatedIcons(`${slideName}Icons`, relatedIcons[slideName]);
+                }
+            }
+            
+            // Go to next slide
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // Start auto-rotation
+            function startAutoRotation() {
+                slideInterval = setInterval(nextSlide, 3000);
+            }
+            
+            // Reset auto-rotation timer
+            function resetAutoRotation() {
+                clearInterval(slideInterval);
+                startAutoRotation();
+            }
+            
+            // Create data flow animation for current slide
+            function createDataFlowForCurrentSlide() {
+                let color = '#4f46e5';
+                switch(currentSlide) {
+                    case 1: color = '#e11d48'; break; // Mail
+                    case 2: color = '#f59e0b'; break; // Drive
+                    case 3: color = '#10b981'; break; // Docs
+                    case 4: color = '#8b5cf6'; break; // Calendar
+                    case 5: color = '#3b82f6'; break; // Pad
+                    case 6: color = '#ec4899'; break; // Sheet
+                    case 7: color = '#14b8a6'; break; // Slides
+                }
+                
+                const flowId = slides[currentSlide].querySelector('.data-flow').id;
+                createDataFlow(flowId, 25, color);
+            }
+            
+            // Create data flow animation
+            function createDataFlow(containerId, count, color) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('data-particle');
+                    particle.style.background = color;
+                    
+                    // Random starting position
+                    const startX = Math.random() * 100;
+                    const startY = Math.random() * 100;
+                    
+                    // Random ending position
+                    const endX = Math.random() * 100;
+                    const endY = Math.random() * 100;
+                    
+                    // Random size
+                    const size = Math.random() * 4 + 2;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${startX}%`;
+                    particle.style.top = `${startY}%`;
+                    
+                    container.appendChild(particle);
+                    
+                    // Animate particle with more interesting paths
+                    const path = [
+                        { x: startX, y: startY },
+                        { 
+                            x: startX + (Math.random() * 40 - 20), 
+                            y: startY + (Math.random() * 40 - 20) 
+                        },
+                        { x: endX, y: endY }
+                    ];
+                    
+                    gsap.to(particle, {
+                        motionPath: {
+                            path: path,
+                            type: "cubic",
+                            curviness: 1.5
+                        },
+                        opacity: 0.8,
+                        duration: Math.random() * 5 + 3,
+                        delay: Math.random() * 2,
+                        repeat: -1,
+                        repeatDelay: Math.random() * 2,
+                        ease: "sine.inOut"
+                    });
+                }
+            }
+            
+            // Initialize the presentation
+            initPresentation();
+            
+            // Enhanced hover effects
+            const laptop = document.querySelector('.laptop');
+            const laptopContainer = document.querySelector('.laptop-container');
+            
+            laptopContainer.addEventListener('mousemove', (e) => {
+                const rect = laptopContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                gsap.to(laptop, {
+                    rotationX: 10 + angleX,
+                    rotationY: -10 + angleY,
+                    duration: 1.5,
+                    ease: "power2.out"
+                });
+            });
+            
+            laptopContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+                gsap.to(laptop, {
+                    scale: 1.02,
+                    duration: 0.5
+                });
+                
+                // Add subtle glow to screen
+                gsap.to('.screen', {
+                    boxShadow: '0 10px 40px rgba(79, 70, 229, 0.3)',
+                    duration: 0.5
+                });
+            });
+            
+            laptopContainer.addEventListener('mouseleave', () => {
+                startAutoRotation();
+                gsap.to(laptop, {
+                    rotationX: 10,
+                    rotationY: -10,
+                    scale: 1,
+                    duration: 1,
+                    ease: "elastic.out(1, 0.5)"
+                });
+                
+                // Remove glow
+                gsap.to('.screen', {
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                    duration: 0.5
+                });
+            });
+            
+            // Add click effect to product icons
+            document.querySelectorAll('.product-icon').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    gsap.to(this, {
+                        scale: 0.9,
+                        duration: 0.1,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

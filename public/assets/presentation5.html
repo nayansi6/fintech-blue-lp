@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Drive - Secure Cloud Storage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            min-width: 500px;
+            min-height: 300px;
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2563eb;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: #2563eb;
+        }
+        
+        /* Main Content */
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 10;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        /* Drive Visualization */
+        .drive-visualization {
+            position: relative;
+            width: 300px;
+            height: 180px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .drive-visualization:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .folder-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .folder {
+            width: 40px;
+            height: 30px;
+            background: #e0f2fe;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0369a1;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file {
+            width: 30px;
+            height: 36px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 2px;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.7rem;
+            position: relative;
+        }
+        
+        /* Security Badges */
+        .badges {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .badge {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .badge i {
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .security-badge {
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+        
+        .zero-knowledge-badge {
+            color: #10b981;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .collab-badge {
+            color: #f59e0b;
+            border: 1px solid #fde68a;
+        }
+        
+        /* Animated Elements */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(5px, -10px) rotate(5deg);
+            }
+            50% {
+                transform: translate(10px, 0) rotate(0deg);
+            }
+            75% {
+                transform: translate(5px, 10px) rotate(-5deg);
+            }
+        }
+        
+        /* Encryption Animation */
+        .encryption-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .encryption-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        /* Collaboration Animation */
+        .collaboration-avatars {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            display: flex;
+        }
+        
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #0369a1;
+            margin-left: -10px;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: translateY(-5px) scale(1.1);
+            z-index: 10;
+        }
+        
+        /* Data Flow Animation */
+        .data-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .data-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .drive-visualization {
+                width: 260px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Header -->
+        <!-- <div class="header">
+            <div class="logo">
+                <i class="fas fa-cloud"></i>
+                <span>UBS Drive</span>
+            </div>
+        </div> -->
+        
+        <!-- Main Content -->
+        <div class="content">
+            
+            <p class="subtitle">Zero-knowledge encrypted storage with seamless collaboration</p>
+            
+            <div class="drive-visualization" id="driveVisualization">
+                <div class="folder-row">
+                    <div class="folder" data-file="Documents">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <div class="folder" data-file="Projects">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <div class="folder" data-file="Personal">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                </div>
+                <div class="folder-row">
+                    <div class="file" data-file="report.pdf">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="file" data-file="presentation.pptx">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <div class="file" data-file="budget.xlsx">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <div class="file" data-file="notes.txt">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                </div>
+                <div class="folder-row">
+                    <div class="file" data-file="image.jpg">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <div class="file" data-file="video.mp4">
+                        <i class="fas fa-file-video"></i>
+                    </div>
+                    <div class="file" data-file="archive.zip">
+                        <i class="fas fa-file-archive"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Collaboration Avatars -->
+            <div class="collaboration-avatars">
+                <div class="avatar" style="background: #f0f9ff;">JD</div>
+                <div class="avatar" style="background: #ecfdf5;">AM</div>
+                <div class="avatar" style="background: #fef2f2;">SK</div>
+                <div class="avatar" style="background: #fefce8;">TM</div>
+            </div>
+        </div>
+        
+        <!-- Badges -->
+        <div class="badges">
+            <div class="badge security-badge">
+                <i class="fas fa-lock"></i>
+                End-to-End Encryption
+            </div>
+            <div class="badge zero-knowledge-badge">
+                <i class="fas fa-user-secret"></i>
+                Zero-Knowledge
+            </div>
+            <div class="badge collab-badge">
+                <i class="fas fa-users"></i>
+                Real-time Collaboration
+            </div>
+        </div>
+        
+        <!-- Floating Icons -->
+        <div class="floating-icons">
+            <div class="floating-icon" style="top: 15%; left: 10%; color: #3b82f6; animation-delay: 0s;">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="floating-icon" style="top: 25%; right: 15%; color: #10b981; animation-delay: 1s;">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="floating-icon" style="bottom: 30%; left: 20%; color: #f59e0b; animation-delay: 2s;">
+                <i class="fas fa-key"></i>
+            </div>
+            <div class="floating-icon" style="bottom: 20%; right: 10%; color: #8b5cf6; animation-delay: 3s;">
+                <i class="fas fa-cloud"></i>
+            </div>
+        </div>
+        
+        <!-- Encryption Animation -->
+        <div class="encryption-animation" id="encryptionAnimation"></div>
+        
+        <!-- Data Flow Animation -->
+        <div class="data-flow" id="dataFlow"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize GSAP animations
+            gsap.registerEffect({
+                name: "encryptFile",
+                effect: (targets, config) => {
+                    return gsap.fromTo(targets,
+                        { opacity: 0, scale: 0.8 },
+                        { opacity: 1, scale: 1, duration: 0.5, ease: "back.out" }
+                    );
+                },
+                defaults: { duration: 1 }
+            });
+            
+            // Animate files and folders on hover
+            const files = document.querySelectorAll('.file, .folder');
+            files.forEach(file => {
+                file.addEventListener('mouseenter', function() {
+                    gsap.to(this, {
+                        y: -5,
+                        boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+                        duration: 0.3
+                    });
+                    
+                    // Show encryption animation
+                    const rect = this.getBoundingClientRect();
+                    createEncryptionParticles(rect.left + rect.width/2, rect.top + rect.height/2);
+                });
+                
+                file.addEventListener('mouseleave', function() {
+                    gsap.to(this, {
+                        y: 0,
+                        boxShadow: 'none',
+                        duration: 0.3
+                    });
+                });
+            });
+            
+            // Create encryption particles
+            function createEncryptionParticles(x, y) {
+                const container = document.getElementById('encryptionAnimation');
+                const particleCount = 8;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'encryption-particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    container.appendChild(particle);
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 20 + Math.random() * 30;
+                    const duration = 0.5 + Math.random() * 0.5;
+                    
+                    gsap.to(particle, {
+                        x: Math.cos(angle) * distance,
+                        y: Math.sin(angle) * distance,
+                        opacity: 0.6,
+                        scale: 1.5,
+                        duration: duration,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            particle.remove();
+                        }
+                    });
+                }
+            }
+            
+            // Create data flow animation
+            function createDataFlow() {
+                const container = document.getElementById('dataFlow');
+                const paths = [
+                    { start: { x: 10, y: 50 }, end: { x: 90, y: 30 } },
+                    { start: { x: 20, y: 80 }, end: { x: 80, y: 70 } },
+                    { start: { x: 5, y: 30 }, end: { x: 95, y: 60 } }
+                ];
+                
+                setInterval(() => {
+                    const path = paths[Math.floor(Math.random() * paths.length)];
+                    const node = document.createElement('div');
+                    node.className = 'data-node';
+                    node.style.left = `${path.start.x}%`;
+                    node.style.top = `${path.start.y}%`;
+                    container.appendChild(node);
+                    
+                    gsap.to(node, {
+                        left: `${path.end.x}%`,
+                        top: `${path.end.y}%`,
+                        opacity: 0.8,
+                        duration: 2,
+                        ease: "none",
+                        onComplete: () => {
+                            node.remove();
+                        }
+                    });
+                }, 500);
+            }
+            
+            // Start animations
+            createDataFlow();
+            
+            // Animate badges on hover
+            const badges = document.querySelectorAll('.badge');
+            badges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    gsap.to(this, {
+                        y: -5,
+                        duration: 0.3
+                    });
+                });
+                
+                badge.addEventListener('mouseleave', function() {
+                    gsap.to(this, {
+                        y: 0,
+                        duration: 0.3
+                    });
+                });
+            });
+            
+            // Animate collaboration avatars
+            const avatars = document.querySelectorAll('.avatar');
+            avatars.forEach((avatar, index) => {
+                gsap.to(avatar, {
+                    y: -10,
+                    duration: 1,
+                    repeat: -1,
+                    yoyo: true,
+                    delay: index * 0.2
+                });
+            });
+            
+            // Animate drive visualization on hover
+            const driveVisualization = document.getElementById('driveVisualization');
+            driveVisualization.addEventListener('mouseenter', function() {
+                gsap.to('.folder, .file', {
+                    y: -3,
+                    stagger: 0.05,
+                    duration: 0.3
+                });
+            });
+            
+            driveVisualization.addEventListener('mouseleave', function() {
+                gsap.to('.folder, .file', {
+                    y: 0,
+                    stagger: 0.05,
+                    duration: 0.3
+                });
+            });
+        });
+    </script>
+</body>
+</html>

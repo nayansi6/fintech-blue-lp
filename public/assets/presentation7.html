@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Drive - Secure Collaboration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .header {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .header-text {
+            font-weight: 600;
+            font-size: 16px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .drive-container {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .drive-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            height: calc(100% - 50px);
+        }
+        
+        .file-card {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file-card:hover {
+            background: #e2e8f0;
+            transform: translateY(-3px);
+        }
+        
+        .file-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #3b82f6;
+        }
+        
+        .file-name {
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        
+        .collaborators {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            display: flex;
+        }
+        
+        .avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #94a3b8;
+            color: white;
+            font-size: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -5px;
+            border: 2px solid white;
+        }
+        
+        .toolbar {
+            height: 50px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .tool-button {
+            background: white;
+            border: none;
+            border-radius: 6px;
+            padding: 5px 10px;
+            margin-right: 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .tool-button:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .tool-button i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        
+        .sync-indicator {
+            margin-left: auto;
+            font-size: 12px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sync-indicator i {
+            margin-right: 5px;
+            color: #22c55e;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .data-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .data-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .encryption-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+        }
+        
+        .encryption-badge i {
+            margin-right: 5px;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(20px);
+        }
+        
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            background: #3b82f6;
+            top: -30px;
+            right: -30px;
+            animation: float 15s infinite alternate;
+        }
+        
+        .shape-2 {
+            width: 80px;
+            height: 80px;
+            background: #6366f1;
+            bottom: -20px;
+            left: -20px;
+            animation: float 12s 2s infinite alternate;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(-20px, -20px); }
+        }
+        
+        .highlight-card {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .highlight-icon {
+            font-size: 20px;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-text {
+            font-size: 10px;
+            font-weight: 600;
+            text-align: center;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header">
+            <div class="logo">UBS</div>
+            <div class="header-text">UBS Drive</div>
+        </div>
+        
+        <div class="drive-container" id="driveContainer">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+            </div>
+            
+            <div class="toolbar">
+                <button class="tool-button"><i class="fas fa-upload"></i> Upload</button>
+                <button class="tool-button"><i class="fas fa-folder-plus"></i> New</button>
+                <button class="tool-button"><i class="fas fa-share-alt"></i> Share</button>
+                <div class="sync-indicator">
+                    <i class="fas fa-circle"></i> Synced
+                </div>
+            </div>
+            
+            <div class="file-grid">
+                <div class="file-card" data-file="document">
+                    <i class="fas fa-file-alt file-icon"></i>
+                    <div class="file-name">Project Plan</div>
+                    <div class="collaborators">
+                        <div class="avatar">JD</div>
+                        <div class="avatar">AM</div>
+                    </div>
+                </div>
+                <div class="file-card" data-file="spreadsheet">
+                    <i class="fas fa-file-excel file-icon"></i>
+                    <div class="file-name">Budget Q3</div>
+                    <div class="collaborators">
+                        <div class="avatar">SM</div>
+                    </div>
+                </div>
+                <div class="file-card" data-file="image">
+                    <i class="fas fa-file-image file-icon"></i>
+                    <div class="file-name">Design Mockup</div>
+                    <div class="collaborators">
+                        <div class="avatar">TP</div>
+                        <div class="avatar">LR</div>
+                    </div>
+                </div>
+                <div class="file-card" data-file="video">
+                    <i class="fas fa-file-video file-icon"></i>
+                    <div class="file-name">Tutorial</div>
+                </div>
+                <div class="file-card" data-file="pdf">
+                    <i class="fas fa-file-pdf file-icon"></i>
+                    <div class="file-name">Contract</div>
+                    <div class="collaborators">
+                        <div class="avatar">JD</div>
+                    </div>
+                </div>
+                <div class="file-card" data-file="folder">
+                    <i class="fas fa-folder file-icon"></i>
+                    <div class="file-name">Team Resources</div>
+                    <div class="collaborators">
+                        <div class="avatar">AM</div>
+                        <div class="avatar">SM</div>
+                        <div class="avatar">TP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-flow" id="dataFlow"></div>
+            
+            <div class="highlight-card" id="realTimeCollab">
+                <i class="fas fa-users highlight-icon"></i>
+                <div class="highlight-text">Real-time Collaboration</div>
+            </div>
+            
+            <div class="highlight-card" id="secureSharing">
+                <i class="fas fa-lock highlight-icon"></i>
+                <div class="highlight-text">Secure File Sharing</div>
+            </div>
+            
+            <div class="highlight-card" id="versionControl">
+                <i class="fas fa-code-branch highlight-icon"></i>
+                <div class="highlight-text">Version History</div>
+            </div>
+            
+            <div class="encryption-badge">
+                <i class="fas fa-lock"></i> End-to-End Encrypted
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const driveContainer = document.getElementById('driveContainer');
+            const dataFlow = document.getElementById('dataFlow');
+            const realTimeCollab = document.getElementById('realTimeCollab');
+            const secureSharing = document.getElementById('secureSharing');
+            const versionControl = document.getElementById('versionControl');
+            
+            // Position highlight cards
+            positionHighlightCard(realTimeCollab, 50, 80);
+            positionHighlightCard(secureSharing, 200, 120);
+            positionHighlightCard(versionControl, 350, 80);
+            
+            // Animation timeline
+            const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+            
+            // Initial animation
+            tl.from('.file-card', {
+                duration: 0.5,
+                y: 20,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "back.out"
+            });
+            
+            // Show features sequentially
+            tl.to(realTimeCollab, { duration: 0.5, opacity: 1, scale: 1, ease: "back.out" })
+              .to(realTimeCollab, { duration: 2, opacity: 1, scale: 1 }, "+=1")
+              .to(realTimeCollab, { duration: 0.5, opacity: 0, scale: 0.9, ease: "back.in" })
+              
+              .to(secureSharing, { duration: 0.5, opacity: 1, scale: 1, ease: "back.out" })
+              .to(secureSharing, { duration: 2, opacity: 1, scale: 1 }, "+=1")
+              .to(secureSharing, { duration: 0.5, opacity: 0, scale: 0.9, ease: "back.in" })
+              
+              .to(versionControl, { duration: 0.5, opacity: 1, scale: 1, ease: "back.out" })
+              .to(versionControl, { duration: 2, opacity: 1, scale: 1 }, "+=1")
+              .to(versionControl, { duration: 0.5, opacity: 0, scale: 0.9, ease: "back.in" });
+            
+            // Continuous data flow animation
+            setInterval(createDataFlow, 1000);
+            
+            // Hover effects
+            driveContainer.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                gsap.to('.shape-1', {
+                    x: x * 40 - 20,
+                    y: y * 40 - 20,
+                    duration: 2,
+                    ease: "power2.out"
+                });
+                
+                gsap.to('.shape-2', {
+                    x: x * -30 + 15,
+                    y: y * -30 + 15,
+                    duration: 2,
+                    ease: "power2.out"
+                });
+            });
+            
+            // Helper functions
+            function positionHighlightCard(card, x, y) {
+                card.style.left = `${x}px`;
+                card.style.top = `${y}px`;
+            }
+            
+            function createDataFlow() {
+                // Create nodes between random files
+                const files = document.querySelectorAll('.file-card');
+                if (files.length < 2) return;
+                
+                const file1 = files[Math.floor(Math.random() * files.length)];
+                const file2 = files[Math.floor(Math.random() * files.length)];
+                
+                if (file1 === file2) return;
+                
+                const rect1 = file1.getBoundingClientRect();
+                const rect2 = file2.getBoundingClientRect();
+                
+                const startX = rect1.left + rect1.width/2 - dataFlow.getBoundingClientRect().left;
+                const startY = rect1.top + rect1.height/2 - dataFlow.getBoundingClientRect().top;
+                const endX = rect2.left + rect2.width/2 - dataFlow.getBoundingClientRect().left;
+                const endY = rect2.top + rect2.height/2 - dataFlow.getBoundingClientRect().top;
+                
+                // Create multiple nodes along the path
+                const nodeCount = 5;
+                for (let i = 0; i < nodeCount; i++) {
+                    const progress = i / (nodeCount - 1);
+                    const x = startX + (endX - startX) * progress;
+                    const y = startY + (endY - startY) * progress;
+                    
+                    const node = document.createElement('div');
+                    node.classList.add('data-node');
+                    node.style.left = `${x}px`;
+                    node.style.top = `${y}px`;
+                    
+                    dataFlow.appendChild(node);
+                    
+                    // Animate node
+                    gsap.to(node, {
+                        duration: 0.8,
+                        opacity: 0.8,
+                        scale: 1.5,
+                        ease: "power1.out",
+                        onComplete: () => {
+                            gsap.to(node, {
+                                duration: 0.5,
+                                opacity: 0,
+                                scale: 0.5,
+                                onComplete: () => node.remove()
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

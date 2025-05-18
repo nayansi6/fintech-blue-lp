@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Drive - Secure Cloud Storage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            min-width: 500px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .header {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #3b82f6;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+        
+        .main-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .main-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-explorer {
+            width: 40%;
+            background: #f1f5f9;
+            padding: 20px;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .file-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .file-title {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1rem;
+        }
+        
+        .file-list {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file-item:hover {
+            background: #e2e8f0;
+        }
+        
+        .file-item.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .file-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .file-item.active .file-icon {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .file-info {
+            flex-grow: 1;
+        }
+        
+        .file-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        
+        .file-meta {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+        
+        .file-item.active .file-meta {
+            opacity: 0.9;
+        }
+        
+        .preview-pane {
+            width: 60%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .document-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #1e293b;
+        }
+        
+        .collaborators {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -8px;
+            border: 2px solid white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        
+        .avatar:first-child {
+            margin-left: 0;
+        }
+        
+        .document-content {
+            flex-grow: 1;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .document-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+        
+        .security-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            z-index: 10;
+        }
+        
+        .security-badge i {
+            margin-right: 8px;
+        }
+        
+        /* Encryption visualization */
+        .encryption-visual {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .encryption-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        /* Data flow animation */
+        .data-flow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .data-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.8;
+        }
+        
+        .floating-element i {
+            color: #3b82f6;
+        }
+        
+        /* Animation classes */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .file-explorer, .preview-pane {
+                width: 100%;
+            }
+            
+            .file-explorer {
+                height: 40%;
+            }
+            
+            .preview-pane {
+                height: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-cloud"></i>
+                <span>UBS Drive</span>
+            </div>
+        </div>
+        
+        <div class="main-content" id="mainContent">
+            <div class="file-explorer">
+                <div class="file-header">
+                    <div class="file-title">My Files</div>
+                    <div class="file-actions">
+                        <i class="fas fa-search" style="color: #64748b; font-size: 0.9rem;"></i>
+                    </div>
+                </div>
+                
+                <div class="file-list">
+                    <div class="file-item active" data-file="project-doc">
+                        <div class="file-icon" style="background: #bfdbfe; color: #1e40af;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">Project Proposal</div>
+                            <div class="file-meta">Modified 2 hours ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="file-item" data-file="financial-report">
+                        <div class="file-icon" style="background: #fecaca; color: #991b1b;">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">Financial Report</div>
+                            <div class="file-meta">Modified yesterday</div>
+                        </div>
+                    </div>
+                    
+                    <div class="file-item" data-file="presentation">
+                        <div class="file-icon" style="background: #fef08a; color: #854d0e;">
+                            <i class="fas fa-file-powerpoint"></i>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">Quarterly Review</div>
+                            <div class="file-meta">Modified 3 days ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="file-item" data-file="team-photo">
+                        <div class="file-icon" style="background: #ddd6fe; color: #5b21b6;">
+                            <i class="fas fa-file-image"></i>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-name">Team Photo</div>
+                            <div class="file-meta">Modified 1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-pane">
+                <div class="preview-header">
+                    <div class="document-title">Project Proposal</div>
+                    <div class="collaborators">
+                        <div class="avatar" style="background: #f0f9ff; color: #0369a1;">JD</div>
+                        <div class="avatar" style="background: #f0fdf4; color: #15803d;">AM</div>
+                        <div class="avatar" style="background: #fef2f2; color: #b91c1c;">SR</div>
+                        <div class="avatar" style="background: #f8fafc; color: #64748b;">+2</div>
+                    </div>
+                </div>
+                
+                <div class="document-content">
+                    <div class="document-text">
+                        <h3 style="margin-bottom: 15px;">Project Blueprint</h3>
+                        <p style="margin-bottom: 10px;">This document outlines the secure collaboration features of UBS Drive, showcasing how teams can work together without compromising data privacy.</p>
+                        <p style="margin-bottom: 10px;">All content is encrypted end-to-end with zero-knowledge architecture, meaning only collaborators with proper access can view or edit files.</p>
+                        <p>Real-time updates are synchronized securely across all devices while maintaining complete encryption at all times.</p>
+                    </div>
+                    
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        End-to-End Encrypted
+                    </div>
+                </div>
+                
+                <!-- Encryption visualization elements -->
+                <div class="encryption-visual" id="encryptionVisual"></div>
+                
+                <!-- Data flow animation elements -->
+                <div class="data-flow" id="dataFlow"></div>
+            </div>
+            
+            <!-- Floating security elements -->
+            <div class="floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">
+                <i class="fas fa-lock floating" style="font-size: 24px;"></i>
+            </div>
+            <div class="floating-element" style="top: 80%; left: 85%; animation-delay: 1s;">
+                <i class="fas fa-shield-alt floating" style="font-size: 24px;"></i>
+            </div>
+            <div class="floating-element" style="top: 70%; left: 15%; animation-delay: 2s;">
+                <i class="fas fa-key floating" style="font-size: 24px;"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.getElementById('mainContent');
+            const encryptionVisual = document.getElementById('encryptionVisual');
+            const dataFlow = document.getElementById('dataFlow');
+            const fileItems = document.querySelectorAll('.file-item');
+            
+            // Initialize animations
+            createEncryptionParticles();
+            startDataFlowAnimation();
+            
+            // File selection interaction
+            fileItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    fileItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Animate the content change
+                    gsap.fromTo('.document-content', 
+                        { opacity: 0.8, y: 10 },
+                        { opacity: 1, y: 0, duration: 0.3 }
+                    );
+                    
+                    // Show encryption animation
+                    showEncryptionAnimation();
+                });
+            });
+            
+            // Hover effects
+            mainContent.addEventListener('mouseenter', function() {
+                gsap.to(this, { 
+                    scale: 1.02, 
+                    duration: 0.3,
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
+                });
+                
+                // Pulse the security badge
+                gsap.to('.security-badge', {
+                    scale: 1.05,
+                    duration: 0.5,
+                    yoyo: true,
+                    repeat: 1
+                });
+            });
+            
+            mainContent.addEventListener('mouseleave', function() {
+                gsap.to(this, { 
+                    scale: 1, 
+                    duration: 0.3,
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)'
+                });
+            });
+            
+            // Create encryption particles
+            function createEncryptionParticles() {
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('encryption-particle');
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    
+                    encryptionVisual.appendChild(particle);
+                    
+                    // Animate with GSAP
+                    gsap.to(particle, {
+                        opacity: [0, 0.6, 0],
+                        scale: [0.5, 1.5],
+                        duration: Math.random() * 3 + 2,
+                        repeat: -1,
+                        repeatDelay: Math.random() * 3,
+                        ease: "sine.inOut"
+                    });
+                }
+            }
+            
+            // Show encryption animation when file is selected
+            function showEncryptionAnimation() {
+                // Create a burst of particles from the file icon
+                const burstParticles = 15;
+                
+                for (let i = 0; i < burstParticles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('encryption-particle');
+                    particle.style.backgroundColor = `hsl(${Math.random() * 60 + 200}, 80%, 60%)`;
+                    
+                    // Start from center of document
+                    particle.style.left = '50%';
+                    particle.style.top = '50%';
+                    
+                    encryptionVisual.appendChild(particle);
+                    
+                    // Animate outward
+                    gsap.to(particle, {
+                        x: (Math.random() - 0.5) * 200,
+                        y: (Math.random() - 0.5) * 200,
+                        opacity: [1, 0],
+                        scale: [0.5, 1.5],
+                        duration: 1,
+                        onComplete: () => particle.remove()
+                    });
+                }
+            }
+            
+            // Data flow animation
+            function startDataFlowAnimation() {
+                const nodeCount = 8;
+                const paths = [
+                    // Paths for data to flow between collaborators
+                    { start: { x: 80, y: 15 }, end: { x: 20, y: 50 } },
+                    { start: { x: 20, y: 50 }, end: { x: 80, y: 85 } },
+                    { start: { x: 80, y: 85 }, end: { x: 20, y: 50 } }
+                ];
+                
+                // Create nodes
+                for (let i = 0; i < nodeCount; i++) {
+                    const node = document.createElement('div');
+                    node.classList.add('data-node');
+                    
+                    // Random path
+                    const path = paths[Math.floor(Math.random() * paths.length)];
+                    const progress = Math.random();
+                    
+                    // Position along path
+                    const x = path.start.x + (path.end.x - path.start.x) * progress;
+                    const y = path.start.y + (path.end.y - path.start.y) * progress;
+                    
+                    node.style.left = `${x}%`;
+                    node.style.top = `${y}%`;
+                    
+                    dataFlow.appendChild(node);
+                    
+                    // Animate along path
+                    gsap.to(node, {
+                        left: `${path.end.x}%`,
+                        top: `${path.end.y}%`,
+                        opacity: [0, 0.8, 0],
+                        duration: Math.random() * 3 + 2,
+                        delay: Math.random() * 2,
+                        repeat: -1,
+                        ease: "none",
+                        onComplete: () => {
+                            // Reset to start of path
+                            gsap.set(node, {
+                                left: `${path.start.x}%`,
+                                top: `${path.start.y}%`
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

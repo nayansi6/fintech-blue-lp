@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Mail Secure Email Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:#173E73;
+            color: #2d3748;
+        }
+        
+        .animation-container {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* .header {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header span {
+            background: #2E8B57;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        } */
+        
+        .header i {
+            margin-right: 8px;
+            color: #4f46e5;
+        }
+        
+        /* Flying envelopes */
+        .envelope {
+            position: absolute;
+            font-size: 24px;
+            color: #4f46e5;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        
+        .envelope:hover {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.15));
+            z-index: 20;
+        }
+        
+        /* User screens */
+        .user-screen {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .user-screen:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Server visualization */
+        .mail-server {
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            z-index: 5;
+        }
+        
+        .server-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #4f46e5;
+        }
+        
+        /* Transmission paths */
+        .transmission-path {
+            position: absolute;
+            stroke: rgba(79, 70, 229, 0.2);
+            stroke-width: 2;
+            fill: none;
+            z-index: 1;
+        }
+        
+        /* Popup for encrypted message */
+        .message-popup {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            width: 160px;
+            z-index: 100;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .message-popup.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .encrypted-text {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: #4f46e5;
+            word-break: break-all;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .decrypted-text {
+            font-size: 12px;
+            color: #2d3748;
+            background: #f0f4ff;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: none;
+        }
+        
+        .message-popup:hover .decrypted-text {
+            display: block;
+        }
+        
+        .message-popup:hover .encrypted-text {
+            display: none;
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-container" id="animationContainer">
+        <div class="header">
+            <!-- <i class="fas fa-lock"></i> -->
+            <!-- <span>UBS Mail</span> -->
+        </div>
+        
+        <!-- Mail Server -->
+        <div class="mail-server pulse" style="top: 30px; right: 30px;">
+            <i class="fas fa-server server-icon"></i>
+            <div>Secure Mail Server</div>
+        </div>
+        
+        <!-- User Screens -->
+        <div class="user-screen" style="bottom: 40px; left: 40px;">
+            <div>User Inbox</div>
+        </div>
+        
+        <div class="user-screen" style="bottom: 120px; right: 60px;">
+            <div>Mobile Client</div>
+        </div>
+        
+        <div class="user-screen" style="top: 100px; left: 50%; transform: translateX(-50%);">
+            <div>Web Client</div>
+        </div>
+        
+        <!-- Transmission paths will be added by JS -->
+        
+        <!-- Envelopes will be added by JS -->
+        
+        <!-- Popup template -->
+        <div class="message-popup" id="popupTemplate">
+            <div class="encrypted-text" id="encryptedText"></div>
+            <div class="decrypted-text" id="decryptedText"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('animationContainer');
+            const containerRect = container.getBoundingClientRect();
+            const popupTemplate = document.getElementById('popupTemplate');
+            const encryptedText = document.getElementById('encryptedText');
+            const decryptedText = document.getElementById('decryptedText');
+            
+            // Create SVG for transmission paths
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.style.position = 'absolute';
+            svg.style.top = '0';
+            svg.style.left = '0';
+            container.appendChild(svg);
+            
+            // Create paths between server and users
+            const userPositions = [
+                { x: 80, y: 230 },  // Bottom left user (40px + 40px from left, 300-40-30 from top)
+                { x: 400, y: 150 }, // Bottom right user (500-60-40 from left, 300-120-30 from top)
+                { x: 250, y: 130 }  // Top center user (center x, 100+30 from top)
+            ];
+            
+            const serverPos = { x: 420, y: 70 }; // 500-30-50 from left, 30+40 from top
+            
+            userPositions.forEach(userPos => {
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                const dx = userPos.x - serverPos.x;
+                const dy = userPos.y - serverPos.y;
+                const controlX1 = serverPos.x + dx * 0.3;
+                const controlY1 = serverPos.y + dy * 0.7;
+                const controlX2 = serverPos.x + dx * 0.7;
+                const controlY2 = serverPos.y + dy * 0.3;
+                
+                path.setAttribute('d', `M${serverPos.x},${serverPos.y} C${controlX1},${controlY1} ${controlX2},${controlY2} ${userPos.x},${userPos.y}`);
+                path.classList.add('transmission-path');
+                svg.appendChild(path);
+                
+                // Animate dots along the path
+                animateDataFlow(path, serverPos, userPos);
+            });
+            
+            // Create flying envelopes
+            const envelopeMessages = [
+                "Meeting at 3pm tomorrow",
+                "Your monthly security report",
+                "Password reset request",
+                "New message from John",
+                "Project update: Q3 goals",
+                "Your account statement",
+                "Team building event"
+            ];
+            
+            const envelopes = [];
+            for (let i = 0; i < 7; i++) {
+                createEnvelope(i);
+            }
+            
+            function createEnvelope(index) {
+                const envelope = document.createElement('img');
+envelope.className = 'envelope';
+envelope.src = 'mail.png'; // replace with actual path
+envelope.style.width = '40px';  // set size as needed
+envelope.style.height = '40px';
+
+                envelope.style.animation = `float ${4 + Math.random() * 3}s ease-in-out infinite`;
+                envelope.style.animationDelay = `${Math.random() * 2}s`;
+                
+                // Random position along the paths
+                const pathIndex = Math.floor(Math.random() * userPositions.length);
+                const progress = Math.random();
+                const startPos = serverPos;
+                const endPos = userPositions[pathIndex];
+                
+                const x = startPos.x + (endPos.x - startPos.x) * progress;
+                const y = startPos.y + (endPos.y - startPos.y) * progress;
+                
+                // Add some randomness to position
+                envelope.style.left = `${x + (Math.random() * 60 - 30)}px`;
+                envelope.style.top = `${y + (Math.random() * 40 - 20)}px`;
+                
+                // Store message info
+                envelope.dataset.message = envelopeMessages[index % envelopeMessages.length];
+                
+                // Add hover effect
+                let popup = null;
+                
+                envelope.addEventListener('mouseenter', function(e) {
+                    // Pause the animation
+                    envelope.style.animationPlayState = 'paused';
+                    
+                    // Create and position popup
+                    popup = popupTemplate.cloneNode(true);
+                    popup.id = '';
+                    
+                    // Calculate position relative to container
+                    const rect = container.getBoundingClientRect();
+                    const xPos = e.clientX - rect.left + 15;
+                    const yPos = e.clientY - rect.top + 15;
+                    
+                    // Ensure popup stays within container
+                    popup.style.left = `${Math.min(xPos, rect.width - 180)}px`;
+                    popup.style.top = `${Math.min(yPos, rect.height - 120)}px`;
+                    
+                    // Generate encrypted text
+                    const encrypted = generateEncryptedText(envelope.dataset.message);
+                    popup.querySelector('.encrypted-text').textContent = encrypted;
+                    popup.querySelector('.decrypted-text').textContent = envelope.dataset.message;
+                    
+                    container.appendChild(popup);
+                    setTimeout(() => {
+                        popup.classList.add('visible');
+                    }, 10);
+                });
+                
+                envelope.addEventListener('mouseleave', function() {
+                    // Resume animation
+                    envelope.style.animationPlayState = 'running';
+                    
+                    if (popup) {
+                        popup.classList.remove('visible');
+                        setTimeout(() => {
+                            if (popup && popup.parentNode) {
+                                popup.parentNode.removeChild(popup);
+                            }
+                        }, 300);
+                    }
+                });
+                
+                envelope.addEventListener('mousemove', function(e) {
+                    if (popup) {
+                        const rect = container.getBoundingClientRect();
+                        const xPos = e.clientX - rect.left + 15;
+                        const yPos = e.clientY - rect.top + 15;
+                        
+                        popup.style.left = `${Math.min(xPos, rect.width - 180)}px`;
+                        popup.style.top = `${Math.min(yPos, rect.height - 120)}px`;
+                    }
+                });
+                
+                container.appendChild(envelope);
+                envelopes.push(envelope);
+            }
+            
+            // Create background particles
+            createParticles(20);
+            
+            // Function to animate data flow along paths
+            function animateDataFlow(path, startPos, endPos) {
+                const pathLength = path.getTotalLength();
+                const dotCount = 3;
+                
+                for (let i = 0; i < dotCount; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'particle';
+                    dot.style.width = '6px';
+                    dot.style.height = '6px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.backgroundColor = 'rgba(79, 70, 229, 0.6)';
+                    dot.style.position = 'absolute';
+                    dot.style.pointerEvents = 'none';
+                    
+                    container.appendChild(dot);
+                    
+                    // Animate along path
+                    let progress = Math.random();
+                    const speed = 0.0002 + Math.random() * 0.0003;
+                    const delay = Math.random() * 2000;
+                    
+                    setTimeout(() => {
+                        function animate() {
+                            progress += speed;
+                            if (progress > 1) progress = 0;
+                            
+                            const point = path.getPointAtLength(progress * pathLength);
+                            dot.style.left = `${point.x - 3}px`;
+                            dot.style.top = `${point.y - 3}px`;
+                            
+                            requestAnimationFrame(animate);
+                        }
+                        
+                        animate();
+                    }, delay);
+                }
+            }
+            
+            // Function to generate encrypted-looking text
+            function generateEncryptedText(message) {
+                const chars = '0123456789ABCDEF';
+                let encrypted = '';
+                const length = 80 + Math.floor(Math.random() * 40);
+                
+                for (let i = 0; i < length; i++) {
+                    encrypted += chars.charAt(Math.floor(Math.random() * chars.length));
+                    if ((i + 1) % 10 === 0) encrypted += ' ';
+                }
+                
+                return encrypted;
+            }
+            
+            // Function to create background particles
+            function createParticles(count) {
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    particle.style.width = `${Math.random() * 8 + 2}px`;
+                    particle.style.height = particle.style.width;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.opacity = Math.random() * 0.3 + 0.1;
+                    particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    container.appendChild(particle);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

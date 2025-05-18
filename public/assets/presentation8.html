@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBS Drive - Secure Cloud Collaboration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #f8fafc);
+            color: #1e293b;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .presentation-container {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .network-visualization {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .drive-server {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
+            z-index: 10;
+            animation: pulse 4s infinite;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3); }
+            50% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4); }
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3); }
+        }
+        
+        .file-node {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #3b82f6;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-node:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .user-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .user-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .connection-line {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1));
+            height: 2px;
+            transform-origin: left center;
+            z-index: 1;
+        }
+        
+        .data-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            z-index: 2;
+            opacity: 0;
+        }
+        
+        .feature-tag {
+            position: absolute;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        
+        .feature-tag i {
+            margin-right: 5px;
+            color: #3b82f6;
+        }
+        
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .header-text {
+            font-weight: 600;
+            font-size: 16px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .security-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .security-badge i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            filter: blur(30px);
+        }
+        
+        .shape-1 {
+            width: 150px;
+            height: 150px;
+            background: #3b82f6;
+            top: 20%;
+            left: 10%;
+            animation: float 15s infinite alternate;
+        }
+        
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            background: #6366f1;
+            bottom: 15%;
+            right: 10%;
+            animation: float 12s 3s infinite alternate;
+        }
+        
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: #10b981;
+            top: 60%;
+            left: 20%;
+            animation: float 10s 5s infinite alternate;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(-10px, -10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <div class="network-visualization" id="network">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            
+            <div class="drive-server" id="server">
+                <i class="fas fa-database"></i>
+            </div>
+            
+            <!-- Feature tags -->
+            <div class="feature-tag" id="realTimeTag" style="top: 30%; left: 70%;">
+                <i class="fas fa-users"></i> Real-time Sync
+            </div>
+            
+            <div class="feature-tag" id="secureTag" style="top: 70%; left: 20%;">
+                <i class="fas fa-lock"></i> End-to-End Encryption
+            </div>
+            
+            <div class="feature-tag" id="collabTag" style="top: 20%; left: 20%;">
+                <i class="fas fa-share-alt"></i> Seamless Collaboration
+            </div>
+            
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i> Zero-Knowledge Architecture
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const network = document.getElementById('network');
+            const server = document.getElementById('server');
+            const realTimeTag = document.getElementById('realTimeTag');
+            const secureTag = document.getElementById('secureTag');
+            const collabTag = document.getElementById('collabTag');
+            
+            // Set container dimensions
+            const containerWidth = network.offsetWidth;
+            const containerHeight = network.offsetHeight;
+            const centerX = containerWidth / 2;
+            const centerY = containerHeight / 2;
+            
+            // Create file nodes
+            const fileTypes = ['file-alt', 'file-excel', 'file-image', 'file-pdf', 'file-video', 'file-code'];
+            const fileNodes = [];
+            
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * Math.PI * 2;
+                const distance = 80 + Math.random() * 30;
+                const x = centerX + Math.cos(angle) * distance - 25;
+                const y = centerY + Math.sin(angle) * distance - 25;
+                
+                const fileNode = document.createElement('div');
+                fileNode.className = 'file-node';
+                fileNode.innerHTML = `<i class="fas fa-${fileTypes[i]}"></i>`;
+                fileNode.style.left = `${x}px`;
+                fileNode.style.top = `${y}px`;
+                
+                network.appendChild(fileNode);
+                fileNodes.push(fileNode);
+                
+                // Create connection line from server to file
+                createConnection(server, fileNode, 'file');
+                
+                // Create user nodes connected to this file
+                const userCount = 1 + Math.floor(Math.random() * 3);
+                for (let j = 0; j < userCount; j++) {
+                    const userAngle = angle + (Math.random() * 0.8 - 0.4);
+                    const userDistance = distance + 50 + Math.random() * 40;
+                    const userX = centerX + Math.cos(userAngle) * userDistance - 20;
+                    const userY = centerY + Math.sin(userAngle) * userDistance - 20;
+                    
+                    const userNode = document.createElement('div');
+                    userNode.className = 'user-node';
+                    userNode.textContent = String.fromCharCode(65 + i + j);
+                    userNode.style.left = `${userX}px`;
+                    userNode.style.top = `${userY}px`;
+                    
+                    network.appendChild(userNode);
+                    
+                    // Create connection line from file to user
+                    createConnection(fileNode, userNode, 'user');
+                }
+            }
+            
+            // Animate feature tags
+            const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+            
+            tl.to(realTimeTag, { duration: 0.5, opacity: 1, y: 0, ease: "back.out" })
+              .to(realTimeTag, { duration: 2, opacity: 1, y: 0 })
+              .to(realTimeTag, { duration: 0.5, opacity: 0, y: 10, ease: "back.in" })
+              
+              .to(collabTag, { duration: 0.5, opacity: 1, y: 0, ease: "back.out" })
+              .to(collabTag, { duration: 2, opacity: 1, y: 0 })
+              .to(collabTag, { duration: 0.5, opacity: 0, y: 10, ease: "back.in" })
+              
+              .to(secureTag, { duration: 0.5, opacity: 1, y: 0, ease: "back.out" })
+              .to(secureTag, { duration: 2, opacity: 1, y: 0 })
+              .to(secureTag, { duration: 0.5, opacity: 0, y: 10, ease: "back.in" });
+            
+            // Create continuous data flow
+            setInterval(() => {
+                // Randomly select a file node
+                const fileNode = fileNodes[Math.floor(Math.random() * fileNodes.length)];
+                
+                // Create data flow between server and file
+                createDataFlow(server, fileNode, '#3b82f6');
+                
+                // 50% chance to also flow to users
+                if (Math.random() > 0.5) {
+                    const userNodes = Array.from(document.querySelectorAll('.user-node'));
+                    const connectedUsers = userNodes.filter(user => {
+                        const userRect = user.getBoundingClientRect();
+                        const fileRect = fileNode.getBoundingClientRect();
+                        return Math.abs(userRect.left - fileRect.left) < 150 && 
+                               Math.abs(userRect.top - fileRect.top) < 150;
+                    });
+                    
+                    if (connectedUsers.length > 0) {
+                        const randomUser = connectedUsers[Math.floor(Math.random() * connectedUsers.length)];
+                        setTimeout(() => {
+                            createDataFlow(fileNode, randomUser, '#10b981');
+                        }, 300);
+                    }
+                }
+            }, 800);
+            
+            // Helper functions
+            function createConnection(node1, node2, type) {
+                const line = document.createElement('div');
+                line.className = 'connection-line';
+                
+                const rect1 = node1.getBoundingClientRect();
+                const rect2 = node2.getBoundingClientRect();
+                const networkRect = network.getBoundingClientRect();
+                
+                const x1 = rect1.left + rect1.width/2 - networkRect.left;
+                const y1 = rect1.top + rect1.height/2 - networkRect.top;
+                const x2 = rect2.left + rect2.width/2 - networkRect.left;
+                const y2 = rect2.top + rect2.height/2 - networkRect.top;
+                
+                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                line.style.width = `${length}px`;
+                line.style.left = `${x1}px`;
+                line.style.top = `${y1}px`;
+                line.style.transform = `rotate(${angle}deg)`;
+                line.style.opacity = type === 'file' ? 0.3 : 0.2;
+                
+                network.appendChild(line);
+            }
+            
+            function createDataFlow(source, target, color) {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle';
+                particle.style.background = color;
+                
+                const sourceRect = source.getBoundingClientRect();
+                const targetRect = target.getBoundingClientRect();
+                const networkRect = network.getBoundingClientRect();
+                
+                const startX = sourceRect.left + sourceRect.width/2 - networkRect.left;
+                const startY = sourceRect.top + sourceRect.height/2 - networkRect.top;
+                const endX = targetRect.left + targetRect.width/2 - networkRect.left;
+                const endY = targetRect.top + targetRect.height/2 - networkRect.top;
+                
+                particle.style.left = `${startX - 4}px`;
+                particle.style.top = `${startY - 4}px`;
+                
+                network.appendChild(particle);
+                
+                gsap.to(particle, {
+                    duration: 1.5,
+                    left: endX - 4,
+                    top: endY - 4,
+                    opacity: 1,
+                    ease: "power1.inOut",
+                    onComplete: () => particle.remove()
+                });
+            }
+            
+            // Hover effect for the whole network
+            network.addEventListener('mousemove', (e) => {
+                const rect = network.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                
+                gsap.to('.shape-1', {
+                    x: x * 30 - 15,
+                    y: y * 30 - 15,
+                    duration: 3,
+                    ease: "power2.out"
+                });
+                
+                gsap.to('.shape-2', {
+                    x: x * -20 + 10,
+                    y: y * -20 + 10,
+                    duration: 3,
+                    ease: "power2.out"
+                });
+                
+                gsap.to('.shape-3', {
+                    x: x * 15 - 7.5,
+                    y: y * 15 - 7.5,
+                    duration: 3,
+                    ease: "power2.out"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
