@@ -1,10 +1,11 @@
-"use client"
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, CheckCircle } from "lucide-react"
+"use client";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Image from "next/image";
+import { FaChevronDown } from "react-icons/fa";
+import Link from "next/link";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -13,7 +14,7 @@ const fadeInUp = {
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
-}
+};
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -21,7 +22,7 @@ const fadeIn = {
     opacity: 1,
     transition: { duration: 0.8, ease: "easeOut" },
   },
-}
+};
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -32,7 +33,7 @@ const staggerContainer = {
       delayChildren: 0.2,
     },
   },
-}
+};
 
 export default function Home() {
   const logos = [
@@ -132,10 +133,10 @@ export default function Home() {
       description:
         "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
     },
-     ];
+  ];
 
-     const step=[
-      {
+  const step = [
+    {
       id: 4,
       title: "Download the app",
       description:
@@ -153,8 +154,33 @@ export default function Home() {
       description:
         "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
     },
-     ]
+  ];
+  const faqs = [
+    {
+      question: "Privacy Built In, Security Locked Down",
+      image: "/assets/mail.png",
+      answer:
+        "Every action — from writing to sharing — is protected with strong encryption. UBS was built from the ground up to keep your data safe, always.",
+    },
+    {
+      question: "Zero-Knowledge Architecture",
+      image: "/assets/drive.png",
+      answer:
+        "Only you hold the keys. UBS can’t read or access your files, messages, or any content — and never will.",
+    },
+    {
+      question: "One Account. All Tools. Free Forever.",
+      image: "/assets/docs.png",
+      answer:
+        "Use everything — docs, chat, storage, calendar — with one secure login. No paywalls. No traps. Just freedom to work, for life.",
+    },
+  ];
+
   const [scrollY, setScrollY] = useState(0);
+  const [openIndex, setOpenIndex] = useState(0);
+  const toggle = (index) => {
+    setOpenIndex(index === openIndex ? null : index);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -165,20 +191,18 @@ export default function Home() {
   }, []);
   return (
     <div className="max-w-[1440px]">
-    <div className="bg-gray-50">
-      <section className="bg-gradient-to-tl max-h-screen from-blue-600 via-blue-400 to-blue-600 h-[600px] rounded-bl-[100px]">
-        <div className="max-w-7xl mb-10 flex flex-col md:flex-row items-center justify-between overflow-hidden ">
+      <div className="bg-gray-50">
+        <section className="bg-gradient-to-tl min-h-screen flex kustify-center items-center from-blue-600 via-blue-400 to-blue-600 ">
           {/* Left side content */}
-          <div className="w-full md:w-1/2 text-white z-10 mb-10  p-4 md:p-8 lg:p-12 md:mb-0">
-            <div className="flex flex-col text-5xl items-start mb-5">
-              <div className="font-bold">Create physical and</div>
-              <div className=" font-bold">virtual cards for your</div>
-              <div className="text-5xl font-bold">business</div>
+          <div className="w-full text-white z-10  mt-20 gap-5 flex flex-col items-center justify-center  p-4 md:p-8 lg:p-12 md:mb-0">
+            <div className="flex flex-col items-center text-5xl ">
+              <div className="font-bold">Privacy Starts at the Core.</div>
             </div>
 
-            <p className="text-lg md:text-xl opacity-90 mb-8 max-w-xl">
-              Our landing page template works on all devices, so you only have
-              to set it up once, and get beautiful results forever.
+            <p className="text-lg text-center md:text-xl opacity-80 max-w-xl">
+              Every message, file, and interaction is protected by
+              zero-knowledge encryption — by default, not request. put this
+              <br /> on hero section..
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -194,134 +218,14 @@ export default function Home() {
                 Read documentation
               </Link>
             </div>
-          </div>
-
-          {/* Right side card mockups */}
-          <div className=" w-1/2 mt-32">
-          <div className=" h-[450px] w-[800px] mt-20 shadow-lg shadow-white ml-10 overflow-hidden">
-                        <img src="/email-img.png" alt="Profile" className="h-[450px] w-[1000px] shadow-lg shadow-white overflow-hidden"    />
-
-          </div>
-          </div>
-        </div>
-      </section>
-        <FadeInSection>
-        <section className="w-full py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-                A Secure Hub that minds its own{" "}
-                <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
-                  Business{" "}
-                </span>
-              </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">All-in-one. All buttoned up. All yours.</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {services.map((service, index) => (
-                <ServiceCard
-                  key={index}
-                  href={service.href}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </FadeInSection>
-      <FadeInSection>
-        <section className="bg-[#1a2235] text-white overflow-hidden relative py-16 md:py-24 mb-20 rounded-tr-[100px]">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className=" items-center">
-              <div className="text-center mb-20">
-                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-200 space-y-3">
-                  Don’t let your work be someone <br />{" "}
-                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text  text-transparent animate-gradient-x">
-                    else’s business.
-                  </span>
-                  <br className="hidden sm:block" />
-                  <small className="text-xl text-gray-500">
-                    Work in complete privacy, with full control of your data.
-                  </small>
-                </p>
-              </div>
-
-              <FadeInSection>
-                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center mb-10 md:mb-20 gap-8 md:gap-20 items-center">
-                  <div className="w-full md:w-auto relative group">
-                    <iframe
-                      src="/assets/presentation4.html"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                    />
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="space-y-6 max-w-md">
-                    <p>
-                      unified binary system was built on a simple belief:{" "}
-                      <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] font-semibold bg-clip-text text-transparent">
-                        your data belongs to you
-                      </span>
-                      . In a digital world dominated by surveillance and
-                      monetization, we provide a radically private, integrated
-                      office suite for professionals, teams, and businesses who
-                      value{" "}
-                      <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] font-semibold bg-clip-text text-transparent">
-                        control, clarity, and confidentiality
-                      </span>
-                      . From email and storage to docs and meetings—every tool
-                      is engineered for security without compromise.
-                    </p>
-                  </div>
-                </div>
-              </FadeInSection>
-
-              <FadeInSection>
-                <div className="w-full flex flex-col md:flex-row px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
-                  <div className="space-y-3  max-w-md order-2 md:order-1">
-                    <p>
-                      We envision a future where individuals and organizations
-                      can create, collaborate, and connect without being tracked
-                      or sold. unified binary system is redefining digital
-                      productivity—where{" "}
-                      <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] font-semibold bg-clip-text text-transparent">
-                        privacy is the default, not a luxury
-                      </span>
-                      . We aim to become the most trusted digital workspace for
-                      the{" "}
-                      <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] font-semibold bg-clip-text text-transparent">
-                        privacy-first generation
-                      </span>
-                      .
-                    </p>
-                  </div>
-                  <div className="w-full md:w-auto order-1 md:order-2">
-                    <div className="w-full md:w-auto relative group">
-                      <iframe
-                        src="/assets/presentation5.html"
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </div>
-                </div>
-              </FadeInSection>
-            </div>
-          </div>
-
-          {/* Background gradient */}
-          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-blue-600/30 to-transparent rounded-full blur-3xl"></div>
-        </section>
-      </FadeInSection>
-      <FadeInSection>
-            <section className="w-full bg-gray-200 py-10 rounded-tr-[100px]">
-              <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
-                <div className="flex flex-wrap gap-1 justify-center items-center max-w-full px-2">
-                   {appIcons.map((icon, index) => (
-                  <a key={index} href={icon.href} className="group flex flex-col  space-y-1">
+            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
+              <div className="flex flex-wrap gap-1 justify-center items-center max-w-full px-2">
+                {appIcons.map((icon, index) => (
+                  <a
+                    key={index}
+                    href={icon.href}
+                    className="group flex flex-col  space-y-1"
+                  >
                     <img
                       src={icon.src || "/placeholder.svg"}
                       className="relative w-16 h-16 transition-transform duration-300 group-hover:-translate-y-2"
@@ -332,354 +236,409 @@ export default function Home() {
                     </span>
                   </a>
                 ))}
-                </div>
-                <div className="flex flex-col justify-center mb-16 md:mb-24 items-center text-gray-800">
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans m-0 text-center"
-                  >
-                    <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                      Work Tools
-                    </span>{" "}
-                    That Don’t Let You  <br className="hidden sm:block" />
-                    Compromise
-                  </motion.p>
-                  <motion.small 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="font-sans mt-5 text-lg sm:text-xl text-gray-500"
-                  >
-                    <p>Secure, Unified, Ethical</p>
-                  </motion.small>
-                  <motion.a 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href="/signup" 
-                    className="bg-gradient-to-r from-[#6C70FF] to-[#5D7DFF] mt-8 text-white px-6 py-3 rounded-3xl text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 font-medium"
-                  >
-                    Create Account
-                  </motion.a>
-                </div>
-
-                {/* Feature Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
-                  {featureCards.map((card, index) => (
-                    <FeatureCard key={index} title={card.title} subtitle={card.subtitle} description={card.description} index={index} />
-                  ))}
-                </div>
               </div>
-            </section>
-          </FadeInSection>
-
-          <FadeInSection>
-            <section className="w-full bg-gray-200 ">
-            <div className="flex flex-col justify-center border-t-3 border-gray-400 py-15 rounded-tr-[150px] items-center gap-20 sm:gap-28 md:gap-36">
-              
-                <div className="text-center">
-                  <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
-                   Don’t let your work be someone <br/> <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                      else’s business. 
-                    </span>
-                    <br className="hidden sm:block" />
-                    <small className="text-xl text-gray-500">Work in complete privacy, with full control of your data.</small>
-                  </p>
-                </div>
-            
-
-              {/* Feature 1 */}
-              <FadeInSection>
-                <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
-                  <div className="w-full md:w-auto">
-                    <div className="relative group">
-                      <iframe
-                        src="/assets/presentation3.html"
-                        allowFullScreen
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </div>
-                  <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
-                      "Privacy Built In, Security Locked Down"
-                    </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-4 mt-2">
-                      Every action — from writing to sharing — is protected with strong encryption. UBS was built from the ground up to 
-                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        keep your data safe, always.
-                      </span>
-                    </small>
-                  </div>
-                </div>
-              </FadeInSection>
-
-              {/* Feature 2 */}
-              <FadeInSection>
-                <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
-                  <div className="space-y-3  max-w-md order-2 md:order-1">
-                    <div className="text-2xl sm:text-3xl md:text-2xl font-serif text-gray-800">
-                      <p>"Zero-Knowledge Architecture"</p>
-                    </div>
-                    <p className="text-base sm:text-lg px-3 text-gray-500 leading-relaxed">
-                    Only you hold the keys. UBS can’t read or access your files, messages, or any content — 
-                    <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                       and never will.
-                      </span>
-                    </p>
-                   
-                  </div>
-                  <div className="w-full md:w-auto order-1 md:order-2">
-                    <div className="relative group">
-                      <iframe
-                        src="/assets/presentation5.html"
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </div>
-                </div>
-              </FadeInSection>
-
-              {/* Feature 3 */}
-              <FadeInSection>
-                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center mb-10 md:mb-20 gap-8 md:gap-20 items-center">
-                  <div className="w-full md:w-auto relative group">
-                    <iframe
-                      src="/assets/presentation4.html"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                    />
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="space-y-2 max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl font-serif text-gray-800">
-                     "One Account. All Tools. Free Forever."
-                    </p>
-                    <p className="text-base sm:text-lg text-gray-500 px-5 leading-relaxed">
-                      Use everything — docs, chat, storage, calendar — with one secure login. No paywalls. No traps. 
-                      <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        Just freedom to work, for life.
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </FadeInSection>
-            </div>
-          </section>
-          </FadeInSection>
-
-      <FadeInSection>
-        <div className="bg-gray-200">
-          <section className="relative bg-gradient-to-tl from-blue-700 via-blue-400 to-blue-600 py-10 lg:py-20 rounded-tr-[100px]">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="text-left mb-20">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                Get started in minutes and connect <br className="hidden md:block" /> all your accounts in one place
-              </h2>
-            </div>
-            {/* Floating logos */}
-            <div className="relative h-[300px] md:h-[400px]">
-              {logos.map((logo, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute rounded-full bg-white flex items-center justify-center shadow-lg"
-                  style={{
-                    width: `${logo.size}px`,
-                    height: `${logo.size}px`,
-                    left: logo.left,
-                    top: logo.top,
-                    opacity: logo.opacity,
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 3 + (index % 2),
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <div className="relative w-[60%] h-[60%]">
-                    <Image
-                      src={logo.src || "/placeholder.svg"}
-                      alt={logo.alt}
-                      fill
-                      sizes={`${logo.size * 0.6}px`}
-                      className="object-contain p-1"
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Steps */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              {steps.map((step) => (
-                <div key={step.id} className="px-8 text-white">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
-                      {step.id}
-                    </div>
-                  </div>
-                  <h3 className="text-xl text-white font-bold mb-3">{step.title}</h3>
-                  <p className="text-blue-100">{step.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-8">
-              {step.map((item) => (
-                <div key={item.id} className="px-8 text-white">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
-                      {item.id}
-                    </div>
-                  </div>
-                  <h3 className="text-xl text-white font-bold mb-3">{item.title}</h3>
-                  <p className="text-blue-100">{item.description}</p>
-                </div>
-              ))}
             </div>
           </div>
-
-          {/* Background blur effect */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
         </section>
-        </div>
-      </FadeInSection>
+        <FadeInSection>
+          <section className="w-full py-20 lg:py-28">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-4xl tracking-tight lg:text-5xl font-bold text-gray-800 mb-4">
+                  A Secure Hub that minds its own{" "}
+                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
+                    Business{" "}
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-2xl  mx-auto">
+                  All-in-one. All buttoned up. All yours.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {services.map((service, index) => (
+                  <ServiceCard
+                    key={index}
+                    href={service.href}
+                    icon={service.icon}
+                    title={service.title}
+                    text={service.text}
+                    image={service.image}
+                    description={service.description}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
 
         <FadeInSection>
-        <section className="w-full bg-gray-200 rounded-tl-[100px] mt-20">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
-            {/* Testimonial */}
-            <div className="flex flex-col lg:flex-row  items-center mb-24">
+          <section className="w-full bg-gray-200 rounded-tl-[150px]">
+            <div className="flex flex-col justify-center items-center">
+              <div className="text-center mt-20">
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
+                  Don’t let your work be someone <br />{" "}
+                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                    else’s business.
+                  </span>
+                  <br className="hidden sm:block" />
+                  <small className="text-xl text-gray-500">
+                    Work in complete privacy, with full control of your data.
+                  </small>
+                </p>
+              </div>
+              <div className="flex flex-row  mt-20 justify-center">
+                {/* FAQs Column */}
+                <div className="w-1/3 space-y-6">
+                  {faqs.map((item, index) => (
+                    <div
+                      key={index}
+                      className="transition-colors duration-200"
+                      onMouseEnter={() => setOpenIndex(index)}
+                    >
+                      <button
+                        className="w-full py-4 text-left flex rounded-lg items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-[#173E73]"
+                        aria-expanded={openIndex === index}
+                      >
+                        <span className="text-2xl font-semibold text-gray-800">
+                          {item.question}
+                        </span>
+                      </button>
 
-              <div className="w-full lg:w-1/2">
-                <h2 className="text-3xl lg:text-5xl xl:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                  Compliance built card for businesses 
-                </h2>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          openIndex === index
+                            ? "max-h-96 opacity-100"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <div className="pb-4 pt-2 text-gray-600">
+                          <p className="text-xl leading-tighter tracking-tight">
+                            {item.answer}
+                          </p>
+                        </div>
+                        <hr className="border-gray-400" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-lg">Identity verifications</span>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-lg">Secure credit card data tokenization</span>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-lg">Online and mobile payments</span>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-lg">IGlobal regulations and compliance</span>
-                  </div>
+                {/* Image Column */}
+                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-10">
+                  <img
+                    src={faqs[openIndex].image}
+                    className="w-full h-auto object-contain transition-opacity duration-300"
+                    alt="FAQ visual"
+                  />
                 </div>
               </div>
-              {/* Testimonial Card */}
-              <div className="w-full lg:w-1/2 max-w-xl">
-                <div>
-                  <iframe
+
+              <div className="flex flex-col lg:flex-row justify-center items-center gap-4">
+                <div className="w-full lg:w-1/2">
+                  <h2 className="text-3xl lg:text-5xl xl:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                    One Secure Stack. 
+                  </h2>
+
+                  <div className="space-y-1">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-lg">
+                        Identity verifications
+                      </span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-lg">
+                        Secure credit card data tokenization
+                      </span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-lg">
+                        Online and mobile payments
+                      </span>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-lg">
+                        IGlobal regulations and compliance
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {/* Testimonial Card */}
+                <div className="w-full lg:w-1/2 max-w-xl">
+                  <div>
+                    <iframe
                       src="/assets/presentationAyu.html"
                       className="w-full min-w-[400px] sm:min-w-[600px] h-[350px] sm:h-[450px] md:h-[500px] transition-all duration-300 group-hover:shadow-2xl"
                     />
-                </div>
-         
-              </div>
-
-              {/* Content */}
-              
-            </div>
-
-            {/* FAQ Section */}
-            <div className="mt-10 lg:mt-10">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-12">FAQs</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                {/* Question 1 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">How can I add money to my account?</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
+                  </div>
                 </div>
 
-                {/* Question 2 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">How do I get started with card payments?</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
-                </div>
-
-                {/* Question 3 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">How is my document data stored/secured?</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
-                </div>
-
-                {/* Question 4 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">Can I get a standard card for free?</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
-                </div>
-
-                {/* Question 5 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                    I do not want to pay now, how can I proceed?
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
-                </div>
-
-                {/* Question 6 */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                    I don&apos;t have the required documents, how can I proceed?
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua, ut enim ad minim veniam.
-                  </p>
-                </div>
+                {/* Content */}
               </div>
             </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <div className="bg-gray-200">
+            <section className="relative bg-gradient-to-tl from-blue-700 via-blue-400 to-blue-600 py-10 lg:py-20 rounded-tr-[150px]">
+              <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+                <div className="text-left mb-20">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    Get started in minutes and connect{" "}
+                    <br className="hidden md:block" /> all your accounts in one
+                    place
+                  </h2>
+                </div>
+                {/* Floating logos */}
+                <div className="relative h-[300px] md:h-[400px]">
+                  {logos.map((logo, index) => (
+                    <motion.div
+                      key={index}
+                      className="absolute rounded-full bg-white flex items-center justify-center shadow-lg"
+                      style={{
+                        width: `${logo.size}px`,
+                        height: `${logo.size}px`,
+                        left: logo.left,
+                        top: logo.top,
+                        opacity: logo.opacity,
+                      }}
+                      animate={{
+                        y: [0, -10, 0],
+                      }}
+                      transition={{
+                        duration: 3 + (index % 2),
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <div className="relative w-[60%] h-[60%]">
+                        <Image
+                          src={logo.src || "/placeholder.svg"}
+                          alt={logo.alt}
+                          fill
+                          sizes={`${logo.size * 0.6}px`}
+                          className="object-contain p-1"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Steps */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                  {steps.map((step) => (
+                    <div key={step.id} className="px-8 text-white">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
+                          {step.id}
+                        </div>
+                      </div>
+                      <h3 className="text-xl text-white font-bold mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-blue-100">{step.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-8">
+                  {step.map((item) => (
+                    <div key={item.id} className="px-8 text-white">
+                      <div className="flex items-center mb-6">
+                        <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
+                          {item.id}
+                        </div>
+                      </div>
+                      <h3 className="text-xl text-white font-bold mb-3">
+                        {item.title}
+                      </h3>
+                      <p className="text-blue-100">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Background blur effect */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
+            </section>
           </div>
-        </section>
-      </FadeInSection>       
+        </FadeInSection>
 
-    </div>
+        <FadeInSection>
+          <section className="w-full bg-gray-200 py-10 mt-20 rounded-tl-[150px]">
+            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
+              <div className="flex flex-wrap gap-1 justify-center items-center max-w-full px-2">
+                {appIcons.map((icon, index) => (
+                  <a
+                    key={index}
+                    href={icon.href}
+                    className="group flex flex-col  space-y-1"
+                  >
+                    <img
+                      src={icon.src || "/placeholder.svg"}
+                      className="relative w-16 h-16 transition-transform duration-300 group-hover:-translate-y-2"
+                      alt={icon.alt || ""}
+                    />
+                    <span className="text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {icon.alt}
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <div className="flex flex-col justify-center mb-16 md:mb-24 items-center text-gray-800">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans m-0 text-center"
+                >
+                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                    Work Tools
+                  </span>{" "}
+                  That Don’t Let You <br className="hidden sm:block" />
+                  Compromise
+                </motion.p>
+                <motion.small
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="font-sans mt-5 text-lg sm:text-xl text-gray-500"
+                >
+                  <p>Secure, Unified, Ethical</p>
+                </motion.small>
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="/signup"
+                  className="bg-gradient-to-r from-[#6C70FF] to-[#5D7DFF] mt-8 text-white px-6 py-3 rounded-3xl text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 font-medium"
+                >
+                  Create Account
+                </motion.a>
+              </div>
+
+              {/* Feature Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
+                {featureCards.map((card, index) => (
+                  <FeatureCard
+                    key={index}
+                    title={card.title}
+                    subtitle={card.subtitle}
+                    description={card.description}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section className="w-full rounded-tr-[150px] py-20">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+
+              {/* FAQ Section */}
+              <div className="mt-10 lg:mt-10">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-12">
+                  FAQs
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                  {/* Question 1 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      How can I add money to my account?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+
+                  {/* Question 2 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      How do I get started with card payments?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+
+                  {/* Question 3 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      How is my document data stored/secured?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+
+                  {/* Question 4 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      Can I get a standard card for free?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+
+                  {/* Question 5 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      I do not want to pay now, how can I proceed?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+
+                  {/* Question 6 */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      I don&apos;t have the required documents, how can I
+                      proceed?
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua, ut enim ad minim veniam.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
+      </div>
     </div>
   );
 }
 
-function ServiceCard({ href, icon, title, description, index }) {
+function ServiceCard({ href, icon, title, text, image, description, index }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -700,16 +659,25 @@ function ServiceCard({ href, icon, title, description, index }) {
     >
       <div className="flex flex-col gap-3 p-5 h-full">
         <span className="flex items-center gap-3">
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-2 rounded-lg">
-            <img
-              src={icon || "/placeholder.svg"}
-              className="w-10 h-10"
-              alt={title}
-            />
-          </div>
+          <img
+            src={icon || "/placeholder.svg"}
+            className="w-10 h-10"
+            alt={title}
+          />
+
           <p className="text-xl font-semibold text-gray-800">{title}</p>
         </span>
-        <div className="flex-grow text-gray-600">{description}</div>
+        <div className="flex-grow flex flex-col gap-2 text-gray-800">
+          <p className="text-gray-800">{text}</p>
+
+          <img
+            src={image || "/placeholder.svg"}
+            className="w-78 h-58"
+            alt={title}
+          />
+          {description}
+        </div>
+
         <a
           href={href}
           className="text-blue-600 font-medium flex items-center group"
@@ -758,65 +726,83 @@ const services = [
   {
     href: "/mail",
     icon: "/assets/mail.png",
-    title: "ubs Mail",
+    title: "Mail",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/mailcube.png",
     description:
-      "Secure, private email with powerful features—built for teams who value control and clarity.",
+      "Say goodbye to clunky inboxes, sketchy security, and email that feels like a full-time job.",
   },
   {
     href: "/drive",
     icon: "/assets/drive.png",
-    title: "ubs Drive",
+    title: "Drive",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/drivecube.png",
     description:
       "Store, share, and sync your files with end-to-end encrypted cloud storage—on your terms.",
   },
   {
     href: "/meet",
     icon: "/assets/meet.png",
-    title: "ubs Meet",
+    text: "Not just mail. Your new favorite coworker.",
+    title: "Meet",
+    image: "/meetcube.png",
     description:
       "Host encrypted video meetings that respect your time and your data—no installs, no surveillance.",
   },
   {
     href: "/calendar",
     icon: "/assets/calendar.png",
-    title: "ubs Calendar",
+    title: "Calendar",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/calendarcube.png",
     description:
       "Plan, schedule, and stay in sync—your private, encrypted calendar for work and life.",
   },
   {
-    href: "/contacts",
-    icon: "/assets/contacts.png",
-    title: "ubs Contacts",
-    description:
-      "Manage and organize your professional network securely—no ads, no leaks, just clarity.",
-  },
-  {
-    href: "/task",
-    icon: "/assets/task.png",
-    title: "ubs Tasks",
-    description:
-      "Capture thoughts, tasks, and ideas—securely synced across all your devices, always encrypted.",
-  },
-  {
     href: "/docs",
     icon: "/assets/docs.png",
-    title: "ubs Docs",
+    title: "Docs",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/docscube.png",
     description:
       "Collaborate in real-time on beautifully simple, secure documents—no data leaks, no distractions.",
   },
   {
     href: "/sheets",
     icon: "/assets/sheets.png",
-    title: "ubs Sheets",
+    title: "Sheets",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/sheetcube.png",
     description:
       "Analyze, calculate, and visualize with privacy-first spreadsheets—built for serious work.",
   },
   {
     href: "/slides",
     icon: "/assets/slides.png",
-    title: "ubs Slides",
+    title: "Slides",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/slidecube.png",
     description:
       "Design impactful presentations together—real-time collaboration with zero data compromise.",
+  },
+  {
+    href: "/e_sign",
+    icon: "/assets/e-sign.png",
+    title: "E-sign",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/e-signcube.png",
+    description:
+      "Manage and organize your professional network securely—no ads, no leaks, just clarity.",
+  },
+  {
+    href: "/password-manager",
+    icon: "/assets/password-manager.png",
+    text: "Not just mail. Your new favorite coworker.",
+    image: "/passwordmancube.png",
+    title: "Password Manager",
+    description:
+      "Capture thoughts, tasks, and ideas—securely synced across all your devices, always encrypted.",
   },
 ];
 
@@ -1051,4 +1037,3 @@ function LogoPlaceholder({ index }) {
 
   return logos[index % logos.length];
 }
-

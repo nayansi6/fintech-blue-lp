@@ -16,8 +16,8 @@ const Header = () => {
     { icon: "/assets/meet.png", name: "Meet", desc: "Video conferencing", href: "/meet" },
     { icon: "/assets/chat.png", name: "Chat", desc: "Team Chating", href: "/chat" },
     { icon: "/assets/calendar.png", name: "Calendar", desc: "Shared calendars", href: "/calendar" },
-    { icon: "/assets/contacts.png", name: "Contacts", desc: "Shared contacts", href: "/contacts" },
-    { icon: "/assets/task.png", name: "Task", desc: "Messaging for teams", href: "/task" },
+    // { icon: "/assets/contacts.png", name: "Contacts", desc: "Shared contacts", href: "/contacts" },
+    // { icon: "/assets/task.png", name: "Task", desc: "Messaging for teams", href: "/task" },
     { icon: "/assets/docs.png", name: "Docs", desc: "Word processing", href: "/docs" },
     { icon: "/assets/sheets.png", name: "Sheets", desc: "Spreadsheets", href: "/sheets" },
     { icon: "/assets/slides.png", name: "Slides", desc: "Presentation builder", href: "/slides" },
@@ -83,18 +83,18 @@ const Header = () => {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50  w-[100%] max-w-[1440px] backdrop-blur-lg bg-gray-900 shadow-sm border-b border-gray-100">
-      <div className=" mx-auto  relative">
+    <header className="sticky top-0 z-50  w-[100%] max-w-[1440px] backdrop-blur-lg bg-gray-800 shadow-sm border-b border-gray-100">
+      <div className=" mx-auto relative">
         <div className="flex justify-between h-16 items-center px-3 sm:px-4 md:px-5 lg:px-10">
-          <div className="flex items-start space-x-4 sm:space-x-8">
+          <div className="flex items-center justify-center  space-x-4 sm:space-x-8">
             <div className="flex items-start flex-col space-y-0 leading-none">
               <Link href="/" className="flex items-center group">
-                <div className="h-8 w-8 relative">
+                <div className="h-10 w-10 relative">
                   <Image src="/assets/icon.png" alt="Logo" fill className="" />
                 </div>
-                <span className="text-xl font-bold text-gray-800">ubs</span>
+                {/* <span className="text-xl font-bold text-gray-600">ubs</span> */}
               </Link>
-              <small className="text-[10px] m-0 p-0 leading-none">unified binary system</small>
+              <small className="text-[10px] m-0 p-0 text-gray-400 leading-none">unified binary system</small>
             </div>
 
             {/* Desktop Navigation */}
@@ -103,12 +103,12 @@ const Header = () => {
                 <button
                   onClick={toggleProductPage}
                   className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-all ${
-                    productPage ? "bg-blue-50 text-blue-600" : "text-gray-600 hover:bg-gray-100 hover:text-gray-800"
+                    productPage ? "bg-blue-50 text-blue-600" : "text-gray-800 hover:bg-gray-100 hover:text-gray-800"
                   }`}
                   aria-expanded={productPage}
                   aria-controls="product-dropdown"
                 >
-                  <span>Products</span>
+                  <span className="text-gray-400 hover:text-gray-800">Products</span>
                   <svg
                     className={`w-4 h-4 transition-transform ${productPage ? "rotate-180" : ""}`}
                     fill="none"
@@ -124,7 +124,7 @@ const Header = () => {
                 <Link
                   key={item}
                   href={`/${item.toLowerCase().replace(" ", "-")}`}
-                  className="px-4 py-2 rounded-lg transition-colors text-gray-600 hover:bg-gray-100 hover:text-gray-800"
+                  className="px-4 py-2 rounded-lg transition-colors text-gray-400 hover:bg-gray-100 hover:text-gray-800"
                 >
                   {item}
                 </Link>
