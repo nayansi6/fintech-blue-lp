@@ -83,7 +83,7 @@ const Header = () => {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50  w-[100%] max-w-[1440px] backdrop-blur-lg bg-gray-800 shadow-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50  w-[100%] max-w-[1480px] backdrop-blur-lg bg-gray-800 shadow-sm border-b border-gray-100">
       <div className=" mx-auto relative">
         <div className="flex justify-between h-16 items-center px-3 sm:px-4 md:px-5 lg:px-10">
           <div className="flex items-center justify-center  space-x-4 sm:space-x-8">
@@ -120,7 +120,7 @@ const Header = () => {
                 </button>
               </li>
 
-              {["ubs for Business", "Resources", "Support", "Pricing"].map((item) => (
+              {["for Business", "Resources", "Support", "Pricing"].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase().replace(" ", "-")}`}
@@ -142,7 +142,7 @@ const Header = () => {
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-2 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-md transition-all 
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all 
                      shadow-sm hover:shadow-md transform hover:scale-[1.02]"
             >
               Create Free Account ✨
@@ -233,7 +233,7 @@ const Header = () => {
                 <div className="h-8 w-8 relative">
                   <Image src="/assets/icon.png" alt="Logo" fill className="" />
                 </div>
-                <span className="text-xl font-bold text-gray-800">ubs</span>
+                {/* <span className="text-xl font-bold text-gray-800">ubs</span> */}
               </Link>
               <small className="text-[10px] m-0 p-0 leading-none">unified binary system</small>
             </div>
@@ -302,7 +302,7 @@ const Header = () => {
 
               {/* Other Navigation Links */}
               <nav className="space-y-1">
-                {["ubs for Business", "Resources", "Support", "Pricing"].map((item) => (
+                {[" for Business", "Resources", "Support", "Pricing"].map((item) => (
                   <Link
                     key={item}
                     href={`/${item.toLowerCase().replace(" ", "-")}`}

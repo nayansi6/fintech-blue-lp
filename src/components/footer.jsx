@@ -2,7 +2,7 @@ import SocialLinks from "./socialMediaIcons"
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 shadow-lg max-w-[1440px]">
+    <footer className="bg-gray-800 shadow-lg max-w-[1480px]">
       <div className=" mx-auto px-4 py-12 lg:py-16">
         {/* Main Footer Content */}
         <div className="flex gap-4 lg:gap-20">
@@ -142,8 +142,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/ubs-for%20business" className="hover:text-gray-300 transition-colors">
-                  <b>ubs</b> for Business
+                <a href="/for%20business" className="hover:text-gray-300 transition-colors">
+                   for Business
                 </a>
               </li>
             </ul>
@@ -210,7 +210,7 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-gray-500 text-sm">© 2025 ubs. All rights reserved for ubs Ltd.</span>
+          <span className="text-gray-500 text-sm">© 2025 unified binary system. All rights reserved for unified binary system Ltd.</span>
           <SocialLinks />
         </div>
       </div>

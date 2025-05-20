@@ -61,7 +61,7 @@ export default function Home() {
       opacity: 1,
     },
     {
-      src: "/assets/chat.png",
+      src: "/assets/e-sign.png",
       alt: "Credit Card",
       size: 90,
       left: "43%",
@@ -188,16 +188,16 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
   return (
-    <div className="max-w-[1440px]">
+    <div className="max-w-[1480px]">
       <div className="bg-gray-50">
-        <section className="bg-gradient-to-tl min-h-screen flex kustify-center items-center from-blue-600 via-blue-400 to-blue-600 ">
+        <section className="bg-gradient-to-tl min-h-screen flex justify-center items-center from-blue-600 via-blue-400 to-blue-600 ">
           {/* Left side content */}
           <div className="w-full text-white z-10  mt-20 gap-6 flex flex-col items-center justify-center  p-4 md:p-8 lg:p-12 md:mb-0">
             <div className="flex flex-col items-center text-6xl ">
               <div className="font-bold tracking-tight">Privacy Starts at the Core.</div>
             </div>
 
-            <p className="text-lg text-center text-white md:text-xl opacity-80 max-w-xl">
+            <p className="text-lg text-center text-white md:text-xl  max-w-xl">
               Every message, file, and interaction is protected by zero-knowledge encryption — by default, not request.
             </p>
             <div className="flex flex-wrap gap-10">
@@ -269,7 +269,7 @@ export default function Home() {
               </div>
               <div className="text-center mt-20">
                 <motion.a
-                  className="inline-block bg-white px-6 py-4 border border-gray-700 rounded-2xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -284,19 +284,19 @@ export default function Home() {
         <FadeInSection>
           <section className="w-full">
             <div className="flex flex-col justify-center items-center">
-              <div className="text-center">
-                <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
-                  Don’t let your work be someone <br />{" "}
-                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                    else’s business.
+              <div className="text-center flex flex-col justify-center gap-4 items-center ">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
+                  Don’t let your work be someone  else’s {" "}
+                    <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                    business.
                   </span>
-                  <br className="hidden sm:block" />
-                  <small className="text-xl text-gray-500">
+                  </p>
+                  <small className="text-2xl text-gray-500">
                     Work in complete privacy, with full control of your data.
                   </small>
-                </p>
+               
               </div>
-              <div className="flex flex-row px-10 mt-20 justify-center ">
+              <div className="flex flex-row px-10 mt-20 justify-center items-center ">
                 {/* FAQs Column */}
                 <div className="w-1/2 px-15 space-y-6">
                   {faqs.map((item, index) => (
@@ -337,7 +337,7 @@ export default function Home() {
                 </div>
 
                 {/* Image Column */}
-                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-5">
+                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-10">
                   <motion.img
                     key={faqs[openIndex].image}
                     src={faqs[openIndex].image}
@@ -358,10 +358,11 @@ export default function Home() {
                 </div>
 
                   <div className="flex flex-col leading-none">
-                    <span className="text-gray-700 text-lg">Everything you need to get things done.{" "}Join the Waitlist Today</span>
-                    {/* <span className="text-gray-700 text-lg"> </span>
-                    <span className="text-gray-700 text-lg"></span> */}
+                    <span className="text-gray-700 text-lg">Everything you need to get things done.{" "}</span>
+                    
+                    
                   </div>
+                  <div className="w-48"><p className=" bg-white text-center py-3 border shadow-md border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer">Join the Waitlist Today</p></div>
                 </div>
                 {/* Testimonial Card */}
                 <div className="w-full max-w-xl">
@@ -385,7 +386,7 @@ export default function Home() {
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
                 <div className="text-left py-10">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-bold text-white leading-tight">
-                    Get started in minutes and connect <br className="hidden md:block" /> all your accounts in one place
+                    Who said great tools have <br className="hidden md:block" />  to come with a price tag?
                   </h2>
                 </div>
                 {/* Floating logos */}
@@ -436,7 +437,28 @@ export default function Home() {
         <FadeInSection>
           <section className="w-full py-10 mt-10 rounded-tl-[150px]">
             <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
-              <div className="flex flex-wrap gap-4 justify-center items-center max-w-full px-2">
+              <div className="mb-10 flex flex-col gap-2"><p className="text-gray-800 text-5xl font-semibold">Free, but far from basic. Explore all the<br/></p>
+              <p className="text-gray-800 text-5xl font-semibold"> benefits of   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                   UBS Stack</span></p></div>             
+              {/* Feature Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
+                {featureCards.map((card, index) => (
+                  <FeatureCard
+                    key={index}
+                    title={card.title}
+                    subtitle={card.subtitle}
+                    description={card.description}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section className="w-full rounded-tr-[150px] py-20">
+             <div className="flex flex-wrap gap-4 justify-center items-center max-w-full px-2">
                 {appIcons.map((icon, index) => (
                   <motion.a
                     key={index}
@@ -489,31 +511,13 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/signup"
-                  className="bg-gradient-to-r from-[#6C70FF] to-[#5D7DFF] mt-8 text-white px-6 py-3 rounded-3xl text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 font-medium"
+                  className="bg-white mt-8 text-gray-700 px-6 py-3 rounded-xl border border-gray-700 text-sm sm:text-base shadow-md hover:shadow-lg hover:shadow-blue-600"
                 >
                   Create Account
                 </motion.a>
               </div>
 
-              {/* Feature Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
-                {featureCards.map((card, index) => (
-                  <FeatureCard
-                    key={index}
-                    title={card.title}
-                    subtitle={card.subtitle}
-                    description={card.description}
-                    index={index}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section className="w-full rounded-tr-[150px] py-20">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+            <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10">
               {/* FAQ Section */}
               <div className="mt-10 lg:mt-10">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-12">FAQs</h2>
