@@ -296,9 +296,9 @@ export default function Home() {
                   </small>
                 </p>
               </div>
-              <div className="flex flex-row gap-10 mt-20 justify-center">
+              <div className="flex flex-row px-10 mt-20 justify-center ">
                 {/* FAQs Column */}
-                <div className="w-1/3 space-y-6">
+                <div className="w-1/2 px-15 space-y-6">
                   {faqs.map((item, index) => (
                     <motion.div
                       key={index}
@@ -337,7 +337,7 @@ export default function Home() {
                 </div>
 
                 {/* Image Column */}
-                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-10">
+                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-5">
                   <motion.img
                     key={faqs[openIndex].image}
                     src={faqs[openIndex].image}
@@ -350,24 +350,25 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-center items-center gap-4">
-                <div className="w-full lg:w-1/2">
-                  <h2 className="text-3xl lg:text-5xl xl:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                    One Secure Stack.
-                  </h2>
+              <div className="flex flex-col lg:flex-row justify-start items-center gap-10">
+                <div className="w-full flex flex-col gap-4 px-10 justify-start lg:w-1/3">
+                <div className="text-4xl text-start">
+                  <p className="font-bold">One Secure</p>
+                  <p className="font-bold">Stack</p>
+                </div>
 
                   <div className="flex flex-col leading-none">
-                    <span className="text-gray-700 text-lg">Everything you need to</span>
-                    <span className="text-gray-700 text-lg">get things done. </span>
-                    <span className="text-gray-700 text-lg">Join the Waitlist Today</span>
+                    <span className="text-gray-700 text-lg">Everything you need to get things done.{" "}Join the Waitlist Today</span>
+                    {/* <span className="text-gray-700 text-lg"> </span>
+                    <span className="text-gray-700 text-lg"></span> */}
                   </div>
                 </div>
                 {/* Testimonial Card */}
-                <div className="w-full lg:w-1/2 max-w-xl">
+                <div className="w-full max-w-xl">
                   <div>
                     <iframe
                       src="/assets/presentationAyu.html"
-                      className="w-full min-w-[400px] sm:min-w-[600px] h-[350px] sm:h-[450px] md:h-[500px] transition-all duration-300 group-hover:shadow-2xl"
+                      className="w-full min-w-[600px] sm:min-w-[750px] h-[350px] sm:h-[450px] md:h-[500px] transition-all duration-300 group-hover:shadow-2xl"
                     />
                   </div>
                 </div>
@@ -710,6 +711,24 @@ const services = [
     description:
       "Protect your events with end-to-end encryption — so only you know where you’ll be, when, and with whom.",
   },
+   {
+    href: "/e_sign",
+    icon: "/assets/e-sign.png",
+    title: "E-sign",
+    text: "Secure Every Signature. Protect Every Deal.",
+    image: "/e-signcube.png",
+    description:
+      "Sign documents with legally binding encryption — no printing, no leaking, no middlemen. Just fast, private approvals you control.",
+  },
+  {
+    href: "/password-manager",
+    icon: "/assets/password-manager.png",
+    text: "You Remember One. We Guard the Rest.",
+    image: "/passwordmancube.png",
+    title: "Password Manager",
+    description:
+      "Forget sticky notes and reused passwords. Lock down your digital life with encryption so strong, even we can't peek.",
+  },
   {
     href: "/docs",
     icon: "/assets/docs.png",
@@ -737,24 +756,7 @@ const services = [
     description:
       "Whether you’re pitching investors or training your team, your content stays protected — beautifully presented, privately shared..",
   },
-  {
-    href: "/e_sign",
-    icon: "/assets/e-sign.png",
-    title: "E-sign",
-    text: "Secure Every Signature. Protect Every Deal.",
-    image: "/e-signcube.png",
-    description:
-      "Sign documents with legally binding encryption — no printing, no leaking, no middlemen. Just fast, private approvals you control.",
-  },
-  {
-    href: "/password-manager",
-    icon: "/assets/password-manager.png",
-    text: "You Remember One. We Guard the Rest.",
-    image: "/passwordmancube.png",
-    title: "Password Manager",
-    description:
-      "Forget sticky notes and reused passwords. Lock down your digital life with encryption so strong, even we can't peek.",
-  },
+ 
 ]
 
 const appIcons = [
