@@ -324,7 +324,7 @@ export default function Home() {
                     <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
                       Multi-Node Encrypted Storage
                     </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500  mt-2">
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
                       Your files aren’t in one place — and that’s a good thing.
                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
                         {" "}
