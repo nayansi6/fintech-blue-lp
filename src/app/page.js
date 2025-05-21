@@ -154,25 +154,6 @@ export default function Home() {
         "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
     },
   ]
-  const faqs = [
-    {
-      question: "Privacy Built In, Security Locked Down",
-      image: "/assets/maildefine.png",
-      answer:
-        "Every action — from writing to sharing — is protected with strong encryption. UBS was built from the ground up to keep your data safe, always.",
-    },
-    {
-      question: "Zero-Knowledge Architecture",
-      image: "/assets/maillock.png",
-      answer: "Only you hold the keys. UBS can’t read or access your files, messages, or any content — and never will.",
-    },
-    {
-      question: "One Account. All Tools. Free Forever.",
-      image: "/assets/docs.png",
-      answer:
-        "Use everything — docs, chat, storage, calendar — with one secure login. No paywalls. No traps. Just freedom to work, for life.",
-    },
-  ]
 
   const [scrollY, setScrollY] = useState(0)
   const [openIndex, setOpenIndex] = useState(0)
@@ -224,13 +205,15 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <motion.img
+                   <div className="w-20 overflw-hidden">
+                     <motion.img
                       src={icon.src || "/placeholder.svg"}
-                      className="relative w-20 h-20"
+                      className="relative w-28"
                       alt={icon.alt || ""}
                       whileHover={{ y: -5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     />
+                   </div>
                     <span className="text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {icon.alt}
                     </span>
@@ -258,7 +241,6 @@ export default function Home() {
                   <ServiceCard
                     key={index}
                     href={service.href}
-                    icon={service.icon}
                     title={service.title}
                     text={service.text}
                     image={service.image}
@@ -274,7 +256,7 @@ export default function Home() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  Browse All Apps
+                  Create A Free Account
                 </motion.a>
               </div>
             </div>
@@ -296,59 +278,157 @@ export default function Home() {
                   </small>
                
               </div>
-              <div className="flex flex-row px-10 mt-20 justify-center items-center ">
-                {/* FAQs Column */}
-                <div className="w-1/2 px-15 space-y-6">
-                  {faqs.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      className="transition-all duration-300"
-                      initial={{ opacity: 0.9 }}
-                      whileHover={{
-                        opacity: 1,
-                        scale: 1.02,
-                        transition: { duration: 0.2 },
-                      }}
-                      onMouseEnter={() => setOpenIndex(index)}
-                    >
-                      <button
-                        className="w-full py-4 text-left flex rounded-lg items-center justify-between gap-4"
-                        aria-expanded={openIndex === index}
-                      >
-                        <span className="text-2xl font-semibold text-gray-800">{item.question}</span>
-                      </button>
-
-                      <motion.div
-                        className="overflow-hidden"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{
-                          height: openIndex === index ? "auto" : 0,
-                          opacity: openIndex === index ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <div className="pb-4 pt-2 text-gray-600">
-                          <p className="text-xl leading-tighter tracking-tight">{item.answer}</p>
-                        </div>
-                        <hr className="border-gray-400" />
-                      </motion.div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Image Column */}
-                <div className="w-1/2 sticky top-0 h-screen flex items-center justify-center p-10">
-                  <motion.img
-                    key={faqs[openIndex].image}
-                    src={faqs[openIndex].image}
-                    className="w-full h-auto object-contain"
-                    alt="FAQ visual"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
+              <div className="flex flex-col justify-center items-center mt-20 gap-20 sm:gap-28 md:gap-36">
+              {/* Feature 1 */}
+              <FadeInSection>
+                <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
+                  <div className="w-full md:w-auto">
+                    <div className="relative group">
+                      <iframe
+                        src="/assets/presentation3.html"
+                        allowFullScreen
+                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
+                      />
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                  <div className="max-w-md">
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
+                      "Zero-Knowledge Encryption"
+                    </p>
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                      We can’t read your emails — and neither can anyone else.
+                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                        {" "}
+                        It’s privacy by architecture — not policy.
+                      </span>
+                    </small>
+                     <div className="mt-5 ml-2">
+                <motion.a
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Learn More
+                </motion.a>
               </div>
+
+                  </div>
+                </div>
+              </FadeInSection>
+
+              {/* Feature 2 */}
+              <FadeInSection>
+                <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
+                   <div className="max-w-md">
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
+                      "Multi-Node Encrypted Storage"
+                    </p>
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                      Your files aren’t in one place — and that’s a good thing.
+                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                        {" "}
+                        It’s security through distribution — not dependence.
+                      </span>
+                    </small>
+                     <div className="mt-5 ml-2">
+                <motion.a
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Learn More
+                </motion.a>
+              </div>
+
+                  </div>
+                  <div className="w-full md:w-auto order-1 md:order-2">
+                    <div className="relative group">
+                      <iframe
+                        src="/assets/presentation5.html"
+                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
+                      />
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </FadeInSection>
+
+              {/* Feature 3 */}
+              <FadeInSection>
+                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-8 md:gap-20 items-center">
+                  <div className="w-full md:w-auto relative group">
+                    <iframe
+                      src="/assets/presentation4.html"
+                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
+                    />
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                   <div className="max-w-md">
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
+                      "Swiss-Based Data Centers"
+                    </p>
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                      Neutral ground, strict laws, maximum protection.
+                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                        {" "}
+                        It’s legal protection by location — not loopholes.
+                      </span>
+                    </small>
+                     <div className="mt-5 ml-2">
+                <motion.a
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Learn More
+                </motion.a>
+              </div>
+
+                  </div>
+                </div>
+              </FadeInSection>
+                 {/* feature 4 */}
+               <FadeInSection>
+                <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 mb-10 md:mb-20  gap-8 md:gap-20 justify-center items-center">
+                   <div className="max-w-md">
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
+                      "Compliance-First Architecture"
+                    </p>
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                      We don't just meet standards — we’re built on them.
+                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                        {" "}
+                        It’s compliance in code — not just in checklists.
+                      </span>
+                    </small>
+                     <div className="mt-5 ml-2">
+                <motion.a
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Learn More
+                </motion.a>
+              </div>
+
+                  </div>
+                  <div className="w-full md:w-auto order-1 md:order-2">
+                    <div className="relative group">
+                      <iframe
+                        src="/assets/presentation5.html"
+                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
+                      />
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </FadeInSection>
+            </div>
 
               <div className="flex flex-col lg:flex-row justify-start items-center gap-10">
                 <div className="w-full flex flex-col gap-4 px-10 justify-start lg:w-1/3">
@@ -383,13 +463,13 @@ export default function Home() {
         <FadeInSection>
           <div className="">
             <section className="relative bg-gradient-to-tl from-blue-700 via-blue-400 to-blue-600  rounded-tr-[150px]">
-              <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+              {/* <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
                 <div className="text-left py-10">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-bold text-white leading-tight">
                     Who said great tools have <br className="hidden md:block" />  to come with a price tag?
                   </h2>
                 </div>
-                {/* Floating logos */}
+              
                 <div className="relative h-[300px] md:h-[400px] mt-20">
                   {logos.map((logo, index) => (
                     <motion.div
@@ -426,20 +506,12 @@ export default function Home() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
-              {/* Background blur effect */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
-            </section>
-          </div>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section className="w-full py-10 mt-10 rounded-tl-[150px]">
-            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
-              <div className="mb-10 flex flex-col gap-2"><p className="text-gray-800 text-5xl font-semibold">Free, but far from basic. Explore all the<br/></p>
-              <p className="text-gray-800 text-5xl font-semibold"> benefits of   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                   UBS Stack</span></p></div>             
+              <div className="flex flex-col gap-5 py-20 px-20 text-center">
+              <div className="mb-10 flex flex-col items-start gap-2"><p className="text-white text-5xl font-semibold">Free, but far from basic. Explore <br/></p>
+              <p className="text-white text-5xl font-semibold">all the benefits of 
+                   UBS Stack</p></div>             
               {/* Feature Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
                 {featureCards.map((card, index) => (
@@ -453,8 +525,34 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </section>
+
+              
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
+            </section>
+          </div>
         </FadeInSection>
+
+        {/* <FadeInSection>
+          <section className="w-full py-10 mt-10 rounded-tl-[150px]">
+            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
+              <div className="mb-10 flex flex-col gap-2"><p className="text-gray-800 text-5xl font-semibold">Free, but far from basic. Explore all the<br/></p>
+              <p className="text-gray-800 text-5xl font-semibold"> benefits of   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                   UBS Stack</span></p></div>             
+             
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
+                {featureCards.map((card, index) => (
+                  <FeatureCard
+                    key={index}
+                    title={card.title}
+                    subtitle={card.subtitle}
+                    description={card.description}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </FadeInSection> */}
 
         <FadeInSection>
           <section className="w-full rounded-tr-[150px] py-20">
@@ -516,76 +614,6 @@ export default function Home() {
                   Create Account
                 </motion.a>
               </div>
-
-            <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10">
-              {/* FAQ Section */}
-              <div className="mt-10 lg:mt-10">
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-12">FAQs</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                  {/* Question 1 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">How can I add money to my account?</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-
-                  {/* Question 2 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                      How do I get started with card payments?
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-
-                  {/* Question 3 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                      How is my document data stored/secured?
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-
-                  {/* Question 4 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">Can I get a standard card for free?</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-
-                  {/* Question 5 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                      I do not want to pay now, how can I proceed?
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-
-                  {/* Question 6 */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                      I don&apos;t have the required documents, how can I proceed?
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua, ut enim ad minim veniam.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </section>
         </FadeInSection>
       </div>
@@ -593,7 +621,7 @@ export default function Home() {
   )
 }
 
-function ServiceCard({ href, icon, title, text, image, description, index }) {
+function ServiceCard({ href, title, text, image, description, index }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -606,7 +634,7 @@ function ServiceCard({ href, icon, title, text, image, description, index }) {
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{
         duration: 0.7,
-        delay: index * 0.15,
+        delay: index * 0.10,
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{
@@ -614,28 +642,22 @@ function ServiceCard({ href, icon, title, text, image, description, index }) {
         scale: 1.02,
         boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.1)",
       }}
-      className="w-full max-w-[350px] h-auto min-h-[12rem] bg-white hover:border hover:border-[#173E73] rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden"
+      className="w-full max-w-[400px]  min-h-[10rem] bg-white hover:border hover:border-[#173E73] rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden"
     >
-      <div className="flex flex-col gap-4 p-6 h-full">
-        <span className="flex items-center gap-4">
-          <motion.img
-            src={icon || "/placeholder.svg"}
-            className="w-12 h-12"
-            alt={title}
-            whileHover={{ rotate: 5, scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          />
-          <p className="text-xl font-semibold text-gray-800">{title}</p>
-        </span>
+      <div className="flex flex-col gap-4 p-3 h-full">
         <div className="flex-grow flex flex-col gap-3 text-gray-800">
-          <p className="text-gray-700">{text}</p>
           <img
             src={image || "/placeholder.svg"}
-            className="w-full h-auto my-2 rounded-lg transition-all duration-300 hover:shadow-md"
+            className="w-full h-72 my-2 rounded-lg transition-all duration-300 hover:shadow-md"
             alt={title}
           />
+           <span className="flex justify-start items-start gap-2">
+          <p className=" font-semibold text-gray-800">{title}:</p>
+           <p className="text-gray-700">{text}</p>
+        </span>
           <p className="text-gray-600 text-sm">{description}</p>
         </div>
+        
         <a href={href} className="text-blue-600 font-medium flex items-center group mt-2">
           See more
           <motion.svg
@@ -683,7 +705,6 @@ function FadeInSection({ children }) {
 const services = [
   {
     href: "/mail",
-    icon: "/assets/mail.png",
     title: "Mail",
     text: "Not just mail. Your new favorite coworker.",
     image: "/mailcube.png",
@@ -691,7 +712,6 @@ const services = [
   },
   {
     href: "/drive",
-    icon: "/assets/drive.png",
     title: "Drive",
     text: "No more folder chaos. No more “Where did I save that?” panic.",
     image: "/drivecube.png",
@@ -699,7 +719,6 @@ const services = [
   },
   {
     href: "/meet",
-    icon: "/assets/meet.png",
     text: "Tired of “Can you hear me now?” and mysterious calendar invites?",
     title: "Meet",
     image: "/meetcube.png",
@@ -708,7 +727,6 @@ const services = [
   },
   {
     href: "/calendar",
-    icon: "/assets/calendar.png",
     title: "Calendar",
     text: "Plan Privately. Stay in Control.",
     image: "/calendarcube.png",
@@ -717,7 +735,6 @@ const services = [
   },
    {
     href: "/e_sign",
-    icon: "/assets/e-sign.png",
     title: "E-sign",
     text: "Secure Every Signature. Protect Every Deal.",
     image: "/e-signcube.png",
@@ -726,7 +743,6 @@ const services = [
   },
   {
     href: "/password-manager",
-    icon: "/assets/password-manager.png",
     text: "You Remember One. We Guard the Rest.",
     image: "/passwordmancube.png",
     title: "Password Manager",
@@ -735,7 +751,6 @@ const services = [
   },
   {
     href: "/docs",
-    icon: "/assets/docs.png",
     title: "Docs",
     text: "Create with Confidence. No One’s Watching.",
     image: "/docscube.png",
@@ -744,7 +759,6 @@ const services = [
   },
   {
     href: "/sheets",
-    icon: "/assets/sheets.png",
     title: "Sheets",
     text: "Crunch Numbers. Not Your Privacy.",
     image: "/sheetcube.png",
@@ -753,7 +767,6 @@ const services = [
   },
   {
     href: "/slides",
-    icon: "/assets/slides.png",
     title: "Slides",
     text: "Your Story. Encrypted from Slide One.",
     image: "/slidecube.png",
@@ -764,20 +777,20 @@ const services = [
 ]
 
 const appIcons = [
-  { href: "/mail", src: "/3DMailimg.png", alt: "Mail" },
-  { href: "/drive", src: "/3DCalimg.png", alt: "Drive" },
-  { href: "/meet", src: "/3DMailimg.png", alt: "Meet" },
-  { href: "/calendar", src: "/3DCalimg.png", alt: "Calendar" },
+  { href: "/mail", src: "/3D_Mail_Final.png", alt: "Mail" },
+  { href: "/drive", src: "/3D_Mail_front.png", alt: "Drive" },
+  { href: "/meet", src: "/3D_Mail_Second.png", alt: "Meet" },
+  { href: "/calendar", src: "/3DMailimg.png", alt: "Calendar" },
 
-  { href: "/docs", src: "/3DMailimg.png", alt: "Docs" },
-  { href: "/sheets", src: "/3DCalimg.png", alt: "Sheets" },
-  { href: "/slides", src: "/3DMailimg.png", alt: "Slides" },
-  { href: "/pad", src: "/3DCalimg.png", alt: "Pad" },
-  { href: "/forms", src: "/3DMailimg.png", alt: "Forms" },
-  { href: "/e-sign", src: "/3DCalimg.png", alt: "E-Sign" },
+  { href: "/docs", src: "/3D_Mail_Final.png", alt: "Docs" },
+  { href: "/sheets", src: "/3D_Mail_Final.png", alt: "Sheets" },
+  { href: "/slides", src: "/3D_Mail_Final.png", alt: "Slides" },
+  { href: "/pad", src: "/3D_Mail_Final.png", alt: "Pad" },
+  { href: "/forms", src: "/3D_Mail_Final.png", alt: "Forms" },
+  { href: "/e-sign", src: "/3D_Mail_Final.png", alt: "E-Sign" },
   {
     href: "/password_manager",
-    src: "/3DMailimg.png",
+    src: "/3D_Mail_Final.png",
     alt: "Manager",
   },
 ]
@@ -846,7 +859,7 @@ function FeatureCard({ title, subtitle, description, index }) {
     >
       <div className="flex flex-col items-start gap-4 px-6 py-7 h-full">
         <motion.div
-          className="bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 px-3 py-1 rounded-full text-sm font-medium text-blue-700"
+          className="bg-white px-3 py-1 rounded-full text-sm font-medium text-blue-700"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
