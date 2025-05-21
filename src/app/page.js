@@ -293,17 +293,17 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
-                      "Zero-Knowledge Encryption"
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
+                      Zero-Knowledge Encryption
                     </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
                       We can’t read your emails — and neither can anyone else.
                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
                         {" "}
                         It’s privacy by architecture — not policy.
                       </span>
                     </small>
-                     <div className="mt-5 ml-2">
+                     <div className="mt-5 ">
                 <motion.a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -322,17 +322,17 @@ export default function Home() {
               <FadeInSection>
                 <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
                    <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
-                      "Multi-Node Encrypted Storage"
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
+                      Multi-Node Encrypted Storage
                     </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500  mt-2">
                       Your files aren’t in one place — and that’s a good thing.
                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
                         {" "}
                         It’s security through distribution — not dependence.
                       </span>
                     </small>
-                     <div className="mt-5 ml-2">
+                     <div className="mt-5 ">
                 <motion.a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -360,24 +360,24 @@ export default function Home() {
               <FadeInSection>
                 <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-8 md:gap-20 items-center">
                   <div className="w-full md:w-auto relative group">
-                    <iframe
-                      src="/assets/presentation4.html"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
+                    <img
+                      src="/swiss_based.png"
+                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
                     />
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                    <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
-                      "Swiss-Based Data Centers"
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
+                      Swiss-Based Data Centers
                     </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500  mt-2">
                       Neutral ground, strict laws, maximum protection.
                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
                         {" "}
                         It’s legal protection by location — not loopholes.
                       </span>
                     </small>
-                     <div className="mt-5 ml-2">
+                     <div className="mt-5">
                 <motion.a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -395,17 +395,17 @@ export default function Home() {
                <FadeInSection>
                 <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 mb-10 md:mb-20  gap-8 md:gap-20 justify-center items-center">
                    <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 font-serif">
-                      "Compliance-First Architecture"
+                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">
+                      Compliance-First Architecture
                     </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 ml-2 mt-2">
+                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
                       We don't just meet standards — we’re built on them.
                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
                         {" "}
                         It’s compliance in code — not just in checklists.
                       </span>
                     </small>
-                     <div className="mt-5 ml-2">
+                     <div className="mt-5">
                 <motion.a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -555,7 +555,67 @@ export default function Home() {
         </FadeInSection> */}
 
         <FadeInSection>
-          <section className="w-full rounded-tr-[150px] py-20">
+  <section className="w-full py-20 lg:py-28 bg-gray-50">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl tracking-tight lg:text-5xl font-bold text-gray-800 mb-4">
+          Latest From Our{" "}
+          <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
+            Blog
+          </span>
+        </h2>
+        <p className="text-gray-600 text-2xl mx-auto">Insights, stories, and expert advice</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {blogs.map((blog, index) => (
+          <article key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="relative h-48">
+              <img 
+                src={blog.image} 
+                alt={blog.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">{blog.title}</h3>
+              <p className="text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
+              <div className="flex justify-end">
+                <motion.a
+                  href={blog.slug}
+                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white rounded-lg hover:opacity-90"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Read More
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="text-center mt-20">
+        <motion.a
+          className="inline-block bg-white px-8 py-4 shadow-lg border border-gray-200 rounded-xl hover:shadow-xl hover:shadow-blue-100 cursor-pointer text-lg font-semibold"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          View All Posts
+        </motion.a>
+      </div>
+    </div>
+  </section>
+</FadeInSection>
+
+        <FadeInSection>
+          <section className="w-full rounded-tr-[150px] py-10">
              <div className="flex flex-wrap gap-4 justify-center items-center max-w-full px-2">
                 {appIcons.map((icon, index) => (
                   <motion.a
@@ -584,7 +644,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans m-0 text-center"
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold m-0 text-center"
                 >
                   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
                     Work Tools
@@ -597,7 +657,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="font-sans mt-5 text-lg sm:text-xl text-gray-500"
+                  className=" mt-5 text-lg sm:text-xl text-gray-500"
                 >
                   <p>Secure, Unified, Ethical</p>
                 </motion.small>
@@ -816,7 +876,7 @@ const featureCards = [
   },
   {
     title: "15GB of Secure Storage, free forever",
-    subtitle: "Secure storage, all yours.",
+    subtitle: "Secure storage, all yours",
     description:
       "Store your work, documents, and important files with peace of mind, knowing your data is protected and completely under your control.",
   },
@@ -859,7 +919,7 @@ function FeatureCard({ title, subtitle, description, index }) {
     >
       <div className="flex flex-col items-start gap-4 px-6 py-7 h-full">
         <motion.div
-          className="bg-white px-3 py-1 rounded-full text-sm font-medium text-blue-700"
+          className="bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 px-3 py-1 rounded-full text-sm font-medium text-blue-700"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
@@ -941,3 +1001,25 @@ function LogoPlaceholder({ index }) {
 
   return logos[index % logos.length]
 }
+
+const blogs =[
+    {
+  title: "What Zero-Knowledge Encryption Really Means — And Why It Matters",
+  excerpt: "Discover how zero-knowledge encryption protects your data from everyone — even us. Privacy isn’t a feature; it’s the foundation.",
+  image: "/swiss_based.png",
+  slug: "/blog/post-url"
+},
+{
+  title: "Why Switzerland Is the Gold Standard for Data Privacy",
+  excerpt: "From strict laws to neutral jurisdiction, learn why hosting UBS systems in Swiss data centers gives your information unmatched legal protection.",
+  image: "/swiss_based.png",
+  slug: "/blog/post-url"
+},
+{
+  title: "Beyond Big Tech: How UBS Gives You Back Control of Your Data",
+  excerpt: "Tired of surveillance software and hidden data collection? See how UBS offers a privacy-first alternative that puts you — not algorithms — in charge.",
+  image: "/swiss_based.png",
+  slug: "/blog/post-url"
+}
+  
+]
