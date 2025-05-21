@@ -200,33 +200,33 @@ export default function Home() {
             <p className="text-lg text-center text-white md:text-xl  max-w-xl">
               Every message, file, and interaction is protected by zero-knowledge encryption — by default, not request.
             </p>
-            <div className="flex flex-wrap gap-10">
+            <div className="flex justify-center items-center">
               <Link
                 href="#"
                 className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition-colors"
               >
                 Create Account <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
+              {/* <Link
                 href="#"
                 className="flex items-center gap-2 bg-blue-600 hover:bg-blue-400 text-white px-6 py-3 rounded-full font-medium transition-colors"
               >
                 Learn more
-              </Link>
+              </Link> */}
             </div>
-            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
-              <div className="flex flex-wrap gap-4 justify-center items-center max-w-full px-2">
+            <div className="flex mt-10  justify-center items-center text-center">
+              <div className="flex flex-wrap justify-center items-center max-w-full">
                 {appIcons.map((icon, index) => (
                   <motion.a
                     key={index}
                     href={icon.href}
-                    className="group flex flex-col items-center space-y-2 m-2"
+                    className="group flex flex-col items-center"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <motion.img
                       src={icon.src || "/placeholder.svg"}
-                      className="relative w-16 h-16"
+                      className="relative w-20 h-20"
                       alt={icon.alt || ""}
                       whileHover={{ y: -5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -764,21 +764,21 @@ const services = [
 ]
 
 const appIcons = [
-  { href: "/mail", src: "/assets/mail.png", alt: "Mail" },
-  { href: "/drive", src: "/assets/drive.png", alt: "Drive" },
-  { href: "/meet", src: "/assets/meet.png", alt: "Meet" },
-  { href: "/calendar", src: "/assets/calendar.png", alt: "Calendar" },
+  { href: "/mail", src: "/3DMailimg.png", alt: "Mail" },
+  { href: "/drive", src: "/3DCalimg.png", alt: "Drive" },
+  { href: "/meet", src: "/3DMailimg.png", alt: "Meet" },
+  { href: "/calendar", src: "/3DCalimg.png", alt: "Calendar" },
 
-  { href: "/docs", src: "/assets/docs.png", alt: "Docs" },
-  { href: "/sheets", src: "/assets/sheets.png", alt: "Sheets" },
-  { href: "/slides", src: "/assets/slides.png", alt: "Slides" },
-  { href: "/pad", src: "/assets/pad.png", alt: "Pad" },
-  { href: "/forms", src: "/assets/forms.png", alt: "Forms" },
-  { href: "/e-sign", src: "/assets/e-sign.png", alt: "E-Sign" },
+  { href: "/docs", src: "/3DMailimg.png", alt: "Docs" },
+  { href: "/sheets", src: "/3DCalimg.png", alt: "Sheets" },
+  { href: "/slides", src: "/3DMailimg.png", alt: "Slides" },
+  { href: "/pad", src: "/3DCalimg.png", alt: "Pad" },
+  { href: "/forms", src: "/3DMailimg.png", alt: "Forms" },
+  { href: "/e-sign", src: "/3DCalimg.png", alt: "E-Sign" },
   {
     href: "/password_manager",
-    src: "/assets/password-manager.png",
-    alt: "Password Manager",
+    src: "/3DMailimg.png",
+    alt: "Manager",
   },
 ]
 
