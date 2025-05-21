@@ -284,11 +284,10 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
                   <div className="w-full md:w-auto">
                     <div className="relative group">
-                      <iframe
-                        src="/assets/presentation3.html"
-                        allowFullScreen
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
+                       <img
+                      src="/zero_know.png"
+                      className="w-full min-w-[250px] sm:min-w-[480px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
+                    />
                       <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </div>
@@ -346,10 +345,10 @@ export default function Home() {
                   </div>
                   <div className="w-full md:w-auto order-1 md:order-2">
                     <div className="relative group">
-                      <iframe
-                        src="/assets/presentation5.html"
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
+                       <img
+                      src="/multi_node.png"
+                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
+                    />
                       <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </div>
@@ -419,10 +418,10 @@ export default function Home() {
                   </div>
                   <div className="w-full md:w-auto order-1 md:order-2">
                     <div className="relative group">
-                      <iframe
-                        src="/assets/presentation5.html"
-                        className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 group-hover:shadow-2xl"
-                      />
+                       <img
+                      src="/complience_first.png"
+                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
+                    />
                       <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </div>
@@ -570,7 +569,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
         {blogs.map((blog, index) => (
           <article key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="relative h-48">
+            <div className="relative h-62 p-4">
               <img 
                 src={blog.image} 
                 alt={blog.title}
@@ -581,7 +580,7 @@ export default function Home() {
             <div className="p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-3">{blog.title}</h3>
               <p className="text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
-              <div className="flex justify-end">
+              <div className="flex justify-start">
                 <motion.a
                   href={blog.slug}
                   className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white rounded-lg hover:opacity-90"
@@ -1006,19 +1005,19 @@ const blogs =[
     {
   title: "What Zero-Knowledge Encryption Really Means — And Why It Matters",
   excerpt: "Discover how zero-knowledge encryption protects your data from everyone — even us. Privacy isn’t a feature; it’s the foundation.",
-  image: "/swiss_based.png",
+  image: "/blog1.png",
   slug: "/blog/post-url"
 },
 {
   title: "Why Switzerland Is the Gold Standard for Data Privacy",
   excerpt: "From strict laws to neutral jurisdiction, learn why hosting UBS systems in Swiss data centers gives your information unmatched legal protection.",
-  image: "/swiss_based.png",
+  image: "/blog2.png",
   slug: "/blog/post-url"
 },
 {
   title: "Beyond Big Tech: How UBS Gives You Back Control of Your Data",
   excerpt: "Tired of surveillance software and hidden data collection? See how UBS offers a privacy-first alternative that puts you — not algorithms — in charge.",
-  image: "/swiss_based.png",
+  image: "/blog3.png",
   slug: "/blog/post-url"
 }
   
