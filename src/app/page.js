@@ -600,16 +600,16 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="text-center mt-20">
-        <motion.a
-          className="inline-block bg-white px-8 py-4 shadow-lg border border-gray-200 rounded-xl hover:shadow-xl hover:shadow-blue-100 cursor-pointer text-lg font-semibold"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-          View All Posts
-        </motion.a>
-      </div>
+        <div className=" text-center mt-20">
+                <motion.a
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  View All Posts
+                </motion.a>
+              </div>
     </div>
   </section>
 </FadeInSection>
