@@ -286,9 +286,9 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/zero_know.png"
-                      className="w-full min-w-[250px] sm:min-w-[480px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
+                      className="w-full min-w-[250px] sm:min-w-[460px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
                     />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
                   </div>
                   <div className="max-w-md">
@@ -347,9 +347,9 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/multi_node.png"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
+                      className="w-full min-w-[300px] sm:min-w-[480px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
                     />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
                   </div>
                 </div>
@@ -363,7 +363,7 @@ export default function Home() {
                       src="/swiss_based.png"
                       className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
                     />
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                   </div>
                    <div className="max-w-md">
                     <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
@@ -420,9 +420,9 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/complience_first.png"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
+                      className="w-full min-w-[300px] sm:min-w-[470px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
                     />
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ export default function Home() {
                     
                     
                   </div>
-                  <div className="w-48"><p className=" bg-white text-center py-3 border shadow-md border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer">Join the Waitlist Today</p></div>
+                  <div className="w-48"><p className=" bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white text-center py-3 border shadow-md border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer">Join the Waitlist Today</p></div>
                 </div>
                 {/* Testimonial Card */}
                 <div className="w-full max-w-xl">
@@ -508,9 +508,9 @@ export default function Home() {
               </div> */}
 
               <div className="flex flex-col gap-5 py-20 px-20 text-center">
-              <div className="mb-10 flex flex-col items-start gap-2"><p className="text-white text-5xl font-semibold">Free, but far from basic. Explore <br/></p>
+              <div className="mb-10 flex flex-col tracking-tight items-start gap-2"><p className="text-white text-5xl font-semibold">Free, but far from basic. Explore <br/></p>
               <p className="text-white text-5xl font-semibold">all the benefits of 
-                   UBS Stack</p></div>             
+                   UB system Stack</p></div>             
               {/* Feature Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
                 {featureCards.map((card, index) => (
@@ -770,12 +770,12 @@ const services = [
   {
     href: "/drive",
     title: "Drive",
-    text: " with 15 GB free storage ,No more folder chaos. No more “Where did I save that?” panic.",
+    text: " Store smart, stay private — with 15 GB of free encrypted storage.",
     image: "/drivecube.png",
   },
   {
     href: "/meet",
-    text: "Tired of “Can you hear me now?” and mysterious calendar invites?",
+    text: "Connect face-to-face, securely — encrypted video meetings built for teams.",
     title: "Meet",
     image: "/meetcube.png",
       },
@@ -998,7 +998,7 @@ const blogs =[
   slug: "/blog/post-url"
 },
 {
-  title: "Beyond Big Tech: How UBS Gives You Back Control of Your Data",
+  title: "Why Privacy First Platforms Are the Future of the Internet",
   excerpt: "Tired of surveillance software and hidden data collection? See how UBS offers a privacy-first alternative that puts you — not algorithms — in charge.",
   image: "/blog3.png",
   slug: "/blog/post-url"
