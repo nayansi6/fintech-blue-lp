@@ -680,7 +680,7 @@ export default function Home() {
   )
 }
 
-function ServiceCard({ href, title, text, image, description, index }) {
+function ServiceCard({ href, title, text, image, index }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -714,7 +714,6 @@ function ServiceCard({ href, title, text, image, description, index }) {
           <p className=" font-semibold text-gray-800">{title}:</p>
            <p className="text-gray-700">{text}</p>
         </span>
-          <p className="text-gray-600 text-sm">{description}</p>
         </div>
         
         <a href={href} className="text-blue-600 font-medium flex items-center group mt-2">
@@ -767,71 +766,55 @@ const services = [
     title: "Mail",
     text: "Not just mail. Your new favorite coworker.",
     image: "/mailcube.png",
-    description: "Say goodbye to clunky inboxes, sketchy security, and email that feels like a full-time job.",
   },
   {
     href: "/drive",
     title: "Drive",
-    text: " with 15 GB free storage.",
+    text: " with 15 GB free storage ,No more folder chaos. No more “Where did I save that?” panic.",
     image: "/drivecube.png",
-    description: "Give your desktop a break with storage that’s built for focus, not frustration.",
   },
   {
     href: "/meet",
     text: "Tired of “Can you hear me now?” and mysterious calendar invites?",
     title: "Meet",
     image: "/meetcube.png",
-    description:
-      "Switch to the space where your team clicks—in every sense. No chaos, just clear, secure collaboration.",
-  },
+      },
   {
     href: "/calendar",
     title: "Calendar",
     text: "Plan Privately. Stay in Control.",
     image: "/calendarcube.png",
-    description:
-      "Protect your events with end-to-end encryption — so only you know where you’ll be, when, and with whom.",
   },
    {
     href: "/e_sign",
     title: "Sign",
     text: "Secure Every Signature. Protect Every Deal.",
     image: "/e-signcube.png",
-    description:
-      "Sign documents with legally binding encryption — no printing, no leaking, no middlemen. Just fast, private approvals you control.",
-  },
+    },
   {
     href: "/password-manager",
     text: "You Remember One. We Guard the Rest.",
     image: "/passwordmancube.png",
     title: "Password Manager",
-    description:
-      "Forget sticky notes and reused passwords. Lock down your digital life with encryption so strong, even we can't peek.",
-  },
+    },
   {
     href: "/docs",
     title: "Docs",
     text: "Create with Confidence. No One’s Watching.",
     image: "/docscube.png",
-    description:
-      "Keep every word encrypted from draft to download. Whether it’s a personal note or a business proposal — it stays between you and your document.",
-  },
+    },
   {
     href: "/sheets",
     title: "Sheets",
     text: "Crunch Numbers. Not Your Privacy.",
     image: "/sheetcube.png",
-    description:
-      "From budgets to dashboards, keep every cell encrypted and collaborate securely without handing over your data.",
-  },
+      },
   {
     href: "/slides",
     title: "Slides",
     text: "Your Story. Encrypted from Slide One.",
     image: "/slidecube.png",
-    description:
-      "Whether you’re pitching investors or training your team, your content stays protected — beautifully presented, privately shared..",
-  },
+      },
  
 ]
 
