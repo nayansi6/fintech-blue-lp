@@ -707,7 +707,7 @@ function ServiceCard({ href, title, text, image, description, index }) {
         <div className="flex-grow flex flex-col gap-3 text-gray-800">
           <img
             src={image || "/placeholder.svg"}
-            className="w-full h-72 my-2 rounded-lg transition-all duration-300 hover:shadow-md"
+            className="w-full h-78 my-2 rounded-lg transition-all duration-300 hover:shadow-md"
             alt={title}
           />
            <span className="flex justify-start items-start gap-2">
@@ -772,7 +772,7 @@ const services = [
   {
     href: "/drive",
     title: "Drive",
-    text: "No more folder chaos. No more “Where did I save that?” panic.",
+    text: " with 15 GB free storage.",
     image: "/drivecube.png",
     description: "Give your desktop a break with storage that’s built for focus, not frustration.",
   },
@@ -794,7 +794,7 @@ const services = [
   },
    {
     href: "/e_sign",
-    title: "E-sign",
+    title: "Sign",
     text: "Secure Every Signature. Protect Every Deal.",
     image: "/e-signcube.png",
     description:
@@ -846,7 +846,7 @@ const appIcons = [
   { href: "/slides", src: "/3D_Mail_Final.png", alt: "Slides" },
   { href: "/pad", src: "/3D_Mail_Final.png", alt: "Pad" },
   { href: "/forms", src: "/3D_Mail_Final.png", alt: "Forms" },
-  { href: "/e-sign", src: "/3D_Mail_Final.png", alt: "E-Sign" },
+  { href: "/e-sign", src: "/3D_Mail_Final.png", alt: "Sign" },
   {
     href: "/password_manager",
     src: "/3D_Mail_Final.png",
