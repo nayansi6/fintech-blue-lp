@@ -278,7 +278,7 @@ export default function Home() {
                   </small>
                
               </div>
-              <div className="flex flex-col justify-center items-center mt-20 gap-20 sm:gap-28 md:gap-36">
+              <div className="flex flex-col justify-center items-center mt-20 gap-10 sm:gap-15 md:gap-20">
               {/* Feature 1 */}
               <FadeInSection>
                 <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
@@ -286,7 +286,7 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/zero_know.png"
-                      className="w-full min-w-[250px] sm:min-w-[460px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
+                      className="w-full min-w-[250px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
                     />
                       {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
@@ -347,7 +347,7 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/multi_node.png"
-                      className="w-full min-w-[300px] sm:min-w-[480px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
+                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[280px] transition-all duration-300 "
                     />
                       {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
@@ -357,11 +357,11 @@ export default function Home() {
 
               {/* Feature 3 */}
               <FadeInSection>
-                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-8 md:gap-20 items-center">
+                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-12 md:gap-20 items-center">
                   <div className="w-full md:w-auto relative group">
                     <img
                       src="/swiss_based.png"
-                      className="w-full min-w-[300px] sm:min-w-[500px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
+                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
                     />
                     {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                   </div>
@@ -420,7 +420,7 @@ export default function Home() {
                     <div className="relative group">
                        <img
                       src="/complience_first.png"
-                      className="w-full min-w-[300px] sm:min-w-[470px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
+                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
                     />
                       {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
                     </div>
@@ -510,7 +510,7 @@ export default function Home() {
               <div className="flex flex-col gap-5 py-20 px-20 text-center">
               <div className="mb-10 flex flex-col tracking-tight items-start gap-2"><p className="text-white text-5xl font-semibold">Free, but far from basic. Explore <br/></p>
               <p className="text-white text-5xl font-semibold">all the benefits of 
-                   UB system Stack</p></div>             
+                   UB System Stack</p></div>             
               {/* Feature Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
                 {featureCards.map((card, index) => (
@@ -554,7 +554,48 @@ export default function Home() {
         </FadeInSection> */}
 
         <FadeInSection>
-  <section className="w-full py-20 lg:py-28 bg-gray-50">
+          <section className=" px-4 py-20 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
+          Privacy Is Our Starting Point — <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
+            Not an Afterthought
+          </span>
+        </h2>
+
+        <div className="flex gap-20 justify-center items-center mb-8">
+          {/* Left Card */}
+          <img  src="/mission.png" className=" w-120 h-76 rounded-3xl"/>
+
+          {/* Right Card */}
+         <img src="vision.png" className="w-120 h-76 rounded-3xl" />
+        </div>
+
+        {/* Paragraphs */}
+        <div className="grid md:grid-cols-2 gap-20  px-10 text-gray-500 text-lg  text-start leading-relaxed">
+        <div className="flex flex-col">
+          <p className="font-semibold text-gray-700" >Mission:</p>
+            <p>
+            We started with a simple belief: teams shouldn’t have to choose between working freely and staying private.
+What drives us is the idea that security should never slow you down — it should empower you.
+That’s why we’re building a unified workspace where privacy isn’t patched in — it’s part of the blueprint.
+          </p>
+        </div>
+
+         <div className="flex flex-col ml-3">
+          <p className="font-semibold text-gray-700" >vision:</p>
+          <p>
+            We’re fueled by a future where businesses aren’t chained to platforms that exploit their data.
+Where work happens across borders, systems, and devices — with encryption and decentralization built-in.
+We imagine a world where control returns to the user, and we’re here to help build it.
+          </p>
+          </div>
+        </div>
+      </div>
+    </section>
+        </FadeInSection>
+
+        <FadeInSection>
+  <section className="w-full py-10 bg-gray-50">
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="text-center mb-16">
         <h2 className="text-3xl sm:text-4xl tracking-tight lg:text-5xl font-bold text-gray-800 mb-4">
@@ -612,6 +653,8 @@ export default function Home() {
     </div>
   </section>
 </FadeInSection>
+
+        
 
         <FadeInSection>
           <section className="w-full rounded-tr-[150px] py-10">
