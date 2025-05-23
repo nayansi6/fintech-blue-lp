@@ -128,7 +128,7 @@ export default function Home() {
       <div className="bg-[#F0F8FF]">
         {/* Hero Section */}
         <section
-          className="relative  lg:min-h-screen h-screen flex justify-center"
+          className="relative"
           style={{
             backgroundColor: "#0066cc",
             backgroundImage: `url("bg-img.png' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fillOpacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
@@ -136,7 +136,7 @@ export default function Home() {
         >
           {/* Left side content */}
           <div className="w-full text-white z-10 py-16 sm:py-24 md:py-32 gap-6 flex flex-col items-center justify-center px-4 sm:px-6">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col mt-20 items-center">
               <h1 className="font-bold tracking-tight text-3xl sm:text-4xl md:text-5xl text-center">
                 Privacy Starts at the Core.
               </h1>
@@ -185,7 +185,7 @@ export default function Home() {
         </section>
 
         {/* Products Section */}
-        <FadeInSection>
+        <>
           <section className="w-full py-16 sm:py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12 sm:mb-16">
@@ -228,10 +228,10 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </FadeInSection>
+        </>
 
         {/* Features Section */}
-        <FadeInSection>
+        <>
           <section className="w-full">
             <div className="flex flex-col justify-center items-center">
               <div className="text-center flex flex-col justify-center gap-4 items-center px-4 sm:px-6">
@@ -248,7 +248,7 @@ export default function Home() {
 
               <div className="flex flex-col justify-center items-center mt-16 sm:mt-20 gap-16 sm:gap-20">
                 {/* Feature 1 */}
-                <FadeInSection>
+                <>
                   <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
                     <div className="w-full md:w-1/2 lg:w-auto">
                       <div className="relative group">
@@ -280,10 +280,10 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </FadeInSection>
+                </>
 
                 {/* Feature 2 */}
-                <FadeInSection>
+                <>
                   <div className="w-full flex flex-col md:flex-row-reverse px-4 sm:px-6 md:px-10 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
                     <div className="w-full md:w-1/2 lg:w-auto">
                       <div className="relative group">
@@ -315,10 +315,10 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </FadeInSection>
+                </>
 
                 {/* Feature 3 */}
-                <FadeInSection>
+                <>
                   <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-8 md:gap-16 lg:gap-20 items-center">
                     <div className="w-full md:w-1/2 lg:w-auto relative group">
                       <img
@@ -348,10 +348,10 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </FadeInSection>
+                </>
 
                 {/* Feature 4 */}
-                <FadeInSection>
+                <>
                   <div className="w-full flex flex-col md:flex-row-reverse px-4 sm:px-6 md:px-10 mb-10 md:mb-20 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
                     <div className="w-full md:w-1/2 lg:w-auto">
                       <div className="relative group">
@@ -383,7 +383,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </FadeInSection>
+                </>
               </div>
 
               {/* One Secure Stack Section */}
@@ -418,10 +418,10 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </FadeInSection>
+        </>
 
         {/* Benefits Section */}
-        <FadeInSection>
+        <>
           <div>
             <section className="relative  flex justify-center bg-gradient-to-tl mt-20 lg:mb-0 from-blue-700 via-blue-400 to-blue-600 rounded-tr-[50px] sm:rounded-tr-[100px] lg:rounded-tr-[150px]">
               <div className="flex flex-col gap-5 max-w-[1371px] py-16 sm:py-20 px-4 sm:px-10 lg:px-20 text-center">
@@ -447,10 +447,10 @@ export default function Home() {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
             </section>
           </div>
-        </FadeInSection>
+        </>
 
         {/* Mission & Vision Section */}
-        <FadeInSection>
+        <>
           <section className="px-4 py-16 sm:py-20 md:px-8 lg:px-12">
             <div className="max-w-7xl mx-auto text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-8 sm:mb-12">
@@ -491,10 +491,10 @@ export default function Home() {
 
             </div>
           </section>
-        </FadeInSection>
+        </>
 
         {/* Blog Section */}
-        <FadeInSection>
+        <>
           <section className="w-full py-16 sm:py-20">
             <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
               <div className="text-center mb-12 sm:mb-16">
@@ -555,10 +555,10 @@ export default function Home() {
               </div>
             </div>
           </section>
-        </FadeInSection>
+        </>
 
         {/* App Icons Section */}
-        <FadeInSection>
+        <>
           <section className="w-full py-10 sm:py-16">
             <div className="flex flex-wrap justify-center items-center max-w-full px-4">
               {appIcons.map((icon, index) => (
@@ -620,7 +620,7 @@ export default function Home() {
               </motion.a>
             </div>
           </section>
-        </FadeInSection>
+        </>
       </div>
     </div>
   )
@@ -678,28 +678,7 @@ function ServiceCard({ href, title, text, image, index }) {
   )
 }
 
-function FadeInSection({ children }) {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.15,
-    rootMargin: "-50px 0px",
-  })
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{
-        duration: 0.9,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.1,
-      }}
-      className="w-full"
-    >
-      {children}
-    </motion.div>
-  )
-}
+
 
 const services = [
   {
