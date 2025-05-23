@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
@@ -108,51 +107,6 @@ export default function Home() {
       top: "0%",
       opacity: 0.3,
     },
-    // { src: "/assets/slides.png", alt: "Payment Service", size: 70, left: "65%", top: "70%", opacity: 0.9 },
-    // { src: "/assets/forms.png", alt: "Payment Service", size: 95, left: "75%", top: "50%", opacity: 0.7 },
-    // { src: "/assets/pad.png", alt: "Payment Service", size: 80, left: "85%", top: "80%", opacity: 0.8 },
-  ]
-
-  const steps = [
-    {
-      id: 1,
-      title: "Download the app",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
-    {
-      id: 2,
-      title: "Request your card",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
-    {
-      id: 3,
-      title: "Connect all your account",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
-  ]
-
-  const step = [
-    {
-      id: 4,
-      title: "Download the app",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
-    {
-      id: 5,
-      title: "Request your card",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
-    {
-      id: 6,
-      title: "Connect all your account",
-      description:
-        "Create cards that work exactly as you configured them. Make real-time decisions on charges and spendings.",
-    },
   ]
 
   const [scrollY, setScrollY] = useState(0)
@@ -168,52 +122,58 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
   return (
-    <div className="max-w-[1480px]">
-      <div className="bg-gray-50">
-        <section className="bg-gradient-to-tl min-h-screen flex justify-center items-center from-blue-600 via-blue-400 to-blue-600 ">
+    <div className="overflow-hidden">
+      <div className="bg-[#F0F8FF]">
+        {/* Hero Section */}
+        <section
+          className="relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[150px]"
+          style={{
+            backgroundColor: "#0066cc",
+            backgroundImage: `url("bg-img.png' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fillOpacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
+          }}
+        >
           {/* Left side content */}
-          <div className="w-full text-white z-10  mt-20 gap-6 flex flex-col items-center justify-center  p-4 md:p-8 lg:p-12 md:mb-0">
-            <div className="flex flex-col items-center text-6xl ">
-              <div className="font-bold tracking-tight">Privacy Starts at the Core.</div>
+          <div className="w-full text-white z-10 py-16 sm:py-24 md:py-32 gap-6 flex flex-col items-center justify-center px-4 sm:px-6">
+            <div className="flex flex-col items-center">
+              <h1 className="font-bold tracking-tight text-3xl sm:text-4xl md:text-5xl text-center">
+                Privacy Starts at the Core.
+              </h1>
             </div>
 
-            <p className="text-lg text-center text-white md:text-xl  max-w-xl">
+            <p className="text-center text-white text-shadow max-w-xl text-base sm:text-lg md:text-xl ">
               Every message, file, and interaction is protected by zero-knowledge encryption — by default, not request.
             </p>
-            <div className="flex justify-center items-center">
+
+            <div className="flex justify-center items-center mt-6">
               <Link
                 href="#"
-                className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium transition-colors"
               >
                 Create Account <ArrowRight className="h-4 w-4" />
               </Link>
-              {/* <Link
-                href="#"
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-400 text-white px-6 py-3 rounded-full font-medium transition-colors"
-              >
-                Learn more
-              </Link> */}
             </div>
-            <div className="flex mt-10  justify-center items-center text-center">
+
+            <div className="flex mt-10 justify-center items-center text-center">
               <div className="flex flex-wrap justify-center items-center max-w-full">
                 {appIcons.map((icon, index) => (
                   <motion.a
                     key={index}
                     href={icon.href}
-                    className="group flex flex-col items-center"
+                    className="group flex flex-col items-center m-2"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                   <div className="w-20 overflw-hidden">
-                     <motion.img
-                      src={icon.src || "/placeholder.svg"}
-                      className="relative w-28"
-                      alt={icon.alt || ""}
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    />
-                   </div>
+                    <div className="w-14 sm:w-16 md:w-20 overflow-hidden">
+                      <motion.img
+                        src={icon.src || "/placeholder.svg"}
+                        className="w-full h-auto"
+                        alt={icon.alt || ""}
+                        whileHover={{ y: -5 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      />
+                    </div>
                     <span className="text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {icon.alt}
                     </span>
@@ -223,20 +183,26 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Products Section */}
         <FadeInSection>
-          <section className="w-full py-20 lg:py-28">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl tracking-tight lg:text-5xl font-bold text-gray-800 mb-4">
+          <section className="w-full py-16 sm:py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12 sm:mb-16">
+                <h2 className="text-2xl sm:text-3xl tracking-tight lg:text-4xl font-bold text-gray-800 mb-4">
                   A Secure Hub that minds its own{" "}
                   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
                     Business{" "}
                   </span>
                 </h2>
-                <p className="text-gray-600 text-2xl  mx-auto">All-in-one. All buttoned up. All yours.</p>
+                <p className="text-gray-600 text-lg sm:text-xl mx-auto">All-in-one. All buttoned up. All yours.</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="text-left text-2xl sm:text-3xl font-semibold py-5 px-4 sm:px-10">
+                <p className="text-gray-800">Our Products :</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-10 justify-items-center">
                 {services.map((service, index) => (
                   <ServiceCard
                     key={index}
@@ -249,9 +215,10 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <div className="text-center mt-20">
+
+              <div className="text-center mt-16 sm:mt-20">
                 <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -263,386 +230,322 @@ export default function Home() {
           </section>
         </FadeInSection>
 
+        {/* Features Section */}
         <FadeInSection>
           <section className="w-full">
             <div className="flex flex-col justify-center items-center">
-              <div className="text-center flex flex-col justify-center gap-4 items-center ">
-                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
-                  Don’t let your work be someone  else’s {" "}
-                    <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+              <div className="text-center flex flex-col justify-center gap-4 items-center px-4 sm:px-6">
+                <p className="text-3xl sm:text-4xl font-bold text-gray-800">
+                  Don't let your work be someone else's{" "}
+                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
                     business.
                   </span>
-                  </p>
-                  <small className="text-2xl text-gray-500">
-                    Work in complete privacy, with full control of your data.
-                  </small>
-               
+                </p>
+                <small className="text-lg sm:text-xl text-gray-500">
+                  Work in complete privacy, with full control of your data.
+                </small>
               </div>
-              <div className="flex flex-col justify-center items-center mt-20 gap-10 sm:gap-15 md:gap-20">
-              {/* Feature 1 */}
-              <FadeInSection>
-                <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
-                  <div className="w-full md:w-auto">
-                    <div className="relative group">
-                       <img
-                      src="/zero_know.png"
-                      className="w-full min-w-[250px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[330px] transition-all duration-300 "
-                    />
-                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
+
+              <div className="flex flex-col justify-center items-center mt-16 sm:mt-20 gap-16 sm:gap-20">
+                {/* Feature 1 */}
+                <FadeInSection>
+                  <div className="flex flex-col md:flex-row w-full px-4 sm:px-6 md:px-10 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
+                    <div className="w-full md:w-1/2 lg:w-auto">
+                      <div className="relative group">
+                        <img
+                          src="/zero_know.png"
+                          className="w-full lg:h-[360px] sm:h-auto max-w-full "
+                          alt="Zero-Knowledge Encryption"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2 max-w-md">
+                      <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">Zero-Knowledge Encryption</p>
+                      <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
+                        We can't read your emails — and neither can anyone else.
+                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                          {" "}
+                          It's privacy by architecture — not policy.
+                        </span>
+                      </small>
+                      <div className="mt-5">
+                        <motion.a
+                          className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          Learn More
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
-                  <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
-                      Zero-Knowledge Encryption
-                    </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
-                      We can’t read your emails — and neither can anyone else.
-                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        It’s privacy by architecture — not policy.
-                      </span>
-                    </small>
-                     <div className="mt-5 ">
-                <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  Learn More
-                </motion.a>
-              </div>
+                </FadeInSection>
 
-                  </div>
-                </div>
-              </FadeInSection>
-
-              {/* Feature 2 */}
-              <FadeInSection>
-                <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 gap-8 md:gap-20 justify-center items-center">
-                   <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
-                      Multi-Node Encrypted Storage
-                    </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
-                      Your files aren’t in one place — and that’s a good thing.
-                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        It’s security through distribution — not dependence.
-                      </span>
-                    </small>
-                     <div className="mt-5 ">
-                <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  Learn More
-                </motion.a>
-              </div>
-
-                  </div>
-                  <div className="w-full md:w-auto order-1 md:order-2">
-                    <div className="relative group">
-                       <img
-                      src="/multi_node.png"
-                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[280px] transition-all duration-300 "
-                    />
-                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
+                {/* Feature 2 */}
+                <FadeInSection>
+                  <div className="w-full flex flex-col md:flex-row-reverse px-4 sm:px-6 md:px-10 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
+                    <div className="w-full md:w-1/2 lg:w-auto">
+                      <div className="relative group">
+                        <img
+                          src="/multi_node.png"
+                          className="w-full lg:h-[350px] sm:h-auto max-w-full "
+                          alt="Multi-Node Encrypted Storage"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2 max-w-md">
+                      <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">Multi-Node Encrypted Storage</p>
+                      <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
+                        Your files aren't in one place — and that's a good thing.
+                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                          {" "}
+                          It's security through distribution — not dependence.
+                        </span>
+                      </small>
+                      <div className="mt-5">
+                        <motion.a
+                          className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          Learn More
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </FadeInSection>
+                </FadeInSection>
 
-              {/* Feature 3 */}
-              <FadeInSection>
-                <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-12 md:gap-20 items-center">
-                  <div className="w-full md:w-auto relative group">
-                    <img
-                      src="/swiss_based.png"
-                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[300px] transition-all duration-300 "
-                    />
-                    {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
-                  </div>
-                   <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800 ">
-                      Swiss-Based Data Centers
-                    </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500  mt-2">
-                      Neutral ground, strict laws, maximum protection.
-                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        It’s legal protection by location — not loopholes.
-                      </span>
-                    </small>
-                     <div className="mt-5">
-                <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  Learn More
-                </motion.a>
-              </div>
-
-                  </div>
-                </div>
-              </FadeInSection>
-                 {/* feature 4 */}
-               <FadeInSection>
-                <div className="w-full  flex flex-col md:flex-row px-4 sm:px-6 md:px-10 mb-10 md:mb-20  gap-8 md:gap-20 justify-center items-center">
-                   <div className="max-w-md">
-                    <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">
-                      Compliance-First Architecture
-                    </p>
-                    <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
-                      We don't just meet standards — we’re built on them.
-                       <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
-                        {" "}
-                        It’s compliance in code — not just in checklists.
-                      </span>
-                    </small>
-                     <div className="mt-5">
-                <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  Learn More
-                </motion.a>
-              </div>
-
-                  </div>
-                  <div className="w-full md:w-auto order-1 md:order-2">
-                    <div className="relative group">
-                       <img
-                      src="/complience_first.png"
-                      className="w-full min-w-[300px] sm:min-w-[450px] h-[200px] sm:h-[250px] md:h-[320px] transition-all duration-300 "
-                    />
-                      {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
+                {/* Feature 3 */}
+                <FadeInSection>
+                  <div className="flex flex-col md:flex-row px-4 sm:px-6 md:px-10 justify-center gap-8 md:gap-16 lg:gap-20 items-center">
+                    <div className="w-full md:w-1/2 lg:w-auto relative group">
+                      <img
+                        src="/swiss_based.png"
+                        className="w-full lg:h-[330px] h-auto max-w-full "
+                        alt="Swiss-Based Data Centers"
+                      />
+                    </div>
+                    <div className="w-full md:w-1/2 max-w-md">
+                      <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">Swiss-Based Data Centers</p>
+                      <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
+                        Neutral ground, strict laws, maximum protection.
+                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                          {" "}
+                          It's legal protection by location — not loopholes.
+                        </span>
+                      </small>
+                      <div className="mt-5">
+                        <motion.a
+                          className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          Learn More
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </FadeInSection>
-            </div>
+                </FadeInSection>
 
-              <div className="flex flex-col lg:flex-row justify-start items-center gap-10">
-                <div className="w-full flex flex-col gap-4 px-10 justify-start lg:w-1/3">
-                <div className="text-4xl text-start">
-                  <p className="font-bold">One Secure</p>
-                  <p className="font-bold">Stack</p>
-                </div>
-
-                  <div className="flex flex-col leading-none">
-                    <span className="text-gray-700 text-lg">Everything you need to get things done.{" "}</span>
-                    
-                    
+                {/* Feature 4 */}
+                <FadeInSection>
+                  <div className="w-full flex flex-col md:flex-row-reverse px-4 sm:px-6 md:px-10 mb-10 md:mb-20 gap-8 md:gap-16 lg:gap-20 justify-center items-center">
+                    <div className="w-full md:w-1/2 lg:w-auto">
+                      <div className="relative group">
+                        <img
+                          src="/complience_first.png"
+                          className="w-full lg:h-[380px] h-auto max-w-full "
+                          alt="Compliance-First Architecture"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2 max-w-md">
+                      <p className="text-2xl sm:text-3xl md:text-2xl text-gray-800">Compliance-First Architecture</p>
+                      <small className="block text-start text-base sm:text-[17px] text-gray-500 mt-2">
+                        We don't just meet standards — we're built on them.
+                        <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent font-semibold">
+                          {" "}
+                          It's compliance in code — not just in checklists.
+                        </span>
+                      </small>
+                      <div className="mt-5">
+                        <motion.a
+                          className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          Learn More
+                        </motion.a>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-48"><p className=" bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white text-center py-3 border shadow-md border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer">Join the Waitlist Today</p></div>
+                </FadeInSection>
+              </div>
+
+              {/* One Secure Stack Section */}
+              <div className="flex flex-col-reverse lg:flex-row justify-start items-center lg:gap-0 gap-20 px-4 sm:px-6 lg:px-8  py-0">
+                <div className="w-full flex flex-col gap-4 lg:w-1/3">
+                  <div className="text-3xl sm:text-4xl text-center lg:text-start">
+                    <p className="font-bold">One Secure</p>
+                    <p className="font-bold">Stack</p>
+                  </div>
+
+                  <div className="flex flex-col leading-none text-center lg:text-start">
+                    <span className="text-gray-700 text-lg">Everything you need to get things done. </span>
+                  </div>
+                  <div className="flex justify-center lg:justify-start">
+                    <p className="w-48 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white text-center py-3 border shadow-md border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer">
+                      Join the Waitlist Today
+                    </p>
+                  </div>
                 </div>
-                {/* Testimonial Card */}
-                <div className="w-full max-w-xl">
-                  <div>
+
+                {/* Presentation iframe */}
+                <div className="w-[400px] lg:w-[800px] overflow-hidden">
+                  <div className="relative aspect-video w-full">
                     <iframe
                       src="/assets/presentationAyu.html"
-                      className="w-full min-w-[600px] sm:min-w-[750px] h-[350px] sm:h-[450px] md:h-[500px] transition-all duration-300 group-hover:shadow-2xl"
+                      className="w-full h-full rounded-lg shadow-lg"
+                      style={{ maxWidth: "100%" }}
+                      title="Presentation"
                     />
                   </div>
                 </div>
-
-                {/* Content */}
               </div>
             </div>
           </section>
         </FadeInSection>
 
+        {/* Benefits Section */}
         <FadeInSection>
-          <div className="">
-            <section className="relative bg-gradient-to-tl from-blue-700 via-blue-400 to-blue-600  rounded-tr-[150px]">
-              {/* <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-                <div className="text-left py-10">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-bold text-white leading-tight">
-                    Who said great tools have <br className="hidden md:block" />  to come with a price tag?
-                  </h2>
+          <div>
+            <section className="relative bg-gradient-to-tl mt-20 lg:mb-0 from-blue-700 via-blue-400 to-blue-600 rounded-tr-[50px] sm:rounded-tr-[100px] lg:rounded-tr-[150px]">
+              <div className="flex flex-col gap-5 py-16 sm:py-20 px-4 sm:px-10 lg:px-20 text-center">
+                <div className="mb-10 flex flex-col tracking-tight items-center sm:items-start gap-2">
+                  <p className="text-white text-3xl sm:text-4xl font-semibold">Free, but far from basic. Explore</p>
+                  <p className="text-white text-3xl sm:text-4xl font-semibold">all the benefits of UB System Stack</p>
                 </div>
-              
-                <div className="relative h-[300px] md:h-[400px] mt-20">
-                  {logos.map((logo, index) => (
-                    <motion.div
+
+                {/* Feature Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
+                  {featureCards.map((card, index) => (
+                    <FeatureCard
                       key={index}
-                      className="absolute rounded-full bg-white flex items-center justify-center shadow-lg"
-                      style={{
-                        width: `${logo.size}px`,
-                        height: `${logo.size}px`,
-                        left: logo.left,
-                        top: logo.top,
-                        opacity: logo.opacity,
-                      }}
-                      initial={{ y: 0 }}
-                      animate={{
-                        y: [0, -15, 0],
-                        scale: [1, 1.05, 1],
-                      }}
-                      transition={{
-                        duration: 5 + (index % 3),
-                        repeat: Number.POSITIVE_INFINITY,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <div className="relative w-[70%] h-[70%]">
-                        <Image
-                          src={logo.src || "/placeholder.svg"}
-                          alt={logo.alt}
-                          fill
-                          sizes={`${logo.size * 0.7}px`}
-                          className="object-contain p-1"
-                        />
-                      </div>
-                    </motion.div>
+                      title={card.title}
+                      subtitle={card.subtitle}
+                      description={card.description}
+                      index={index}
+                    />
                   ))}
                 </div>
-              </div> */}
-
-              <div className="flex flex-col gap-5 py-20 px-20 text-center">
-              <div className="mb-10 flex flex-col tracking-tight items-start gap-2"><p className="text-white text-5xl font-semibold">Free, but far from basic. Explore <br/></p>
-              <p className="text-white text-5xl font-semibold">all the benefits of 
-                   UB System Stack</p></div>             
-              {/* Feature Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
-                {featureCards.map((card, index) => (
-                  <FeatureCard
-                    key={index}
-                    title={card.title}
-                    subtitle={card.subtitle}
-                    description={card.description}
-                    index={index}
-                  />
-                ))}
               </div>
-            </div>
 
-              
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[30%] bg-blue-400/20 blur-3xl rounded-full"></div>
             </section>
           </div>
         </FadeInSection>
 
-        {/* <FadeInSection>
-          <section className="w-full py-10 mt-10 rounded-tl-[150px]">
-            <div className="flex flex-col gap-5 mt-10  justify-center items-center text-center">
-              <div className="mb-10 flex flex-col gap-2"><p className="text-gray-800 text-5xl font-semibold">Free, but far from basic. Explore all the<br/></p>
-              <p className="text-gray-800 text-5xl font-semibold"> benefits of   <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                   UBS Stack</span></p></div>             
-             
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 justify-items-center">
-                {featureCards.map((card, index) => (
-                  <FeatureCard
-                    key={index}
-                    title={card.title}
-                    subtitle={card.subtitle}
-                    description={card.description}
-                    index={index}
-                  />
-                ))}
+        {/* Mission & Vision Section */}
+        <FadeInSection>
+          <section className="px-4 py-16 sm:py-20 md:px-8 lg:px-12">
+            <div className="max-w-7xl mx-auto text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-8 sm:mb-12">
+                Privacy Is Our Starting Point —{" "}
+                <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
+                  Not an Afterthought
+                </span>
+              </h2>
+
+              <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-20 justify-center items-center mb-8">
+                {/* Left Card */}
+                <div className="w-full flex flex-col mt-5 justify-center items-center gap-3 lg:gap-8 md:w-1/2">
+                  <img src="/mission.png" className="w-full lg:h-[330px] h-auto rounded-3xl shadow-md" alt="Our Mission" />
+                   <div className="flex flex-col text-start">
+                  <p className="font-semibold text-gray-700">Mission:</p>
+                  <p className="text-gray-500">
+                    We started with a simple belief: teams shouldn't have to choose between working freely and staying
+                    private. What drives us is the idea that security should never slow you down — it should empower
+                    you. That's why we're building a unified workspace where privacy isn't patched in — it's part of the
+                    blueprint.
+                  </p>
+                </div>
+                </div>
+
+                {/* Right Card */}
+                <div className="w-full flex flex-col justify-center items-center  gap-3 lg:gap-8 md:w-1/2">
+                  <img src="/vision.png" className="w-full lg:h-[330px] h-auto rounded-3xl shadow-md" alt="Our Vision" />
+                  <div className="flex flex-col text-start">
+                  <p className="font-semibold text-gray-700">Vision:</p>
+                  <p className="text-gray-500">
+                    We're fueled by a future where businesses aren't chained to platforms that exploit their data. Where
+                    work happens across borders, systems, and devices — with encryption and decentralization built-in.
+                    We imagine a world where control returns to the user, and we're here to help build it.
+                  </p>
+                </div>
+                </div>
               </div>
+
             </div>
           </section>
-        </FadeInSection> */}
-
-        <FadeInSection>
-          <section className=" px-4 py-20 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
-          Privacy Is Our Starting Point — <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
-            Not an Afterthought
-          </span>
-        </h2>
-
-        <div className="flex gap-20 justify-center items-center mb-8">
-          {/* Left Card */}
-          <img  src="/mission.png" className=" w-120 h-76 rounded-3xl"/>
-
-          {/* Right Card */}
-         <img src="vision.png" className="w-120 h-76 rounded-3xl" />
-        </div>
-
-        {/* Paragraphs */}
-        <div className="grid md:grid-cols-2 gap-20  px-10 text-gray-500 text-lg  text-start leading-relaxed">
-        <div className="flex flex-col">
-          <p className="font-semibold text-gray-700" >Mission:</p>
-            <p>
-            We started with a simple belief: teams shouldn’t have to choose between working freely and staying private.
-What drives us is the idea that security should never slow you down — it should empower you.
-That’s why we’re building a unified workspace where privacy isn’t patched in — it’s part of the blueprint.
-          </p>
-        </div>
-
-         <div className="flex flex-col ml-3">
-          <p className="font-semibold text-gray-700" >vision:</p>
-          <p>
-            We’re fueled by a future where businesses aren’t chained to platforms that exploit their data.
-Where work happens across borders, systems, and devices — with encryption and decentralization built-in.
-We imagine a world where control returns to the user, and we’re here to help build it.
-          </p>
-          </div>
-        </div>
-      </div>
-    </section>
         </FadeInSection>
 
+        {/* Blog Section */}
         <FadeInSection>
-  <section className="w-full py-10 bg-gray-50">
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl tracking-tight lg:text-5xl font-bold text-gray-800 mb-4">
-          Latest From Our{" "}
-          <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
-            Blog
-          </span>
-        </h2>
-        <p className="text-gray-600 text-2xl mx-auto">Insights, stories, and expert advice</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        {blogs.map((blog, index) => (
-          <article key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="relative h-62 p-4">
-              <img 
-                src={blog.image} 
-                alt={blog.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-3">{blog.title}</h3>
-              <p className="text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
-              <div className="flex justify-start">
-                <motion.a
-                  href={blog.slug}
-                  className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white rounded-lg hover:opacity-90"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  Read More
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.a>
+          <section className="w-full py-16 sm:py-20">
+            <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+              <div className="text-center mb-12 sm:mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+                  Latest From Our{" "}
+                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent">
+                    Blog
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-xl sm:text-2xl mx-auto">Insights, stories, and expert advice</p>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
 
-        <div className=" text-center mt-20">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+                {blogs.map((blog, index) => (
+                  <article
+                    key={index}
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="relative pt-[60%]">
+                      <img
+                        src={blog.image || "/placeholder.svg"}
+                        alt={blog.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">{blog.title}</h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
+                      <div className="flex justify-start">
+                        <motion.a
+                          href={blog.slug}
+                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white rounded-lg hover:opacity-90"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          Read More
+                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </motion.a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="text-center mt-12 sm:mt-16">
                 <motion.a
-                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-blue-600 cursor-pointer"
+                  className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -650,72 +553,72 @@ We imagine a world where control returns to the user, and we’re here to help b
                   View All Posts
                 </motion.a>
               </div>
-    </div>
-  </section>
-</FadeInSection>
+            </div>
+          </section>
+        </FadeInSection>
 
-        
-
+        {/* App Icons Section */}
         <FadeInSection>
-          <section className="w-full rounded-tr-[150px] py-10">
-             <div className="flex flex-wrap gap-4 justify-center items-center max-w-full px-2">
-                {appIcons.map((icon, index) => (
-                  <motion.a
-                    key={index}
-                    href={icon.href}
-                    className="group flex flex-col items-center space-y-2 m-2"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <motion.img
-                      src={icon.src || "/placeholder.svg"}
-                      className="relative w-16 h-16"
-                      alt={icon.alt || ""}
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    />
-                    <span className="text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {icon.alt}
-                    </span>
-                  </motion.a>
-                ))}
-              </div>
-              <div className="flex flex-col justify-center mb-16 md:mb-24 items-center text-gray-800">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold m-0 text-center"
-                >
-                  <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
-                    Work Tools
-                  </span>{" "}
-                  That Don’t Let You <br className="hidden sm:block" />
-                  Compromise
-                </motion.p>
-                <motion.small
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className=" mt-5 text-lg sm:text-xl text-gray-500"
-                >
-                  <p>Secure, Unified, Ethical</p>
-                </motion.small>
+          <section className="w-full py-10 sm:py-16">
+            <div className="flex flex-wrap justify-center items-center max-w-full px-4">
+              {appIcons.map((icon, index) => (
                 <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="/signup"
-                  className="bg-white mt-8 text-gray-700 px-6 py-3 rounded-xl border border-gray-700 text-sm sm:text-base shadow-md hover:shadow-lg hover:shadow-blue-600"
+                  key={index}
+                  href={icon.href}
+                  className="group flex flex-col items-center space-y-2 m-2"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  Create Account
+                  <motion.img
+                    src={icon.src || "/placeholder.svg"}
+                    className="relative w-12 h-12 sm:w-16 sm:h-16"
+                    alt={icon.alt || ""}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  />
+                  <span className="text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {icon.alt}
+                  </span>
                 </motion.a>
-              </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col justify-center mb-16 md:mb-24 items-center text-gray-800 px-4 sm:px-6">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold m-0 text-center"
+              >
+                <span className="bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] bg-clip-text text-transparent animate-gradient-x">
+                  Work Tools
+                </span>{" "}
+                That Don't Let You <br className="hidden sm:block" />
+                Compromise
+              </motion.p>
+              <motion.small
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="mt-5 text-base sm:text-lg text-gray-500"
+              >
+                <p>Secure, Unified, Ethical</p>
+              </motion.small>
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="/signup"
+                className="bg-white mt-8 text-gray-700 px-6 py-3 rounded-xl border border-gray-700 text-sm sm:text-base shadow-md hover:shadow-lg hover:shadow-[#0066cc]"
+              >
+                Create Account
+              </motion.a>
+            </div>
           </section>
         </FadeInSection>
       </div>
@@ -736,30 +639,25 @@ function ServiceCard({ href, title, text, image, index }) {
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{
         duration: 0.7,
-        delay: index * 0.10,
+        delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1],
       }}
-      whileHover={{
-        y: -10,
-        scale: 1.02,
-        boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.1)",
-      }}
-      className="w-full max-w-[400px]  min-h-[10rem] bg-white hover:border hover:border-[#173E73] rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden"
+      className="w-full bg-white hover:border hover:border-[#173E73] rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden"
     >
-      <div className="flex flex-col gap-4 p-3 h-full">
+      <div className="flex flex-col gap-3 p-2 h-full">
         <div className="flex-grow flex flex-col gap-3 text-gray-800">
           <img
             src={image || "/placeholder.svg"}
-            className="w-full h-78 my-2 rounded-lg transition-all duration-300 hover:shadow-md"
+            className="w-full h-66 aspect-video object-cover rounded-lg transition-all duration-300 hover:shadow-md"
             alt={title}
           />
-           <span className="flex justify-start items-start gap-2">
-          <p className=" font-semibold text-gray-800">{title}:</p>
-           <p className="text-gray-700">{text}</p>
-        </span>
+          <span className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-1 sm:gap-2">
+            <p className="font-semibold text-gray-800">{title}:</p>
+            <p className="text-gray-700">{text}</p>
+          </span>
         </div>
-        
-        <a href={href} className="text-blue-600 font-medium flex items-center group mt-2">
+
+        <a href={href} className="text-blue-600 font-medium flex items-center group ">
           See more
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
@@ -821,44 +719,43 @@ const services = [
     text: "Connect face-to-face, securely — encrypted video meetings built for teams.",
     title: "Meet",
     image: "/meetcube.png",
-      },
+  },
   {
     href: "/calendar",
     title: "Calendar",
     text: "Plan Privately. Stay in Control.",
     image: "/calendarcube.png",
   },
-   {
+  {
     href: "/e_sign",
     title: "Sign",
     text: "Secure Every Signature. Protect Every Deal.",
     image: "/e-signcube.png",
-    },
+  },
   {
     href: "/password-manager",
     text: "You Remember One. We Guard the Rest.",
     image: "/passwordmancube.png",
-    title: "Password Manager",
-    },
+    title: "Pass_Manager",
+  },
   {
     href: "/docs",
     title: "Docs",
-    text: "Create with Confidence. No One’s Watching.",
+    text: "Create with Confidence. No One's Watching.",
     image: "/docscube.png",
-    },
+  },
   {
     href: "/sheets",
     title: "Sheets",
     text: "Crunch Numbers. Not Your Privacy.",
     image: "/sheetcube.png",
-      },
+  },
   {
     href: "/slides",
     title: "Slides",
     text: "Your Story. Encrypted from Slide One.",
     image: "/slidecube.png",
-      },
- 
+  },
 ]
 
 const appIcons = [
@@ -866,7 +763,6 @@ const appIcons = [
   { href: "/drive", src: "/3D_Mail_front.png", alt: "Drive" },
   { href: "/meet", src: "/3D_Mail_Second.png", alt: "Meet" },
   { href: "/calendar", src: "/3DMailimg.png", alt: "Calendar" },
-
   { href: "/docs", src: "/3D_Mail_Final.png", alt: "Docs" },
   { href: "/sheets", src: "/3D_Mail_Final.png", alt: "Sheets" },
   { href: "/slides", src: "/3D_Mail_Final.png", alt: "Slides" },
@@ -940,9 +836,9 @@ function FeatureCard({ title, subtitle, description, index }) {
         scale: 1.02,
         boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.1)",
       }}
-      className="w-full max-w-[350px] h-auto min-h-[14rem] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden border border-gray-100"
+      className="w-full h-auto min-h-[14rem] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden border border-gray-100"
     >
-      <div className="flex flex-col items-start gap-4 px-6 py-7 h-full">
+      <div className="flex flex-col items-start gap-4 px-4 sm:px-6 py-5 sm:py-7 h-full">
         <motion.div
           className="bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 px-3 py-1 rounded-full text-sm font-medium text-blue-700"
           whileHover={{ scale: 1.05 }}
@@ -950,101 +846,33 @@ function FeatureCard({ title, subtitle, description, index }) {
         >
           {subtitle}
         </motion.div>
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-800">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{title}</h3>
+        <p className="text-gray-600 text-sm sm:text-base">{description}</p>
       </div>
     </motion.div>
   )
 }
 
-function LogoPlaceholder({ index }) {
-  const colors = [
-    "text-blue-600",
-    "text-red-500",
-    "text-green-500",
-    "text-purple-500",
-    "text-blue-400",
-    "text-indigo-600",
-    "text-teal-500",
-    "text-pink-500",
-  ]
-
-  const logos = [
-    // Deutsche Bank-like logo
-    <svg key="db" viewBox="0 0 24 24" fill="none" className={colors[index % colors.length]}>
-      <rect x="4" y="4" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" />
-      <path d="M4 12H20" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // HSBC-like logo
-    <svg key="hsbc" viewBox="0 0 24 24" fill="none" className={colors[(index + 1) % colors.length]}>
-      <path d="M4 4L20 20M4 20L20 4" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // Atom-like logo
-    <svg key="atom" viewBox="0 0 24 24" fill="none" className={colors[(index + 2) % colors.length]}>
-      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
-      <path d="M12 2C16.4183 2 20 6.47715 20 12C20 17.5228 16.4183 22 12 22" stroke="currentColor" strokeWidth="2" />
-      <path d="M12 2C7.58172 2 4 6.47715 4 12C4 17.5228 7.58172 22 12 22" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // Eagle-like logo
-    <svg key="eagle" viewBox="0 0 24 24" fill="none" className={colors[(index + 3) % colors.length]}>
-      <path
-        d="M12 4C8 4 4 8 4 12C4 16 8 20 12 20C16 20 20 16 20 12C20 8 16 4 12 4Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path d="M12 8L8 12L12 16L16 12L12 8Z" stroke="currentColor" strokeWidth="2" fill="none" />
-    </svg>,
-
-    // Square-like logo
-    <svg key="square" viewBox="0 0 24 24" fill="none" className={colors[(index + 4) % colors.length]}>
-      <rect x="6" y="6" width="12" height="12" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // Star-like logo
-    <svg key="star" viewBox="0 0 24 24" fill="none" className={colors[(index + 5) % colors.length]}>
-      <path d="M12 4L14 9H19L15 12L17 17L12 14L7 17L9 12L5 9H10L12 4Z" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // Circle-like logo
-    <svg key="circle" viewBox="0 0 24 24" fill="none" className={colors[(index + 6) % colors.length]}>
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" />
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
-    </svg>,
-
-    // Droplet-like logo
-    <svg key="droplet" viewBox="0 0 24 24" fill="none" className={colors[(index + 7) % colors.length]}>
-      <path
-        d="M12 4C12 4 6 10 6 14C6 18 9 20 12 20C15 20 18 18 18 14C18 10 12 4 12 4Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-    </svg>,
-  ]
-
-  return logos[index % logos.length]
-}
-
-const blogs =[
-    {
-  title: "What Zero-Knowledge Encryption Really Means — And Why It Matters",
-  excerpt: "Discover how zero-knowledge encryption protects your data from everyone — even us. Privacy isn’t a feature; it’s the foundation.",
-  image: "/blog1.png",
-  slug: "/blog/post-url"
-},
-{
-  title: "Why Switzerland Is the Gold Standard for Data Privacy",
-  excerpt: "From strict laws to neutral jurisdiction, learn why hosting UBS systems in Swiss data centers gives your information unmatched legal protection.",
-  image: "/blog2.png",
-  slug: "/blog/post-url"
-},
-{
-  title: "Why Privacy First Platforms Are the Future of the Internet",
-  excerpt: "Tired of surveillance software and hidden data collection? See how UBS offers a privacy-first alternative that puts you — not algorithms — in charge.",
-  image: "/blog3.png",
-  slug: "/blog/post-url"
-}
-  
+const blogs = [
+  {
+    title: "What Zero-Knowledge Encryption Really Means — And Why It Matters",
+    excerpt:
+      "Discover how zero-knowledge encryption protects your data from everyone — even us. Privacy isn't a feature; it's the foundation.",
+    image: "/blog1.png",
+    slug: "/blog/post-url",
+  },
+  {
+    title: "Why Switzerland Is the Gold Standard for Data Privacy",
+    excerpt:
+      "From strict laws to neutral jurisdiction, learn why hosting UBS systems in Swiss data centers gives your information unmatched legal protection.",
+    image: "/blog2.png",
+    slug: "/blog/post-url",
+  },
+  {
+    title: "Why Privacy First Platforms Are the Future of the Internet",
+    excerpt:
+      "Tired of surveillance software and hidden data collection? See how UBS offers a privacy-first alternative that puts you — not algorithms — in charge.",
+    image: "/blog3.png",
+    slug: "/blog/post-url",
+  },
 ]

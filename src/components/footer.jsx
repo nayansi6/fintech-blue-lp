@@ -1,207 +1,163 @@
+"use client"
+import { useState } from "react"
 import SocialLinks from "./socialMediaIcons"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
 const Footer = () => {
+  const [expandedSection, setExpandedSection] = useState(null)
+
+  const toggleSection = (section) => {
+    if (expandedSection === section) {
+      setExpandedSection(null)
+    } else {
+      setExpandedSection(section)
+    }
+  }
+
+  const footerSections = [
+    {
+      id: "products",
+      title: "Products",
+      links: [
+        [
+          { name: "Mail", href: "/mail" },
+          { name: "Drive", href: "/drive" },
+          { name: "Meet", href: "/meet" },
+          // { name: "Chat", href: "/chat" },
+          { name: "Calendar", href: "/calendar" },
+          // { name: "Contacts", href: "/contacts" },
+          // { name: "Tasks", href: "/task" },
+          { name: "Docs", href: "/docs" },
+          { name: "Sheets", href: "/sheets" },
+          { name: "Slides", href: "/slides" },
+          // { name: "Pad", href: "/pad" },
+          // { name: "Forms", href: "/forms" },
+          { name: "E-sign", href: "/e-sign" },
+          { name: "Pass_Manager", href: "/password_manager" },
+        ],
+      ],
+    },
+    {
+      id: "community",
+      title: "Community",
+      links: [
+        [
+          { name: "Pricing", href: "/pricing" },
+          { name: "Community", href: "/community" },
+          { name: "Open source", href: "/open_source" },
+          { name: "Student discount", href: "/student_discount" },
+          { name: "Password generator", href: "/password_generator" },
+        ],
+      ],
+    },
+    {
+      id: "company",
+      title: "Company",
+      links: [
+        [
+          { name: "Team", href: "/team" },
+          { name: "About us", href: "/about_us" },
+          { name: "for Business", href: "/for%20business" },
+        ],
+      ],
+    },
+    {
+      id: "connect",
+      title: "Connect",
+      links: [
+        [
+          { name: "Blog", href: "/blog" },
+          { name: "Contact us", href: "/contact_us" },
+          { name: "Help and support", href: "/support" },
+        ],
+      ],
+    },
+    {
+      id: "privacy",
+      title: "Privacy",
+      links: [
+        [
+          { name: "Privacy Policy", href: "/privacy_policy" },
+          { name: "Cookie Policy", href: "/cookie_policy" },
+          { name: "Terms of use", href: "/terms_of_use" },
+          { name: "Acceptable use policy", href: "/acceptable_use_policy" },
+          { name: "Data Processing Agreement", href: "/data_processing_agreement" },
+        ],
+      ],
+    },
+  ]
+
   return (
-    <footer className="bg-gray-800 shadow-lg max-w-[1480px]">
-      <div className=" mx-auto px-4 py-12 lg:py-16">
+    <footer className="bg-gray-800 shadow-lg max-w-[1480px] mx-auto">
+      <div className="px-4 py-12 lg:py-16">
         {/* Main Footer Content */}
-        <div className="flex gap-4 lg:gap-20">
+        <div className="flex flex-col lg:flex-row lg:gap-20">
           {/* Company Name */}
-          <div className="lg:col-span-1 xl:col-span-2">
+          <div className="mb-8 lg:mb-0">
             <div className="space-y-2 text-gray-400">
               <p className="mb-5 font-medium">unified binary system Ltd.</p>
             </div>
           </div>
 
-          <div className="flex gap-24">
-            {/* Products - Takes more space */}
-          <div className="lg:col-span-2 xl:col-span-3">
-            <h3 className="mb-4 text-gray-400 font-medium">Products</h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li>
-                  <a href="/mail" className="hover:text-gray-300 transition-colors">
-                    Mail
-                  </a>
-                </li>
-                <li>
-                  <a href="/drive" className="hover:text-gray-300 transition-colors">
-                    Drive
-                  </a>
-                </li>
-                <li>
-                  <a href="/meet" className="hover:text-gray-300 transition-colors">
-                    Meet
-                  </a>
-                </li>
-                <li>
-                  <a href="/chat" className="hover:text-gray-300 transition-colors">
-                    Chat
-                  </a>
-                </li>
-                <li>
-                  <a href="/calendar" className="hover:text-gray-300 transition-colors">
-                    Calendar
-                  </a>
-                </li>
-                <li>
-                  <a href="/contacts" className="hover:text-gray-300 transition-colors">
-                    Contacts
-                  </a>
-                </li>
-                <li>
-                  <a href="/task" className="hover:text-gray-300 transition-colors">
-                    Tasks
-                  </a>
-                </li>
-                <li>
-                  <a href="/docs" className="hover:text-gray-300 transition-colors">
-                    Docs
-                  </a>
-                </li>
-              </ul>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li>
-                  <a href="/sheets" className="hover:text-gray-300 transition-colors">
-                    Sheets
-                  </a>
-                </li>
-                <li>
-                  <a href="/slides" className="hover:text-gray-300 transition-colors">
-                    Slides
-                  </a>
-                </li>
-                <li>
-                  <a href="/pad" className="hover:text-gray-300 transition-colors">
-                    Pad
-                  </a>
-                </li>
-                <li>
-                  <a href="/forms" className="hover:text-gray-300 transition-colors">
-                    Forms
-                  </a>
-                </li>
-                <li>
-                  <a href="/e-sign" className="hover:text-gray-300 transition-colors">
-                    E-sign
-                  </a>
-                </li>
-                <li>
-                  <a href="/password_manager" className="hover:text-gray-300 transition-colors">
-                    Password Manager
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          {/* Footer Sections */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-8 gap-x-12">
+            {footerSections.map((section) => (
+              <div key={section.id} className={`${section.id === "products" ? "col-span-1" : ""}`}>
+                {/* Mobile Accordion Header */}
+                <button
+                  className="flex items-center justify-between w-full lg:hidden mb-4"
+                  onClick={() => toggleSection(section.id)}
+                  aria-expanded={expandedSection === section.id}
+                  aria-controls={`section-${section.id}`}
+                >
+                  <h3 className="text-gray-400 font-medium">{section.title}</h3>
+                  {expandedSection === section.id ? (
+                    <ChevronUp className="h-5 w-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-gray-400" />
+                  )}
+                </button>
 
-          {/* Community */}
-          <div className="lg:col-span-1 xl:col-span-2">
-            <h3 className="mb-4 text-gray-400 font-medium">Community</h3>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li>
-                <a href="/pricing" className="hover:text-gray-300 transition-colors">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="/community" className="hover:text-gray-300 transition-colors">
-                  Community
-                </a>
-              </li>
-              <li>
-                <a href="/open_source" className="hover:text-gray-300 transition-colors">
-                  Open source
-                </a>
-              </li>
-              <li>
-                <a href="/student_discount" className="hover:text-gray-300 transition-colors">
-                  Student discount
-                </a>
-              </li>
-              <li>
-                <a href="/password_generator" className="hover:text-gray-300 transition-colors">
-                  Password generator
-                </a>
-              </li>
-            </ul>
-          </div>
+                {/* Desktop Header */}
+                <h3 className="hidden lg:block mb-4 text-gray-400 font-medium">{section.title}</h3>
 
-          {/* Company */}
-          <div className="lg:col-span-1 xl:col-span-2">
-            <h3 className="mb-4 text-gray-400 font-medium">Company</h3>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li>
-                <a href="/team" className="hover:text-gray-300 transition-colors">
-                  Team
-                </a>
-              </li>
-              <li>
-                <a href="/about_us" className="hover:text-gray-300 transition-colors">
-                  About us
-                </a>
-              </li>
-              <li>
-                <a href="/for%20business" className="hover:text-gray-300 transition-colors">
-                   for Business
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div className="lg:col-span-1 xl:col-span-1">
-            <h3 className="mb-4 text-gray-400 font-medium">Connect</h3>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li>
-                <a href="/blog" className="hover:text-gray-300 transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="/contact_us" className="hover:text-gray-300 transition-colors">
-                  Contact us
-                </a>
-              </li>
-              <li>
-                <a href="/support" className="hover:text-gray-300 transition-colors">
-                  Help and support
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Privacy */}
-          <div className="lg:col-span-1 xl:col-span-2">
-            <h3 className="mb-4 text-gray-400 font-medium">Privacy</h3>
-            <ul className="space-y-2 text-gray-500 text-sm">
-              <li>
-                <a href="/privacy_policy" className="hover:text-gray-300 transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="/cookie_policy" className="hover:text-gray-300 transition-colors">
-                  Cookie Policy
-                </a>
-              </li>
-              <li>
-                <a href="/terms_of_use" className="hover:text-gray-300 transition-colors">
-                  Terms of use
-                </a>
-              </li>
-              <li>
-                <a href="/acceptable_use_policy" className="hover:text-gray-300 transition-colors">
-                  Acceptable use policy
-                </a>
-              </li>
-              <li>
-                <a href="/data_processing_agreement" className="hover:text-gray-300 transition-colors">
-                  Data Processing Agreement
-                </a>
-              </li>
-            </ul>
-          </div>
+                {/* Links */}
+                <div
+                  id={`section-${section.id}`}
+                  className={`${
+                    expandedSection === section.id || (typeof window !== "undefined" && window.innerWidth >= 1024)
+                      ? "block"
+                      : "hidden lg:block"
+                  }`}
+                >
+                  {section.columns === 2 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                      {section.links.map((column, colIndex) => (
+                        <ul key={colIndex} className="space-y-2 text-gray-500 text-sm">
+                          {column.map((link, linkIndex) => (
+                            <li key={linkIndex}>
+                              <a href={link.href} className="hover:text-gray-300 transition-colors">
+                                {link.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ))}
+                    </div>
+                  ) : (
+                    <ul className="space-y-2 text-gray-500 text-sm">
+                      {section.links[0].map((link, linkIndex) => (
+                        <li key={linkIndex}>
+                          <a href={link.href} className="hover:text-gray-300 transition-colors">
+                            {link.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -210,7 +166,9 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-gray-500 text-sm">© 2025 unified binary system. All rights reserved for unified binary system Ltd.</span>
+          <span className="text-gray-500 text-sm text-center sm:text-left">
+            © 2025 unified binary system. All rights reserved for unified binary system Ltd.
+          </span>
           <SocialLinks />
         </div>
       </div>
