@@ -650,7 +650,7 @@ const Header = () => {
         isScrolled ? "bg-[#F0F8FF] shadow-sm" : "bg-[#0066cc]"
       }`}
     >
-      <div className="mx-auto max-w-[1480px] relative">
+      <div className="mx-auto w-[100%] relative">
         <div className="flex justify-between h-16 items-center px-3 sm:px-4 md:px-5 lg:px-10">
           {/* Logo Section */}
           <div className="flex items-center justify-center space-x-4 sm:space-x-8">

@@ -88,7 +88,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gray-800 shadow-lg max-w-[1480px] mx-auto">
+    <footer className="bg-gray-800 shadow-lg w-[100%] mx-auto">
       <div className="px-4 py-12 lg:py-16">
         {/* Main Footer Content */}
         <div className="flex flex-col lg:flex-row lg:gap-20">

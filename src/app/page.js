@@ -10,7 +10,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
@@ -18,7 +18,7 @@ const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.20, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
@@ -128,7 +128,7 @@ export default function Home() {
       <div className="bg-[#F0F8FF]">
         {/* Hero Section */}
         <section
-          className="relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[150px]"
+          className="relative rounded-b-[0px] lg:min-h-screen h-screen flex justify-center sm:rounded-b-[100px] lg:rounded-b-[150px]"
           style={{
             backgroundColor: "#0066cc",
             backgroundImage: `url("bg-img.png' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fillOpacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
@@ -423,8 +423,8 @@ export default function Home() {
         {/* Benefits Section */}
         <FadeInSection>
           <div>
-            <section className="relative bg-gradient-to-tl mt-20 lg:mb-0 from-blue-700 via-blue-400 to-blue-600 rounded-tr-[50px] sm:rounded-tr-[100px] lg:rounded-tr-[150px]">
-              <div className="flex flex-col gap-5 py-16 sm:py-20 px-4 sm:px-10 lg:px-20 text-center">
+            <section className="relative  flex justify-center bg-gradient-to-tl mt-20 lg:mb-0 from-blue-700 via-blue-400 to-blue-600 rounded-tr-[50px] sm:rounded-tr-[100px] lg:rounded-tr-[150px]">
+              <div className="flex flex-col gap-5 max-w-[1371px] py-16 sm:py-20 px-4 sm:px-10 lg:px-20 text-center">
                 <div className="mb-10 flex flex-col tracking-tight items-center sm:items-start gap-2">
                   <p className="text-white text-3xl sm:text-4xl font-semibold">Free, but far from basic. Explore</p>
                   <p className="text-white text-3xl sm:text-4xl font-semibold">all the benefits of UB System Stack</p>
@@ -496,7 +496,7 @@ export default function Home() {
         {/* Blog Section */}
         <FadeInSection>
           <section className="w-full py-16 sm:py-20">
-            <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="mx-auto max-w-[1371px] px-4 sm:px-6 lg:px-8 xl:px-12">
               <div className="text-center mb-12 sm:mb-16">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
                   Latest From Our{" "}
