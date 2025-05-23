@@ -155,10 +155,10 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="flex mt-10 justify-center items-center text-center">
+            <div className="flex mt-10 lg:mt-20 justify-center items-center text-center">
               <div className="flex flex-wrap justify-center items-center max-w-full">
                 {appIcons.map((icon, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={icon.href}
                     className="group flex flex-col items-center m-2"
@@ -166,7 +166,7 @@ export default function Home() {
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <div className="w-14 sm:w-16 md:w-20 overflow-hidden">
-                      <motion.img
+                      <img
                         src={icon.src || "/placeholder.svg"}
                         className="w-full h-auto"
                         alt={icon.alt || ""}
@@ -177,7 +177,7 @@ export default function Home() {
                     <span className="text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {icon.alt}
                     </span>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
@@ -217,14 +217,14 @@ export default function Home() {
               </div>
 
               <div className="text-center mt-16 sm:mt-20">
-                <motion.a
+                <a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   Create A Free Account
-                </motion.a>
+                </a>
               </div>
             </div>
           </section>
@@ -269,14 +269,14 @@ export default function Home() {
                         </span>
                       </small>
                       <div className="mt-5">
-                        <motion.a
+                        <a
                           className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                           Learn More
-                        </motion.a>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -304,14 +304,14 @@ export default function Home() {
                         </span>
                       </small>
                       <div className="mt-5">
-                        <motion.a
+                        <a
                           className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                           Learn More
-                        </motion.a>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -337,14 +337,14 @@ export default function Home() {
                         </span>
                       </small>
                       <div className="mt-5">
-                        <motion.a
+                        <a
                           className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                           Learn More
-                        </motion.a>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -372,14 +372,14 @@ export default function Home() {
                         </span>
                       </small>
                       <div className="mt-5">
-                        <motion.a
+                        <a
                           className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                           Learn More
-                        </motion.a>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -525,7 +525,7 @@ export default function Home() {
                       <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">{blog.title}</h3>
                       <p className="text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
                       <div className="flex justify-start">
-                        <motion.a
+                        <a
                           href={blog.slug}
                           className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DADFF] to-[#BD34FD] text-white rounded-lg hover:opacity-90"
                           whileHover={{ scale: 1.05 }}
@@ -536,7 +536,7 @@ export default function Home() {
                           <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
-                        </motion.a>
+                        </a>
                       </div>
                     </div>
                   </article>
@@ -544,14 +544,14 @@ export default function Home() {
               </div>
 
               <div className="text-center mt-12 sm:mt-16">
-                <motion.a
+                <a
                   className="inline-block bg-white px-6 py-3 shadow-md border border-gray-700 rounded-xl hover:shadow-md hover:shadow-[#0066cc] cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   View All Posts
-                </motion.a>
+                </a>
               </div>
             </div>
           </section>
@@ -562,14 +562,14 @@ export default function Home() {
           <section className="w-full py-10 sm:py-16">
             <div className="flex flex-wrap justify-center items-center max-w-full px-4">
               {appIcons.map((icon, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={icon.href}
                   className="group flex flex-col items-center space-y-2 m-2"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  <motion.img
+                  <img
                     src={icon.src || "/placeholder.svg"}
                     className="relative w-12 h-12 sm:w-16 sm:h-16"
                     alt={icon.alt || ""}
@@ -579,12 +579,12 @@ export default function Home() {
                   <span className="text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {icon.alt}
                   </span>
-                </motion.a>
+                </a>
               ))}
             </div>
 
             <div className="flex flex-col justify-center mb-16 md:mb-24 items-center text-gray-800 px-4 sm:px-6">
-              <motion.p
+              <p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -596,8 +596,8 @@ export default function Home() {
                 </span>{" "}
                 That Don't Let You <br className="hidden sm:block" />
                 Compromise
-              </motion.p>
-              <motion.small
+              </p>
+              <small
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -605,8 +605,8 @@ export default function Home() {
                 className="mt-5 text-base sm:text-lg text-gray-500"
               >
                 <p>Secure, Unified, Ethical</p>
-              </motion.small>
-              <motion.a
+              </small>
+              <a
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -617,7 +617,7 @@ export default function Home() {
                 className="bg-white mt-8 text-gray-700 px-6 py-3 rounded-xl border border-gray-700 text-sm sm:text-base shadow-md hover:shadow-lg hover:shadow-[#0066cc]"
               >
                 Create Account
-              </motion.a>
+              </a>
             </div>
           </section>
         </>
@@ -633,7 +633,7 @@ function ServiceCard({ href, title, text, image, index }) {
   })
 
   return (
-    <motion.div
+    <div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -651,7 +651,7 @@ function ServiceCard({ href, title, text, image, index }) {
             className="w-full h-66 aspect-video object-cover rounded-lg transition-all duration-300 hover:shadow-md"
             alt={title}
           />
-          <span className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-1 sm:gap-2">
+          <span className="flex flex-col sm:flex-row justify-start items-start gap-1 sm:gap-2">
             <p className="font-semibold text-gray-800">{title}:</p>
             <p className="text-gray-700">{text}</p>
           </span>
@@ -659,7 +659,7 @@ function ServiceCard({ href, title, text, image, index }) {
 
         <a href={href} className="text-blue-600 font-medium flex items-center group ">
           See more
-          <motion.svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4 ml-1"
             fill="none"
@@ -671,10 +671,10 @@ function ServiceCard({ href, title, text, image, index }) {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </motion.svg>
+          </svg>
         </a>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -801,34 +801,19 @@ function FeatureCard({ title, subtitle, description, index }) {
   })
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      whileHover={{
-        y: -10,
-        scale: 1.02,
-        boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.1)",
-      }}
+    <div
       className="w-full h-auto min-h-[14rem] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden border border-gray-100"
     >
       <div className="flex flex-col items-start gap-4 px-4 sm:px-6 py-5 sm:py-7 h-full">
-        <motion.div
+        <div
           className="bg-gradient-to-r from-[#5DADFF]/10 to-[#BD34FD]/10 px-3 py-1 rounded-full text-sm font-medium text-blue-700"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           {subtitle}
-        </motion.div>
-        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{title}</h3>
-        <p className="text-gray-600 text-sm sm:text-base">{description}</p>
+        </div>
+        <h3 className="text-lg sm:text-xl text-start font-bold text-gray-800">{title}</h3>
+        <p className="text-gray-600 text-sm text-start sm:text-base">{description}</p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
