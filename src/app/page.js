@@ -128,7 +128,7 @@ export default function Home() {
       <div className="bg-[#F0F8FF]">
         {/* Hero Section */}
         <section
-          className="relative rounded-b-[0px] lg:min-h-screen h-screen flex justify-center sm:rounded-b-[100px] lg:rounded-b-[150px]"
+          className="relative  lg:min-h-screen h-screen flex justify-center"
           style={{
             backgroundColor: "#0066cc",
             backgroundImage: `url("bg-img.png' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fillOpacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
@@ -496,7 +496,7 @@ export default function Home() {
         {/* Blog Section */}
         <FadeInSection>
           <section className="w-full py-16 sm:py-20">
-            <div className="mx-auto max-w-[1371px] px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
               <div className="text-center mb-12 sm:mb-16">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
                   Latest From Our{" "}
@@ -507,7 +507,7 @@ export default function Home() {
                 <p className="text-gray-600 text-xl sm:text-2xl mx-auto">Insights, stories, and expert advice</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+              <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 {blogs.map((blog, index) => (
                   <article
                     key={index}
