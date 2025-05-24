@@ -32,7 +32,7 @@ const Footer = () => {
           { name: "Slides", href: "/slides" },
           // { name: "Pad", href: "/pad" },
           // { name: "Forms", href: "/forms" },
-          { name: "E-sign", href: "/e-sign" },
+          { name: "Sign", href: "/e-sign" },
           { name: "Pass_Manager", href: "/password_manager" },
         ],
       ],
@@ -57,7 +57,7 @@ const Footer = () => {
         [
           { name: "Team", href: "/team" },
           { name: "About us", href: "/about_us" },
-          { name: "for Business", href: "/for%20business" },
+          { name: "for Business", href: "/for-business" },
         ],
       ],
     },
