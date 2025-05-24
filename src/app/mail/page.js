@@ -38,16 +38,19 @@ export default function Mail() {
   const steps = [
     {
       id: 1,
+      image:"/usp1.png",
       title: "Zero-Knowledge Encryption, End to End",
       description:"Emails are encrypted before they leave your device — and only the intended recipient can ever read them. We can’t see your messages. No one else should either."
     },
     {
       id: 2,
+      image:"/usp1.png",
       title: "Data Sovereignty, the Swiss Way",
       description:"Your emails are stored in privacy-respecting Swiss data centers, far from prying eyes and legal loopholes. Built for those who take data protection seriously."
     },
     {
       id: 3,
+      image:"/usp1.png",
       title: "15 GB Unified Encrypted Storage",
       description:"One secure vault for all your emails, attachments, and files — encrypted and accessible across all UB apps. No silos. No compromise."
     },
@@ -56,16 +59,19 @@ export default function Mail() {
      const step=[
       {
       id: 4,
+      image:"/usp1.png",
       title: "One-Click Import That Just Works",
       description:"Move from Gmail, Outlook, or others in seconds. All your messages, folders, and labels — without the headaches."
     },
     {
       id: 5,
+      image:"/usp1.png",
       title: "Email Tracking & Spam, Silenced",
       description:"Block trackers. Filter noise. Take back control from spam and invisible surveillance. Your inbox, your terms."
     },
     {
       id: 6,
+      image:"/usp1.png",
       title: "Smarter Email Tools, Built-In",
       description:"Schedule sends, undo mistakes, snooze distractions, or auto-sign important emails — all seamlessly integrated. Folders, labels, and workflows tailored to how you work."
     },
@@ -147,12 +153,12 @@ A secure-by-default inbox with all the tools you need — encrypted, efficient, 
 
         <section>
            <div className="py-20 px-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <div className="flex gap-7 justify-center items-center">
               {steps.map((step) => (
-                <div key={step.id} className="px-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
-                      {step.id}
+                <div key={step.id} className="px-8 rounded-lg border border-gray-700">
+                  <div className="flex items-center">
+                    <div className="w-72 h-72  overflow-hidden flex items-center justify-center">
+                      <img src={step.image} className="flex items-center justify-center" /> 
                     </div>
                   </div>
                   <h3 className="text-xl text-gray-800 font-bold mb-3">{step.title}</h3>
@@ -164,9 +170,9 @@ A secure-by-default inbox with all the tools you need — encrypted, efficient, 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-8">
               {step.map((item) => (
                 <div key={item.id} className="px-8 text-white">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-teal-300 text-blue-900 font-bold flex items-center justify-center text-lg">
-                      {item.id}
+                  <div className="flex items-center ">
+                    <div className="w-72 h-72  overflow-hidden  flex items-center justify-center">
+                      <img src={item.image} /> 
                     </div>
                   </div>
                   <h3 className="text-xl text-gray-800 font-bold mb-3">{item.title}</h3>
